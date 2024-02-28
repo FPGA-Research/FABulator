@@ -1,0 +1,78 @@
+* {
+    secondary: #313143;
+    light-secondary: #3C3C4F;
+    
+    fab-green: #04A9A9;
+    fab-light-green: #3AC2C1;
+    fab-dark-green: #006768;
+    fab-blue: #4572DD;
+    fab-light-blue: #5F86F4;
+    fab-dark-blue: #004CB0;
+    fab-purple: #7601B5;
+    fab-light-purple: #932CD2;
+    fab-dark-purple: #540094;
+    fab-pink: #B32BCC;
+    fab-light-pink: #CA45E3;
+    fab-dark-pink: #8500A0;
+}
+
+
+.green-node {
+    -fx-background-color: fab-green;
+}
+.green-node:hover {
+    -fx-background-color: fab-light-green;
+}
+
+.dark-green-node {
+    -fx-background-color: fab-dark-green;
+}
+
+.blue-node {
+    -fx-background-color: fab-blue;
+}
+
+.blue-node:hover {
+    -fx-background-color: fab-light-blue;
+}
+
+.dark-blue-node {
+    -fx-background-color: fab-dark-blue;
+}
+
+.purple-node {
+    -fx-background-color: fab-purple;
+}
+
+.purple-node:hover {
+    -fx-background-color: fab-light-purple;
+}
+
+.dark-purple-node {
+    -fx-background-color: fab-dark-purple;
+}
+
+.pink-node {
+    -fx-background-color: fab-pink;
+}
+
+.pink-node:hover {
+    -fx-background-color: fab-light-pink;
+}
+
+.dark-pink-node {
+    -fx-background-color: fab-dark-pink;
+}
+
+.secondary-node {
+    -fx-background-color: secondary;
+}
+
+.secondary-node:hover {
+    -fx-background-color: light-secondary;
+}
+
+.transparent-node {
+    -fx-background-color: transparent;
+}
+

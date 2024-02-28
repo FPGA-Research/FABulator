@@ -1,0 +1,58 @@
+LEFT:                   Left
+RIGHT:                  Right
+FILE:                   File
+EDIT:                   Edit
+VIEW:                   View
+OPEN:                   Open
+OPEN_FILE:              Open File
+OPEN_HDL:               Open HDL File
+OPEN_FASM:              Open FASM File
+GARBAGE_COLLECT:        Run Garbage Collector
+ZOOM_IN:                Zoom In
+ZOOM_OUT:               Zoom Out
+FULL_SCREEN:            Full Screen
+FABRIC_PAGE:            View Fabric
+ARCH_PAGE:              Edit Architecture
+SETTINGS_PAGE:          Edit Application Settings
+SETTINGS:               Settings
+LOD:                    Level Of Detail
+ZOOM_INTENSITY:         Zoom Intensity
+GEN_WIRE_TOOLTIPS:      Generate Wire Tooltips (increases RAM usage)
+COLOR_CODE_TILES:       Color Code Tiles (requires reload)
+REG_PORT_COLOR:         Regular Port Color
+JUMP_PORT_COLOR:        Jump Port Color
+BEL_PORT_COLOR:         Bel Port Color
+SIDE_MENU_POS:          Side Menu Position (requires restart)
+LANGUAGE:               Language
+SUGGEST_OPEN:           Suggest opening of last file on startup
+AUTO_OPEN:              Auto-open last file on startup
+SUGGEST_RELOAD:         Suggest reload after geometry file changed
+AUTO_RELOAD:            Auto-reload geometry file when changed
+LOADING_FABRIC:         Loading Fabric...
+REFRESH_FILE:           Refresh File
+MODIFICATION_DETECTED:  A modification to the source file has been detected.
+RELOAD_QUESTION:        Do you want to reload?
+DONT_ASK_AGAIN:         Don't ask again
+RELOAD:                 Reload
+CANCEL:                 Cancel
+OPEN_QUESTION:          Open the last opened fabric?
+PERF_SETTINGS:          PERFORMANCE SETTINGS
+CONTROLS:               CONTROLS
+COLOR_SETTINGS:         COLOR SETTINGS
+UI_SETTINGS:            UI SETTINGS
+MISC_SETTINGS:          MISCELLANEOUS SETTINGS
+ANY:                    Any
+PORT:                   Port
+BEL:                    Bel
+SWITCH_MATRIX:          Switch Matrix
+TILE:                   Tile
+SEARCH:                 Search
+HIDE_EMPTY_NETS:        Hide Empty Nets
+WORLD_VIEW:             World View
+ELEMENT_VIEW:           Fabric Elements
+HDL_VIEW:               HDL Code
+NETLIST_VIEW:           Netlist
+EMPTY:                  Empty
+NEXT:                   Next
+NO_MORE_OCCURRENCES:    No more occurrences found
+OF:                     of

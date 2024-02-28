@@ -1,0 +1,22 @@
+* {
+    -fx-icon-fill: #DDDDDD;
+    -fx-hover-fill: #FAFAFA;
+}
+
+#chip-icon .ikonli-font-icon {
+    -fx-icon-code: "mdi2m-memory";
+    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-size: 32px;
+}
+
+#edit-arch-icon .ikonli-font-icon {
+    -fx-icon-code: "mdi2t-table-edit";
+    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-size: 32px;
+}
+
+#settings-icon .ikonli-font-icon {
+    -fx-icon-code: "mdi2a-application-cog";
+    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-size: 32px;
+}

@@ -1,0 +1,313 @@
+/*  ----  Global Style Colors  ----  */
+* {
+    primary: #171729;
+    secondary: #313143;
+    secondary-hover: #3C3C4F;
+    tertiary: #4F4E63;
+    tertiary-hover: #5D5C72;
+    quaternary: #67667C;
+    quaternary-hover: #737289;
+    quinary: #9896AE;
+    quinary-hover: #A5A3BC;
+
+    -fx-icon-fill: #DDDDDD;
+}
+
+
+/*  ----  MenuBar Style  ----  */
+.menu-bar {
+    -fx-background-color: primary;
+}
+.menu-bar .label {
+    -fx-text-fill: -fx-icon-fill;
+}
+.menu-bar .menu:hover,
+.menu-bar .menu:showing {
+    -fx-background-color: secondary;
+    -fx-background-radius: 4 4 4 4;
+}
+
+
+/*  ----  ContextMenu Style  ----  */
+.context-menu {
+    -fx-background-radius: 8;
+    -fx-background-color: primary;
+}
+.context-menu .label {
+    -fx-text-fill: -fx-icon-fill;
+}
+.context-menu .menu-item:hover,
+.context-menu .menu-item:focused {
+    -fx-background-color: secondary;
+    -fx-background-radius: 8;
+}
+
+
+/*  ----  SplitPane Style  ----  */
+.split-pane {
+   -fx-background-color: transparent;
+}
+
+
+/*  ----  TabPane Style  ----  */
+.tab-pane .tab-header-area .tab-header-background {
+   -fx-background-color: secondary;
+}
+.tab {
+    -fx-background-color: tertiary;
+    -fx-background-radius: 8 8 0 0;
+    -fx-border-radius: 8 8 0 0;
+    -fx-padding: 1 5 1 0.5;
+    -fx-background-insets: 1 5 1 1, 1 5 1 1, 2 5 1 1;
+}
+.tab:selected {
+    -fx-border-radius: 8 8 0 0;
+    -fx-border-color: transparent;
+    -fx-padding: 1 5 1 0.5;
+    -fx-background-insets: 0 5 0 0, 1 5 1 1, 2 5 0 0;
+}
+.tab:selected .tab-label {
+    -fx-font-weight: bold;
+}
+.tab-pane:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+.tab .tab-label {
+    -fx-padding: 2 8 2 8;
+    -fx-text-fill: -fx-icon-fill;
+}
+
+
+/*  ----  FabricPane Style  ----  */
+.fabric-pane > .viewport {
+    -fx-background-color: transparent;
+}
+.fabric-pane {
+    -fx-background-color: black;
+}
+
+
+/*  ----  FabricView Style  ----  */
+.fabric-view {
+    -fx-background-color: primary;
+}
+.fabric-view .tab-header-area .tab-header-background {
+    -fx-background-radius: 12 12 0 0;
+}
+
+
+/*  ----  ContentInfoView Style  ----  */
+.content-info-view {
+    -fx-background-color: primary;
+}
+.content-info-view .tab-pane {
+    -fx-background-color: secondary;
+}
+.content-info-view >.tab-header-area .tab-header-background {
+    -fx-background-radius: 12 12 0 0;
+}
+.content-info-view .tree-view {
+    -fx-background-insets: 0;
+    -fx-background-color: secondary;
+}
+.content-info-view .tree-view:focused {
+    -fx-background-insets: 0;
+    -fx-border-radius: 0;
+    -fx-border-color: secondary;
+    -fx-background-color: secondary;
+}
+.content-info-view .tree-cell {
+    -fx-background-color: secondary;
+}
+.content-info-view .tree-cell:hover {
+    -fx-background-color: secondary-hover;
+}
+.content-info-view .tree-cell:selected {
+    -fx-background-color: tertiary;
+}
+.content-info-view .element-view .label {
+    -fx-text-fill: -fx-icon-fill;
+}
+.content-info-view .netlist-view .label {
+    -fx-text-fill: -fx-icon-fill;
+}
+.content-info-view .tree-view .tree-cell .tree-disclosure-node .arrow  {
+    -fx-background-color: -fx-icon-fill;
+}
+.content-info-view .list-view {
+    -fx-background-color: secondary;
+}
+.content-info-view .list-cell {
+    -fx-background-color: secondary;
+}
+.content-info-view .list-cell:hover {
+    -fx-background-color: secondary-hover;
+}
+.content-info-view .list-cell:selected {
+    -fx-background-color: tertiary;
+}
+.content-info-view .scroll-bar:horizontal {
+    -fx-scale-x: 0;
+    -fx-scale-y: 0;
+}
+.content-info-view .corner {
+    -fx-scale-x: 0;
+    -fx-scale-y: 0;
+}
+.content-info-view .scroll-bar {
+    -fx-background-color : tertiary;
+}
+.content-info-view .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0;
+    -fx-border-radius: 2px;
+}
+.content-info-view .scroll-bar:vertical .increment-button,
+.content-info-view .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-padding: 0 10 0 0;
+}
+.content-info-view .scroll-bar .increment-arrow,
+.content-info-view .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 1 0;
+}
+.content-info-view .scroll-bar:vertical .increment-arrow,
+.content-info-view .scroll-bar:vertical .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0 1;
+}
+.content-info-view .scroll-bar:vertical .thumb {
+    -fx-background-color: quaternary;
+    -fx-background-insets: 0, 0, 0;
+    -fx-background-radius: 6;
+}
+.content-info-view .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: quaternary-hover;
+}
+
+/*  ----  SettingsView Style  ----  */
+.settings-view > .viewport {
+    -fx-background-color: transparent;
+}
+.settings-view {
+    -fx-background-color: secondary;
+    -fx-background-radius: 12 0 0 0;
+}
+.settings-view .title {
+    -fx-padding: 16 0 -16 0;
+}
+.settings-view .scroll-bar {
+    -fx-background-color : tertiary;
+}
+.settings-view .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0;
+    -fx-border-radius: 2px;
+}
+.settings-view .scroll-bar:vertical .increment-button,
+.settings-view .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-padding: 0 10 0 0;
+}
+.settings-view .scroll-bar .increment-arrow,
+.settings-view .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 1 0;
+}
+.settings-view .scroll-bar:vertical .increment-arrow,
+.settings-view .scroll-bar:vertical .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0 1;
+}
+.settings-view .scroll-bar:vertical .thumb {
+    -fx-background-color: quaternary;
+    -fx-background-insets: 0, 0, 0;
+    -fx-background-radius: 6;
+}
+.settings-view .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: quaternary-hover;
+}
+
+
+/*  ----  SettingSection Style  ----  */
+.setting-section {
+    -fx-spacing: 4;
+    -fx-padding: 32;
+}
+
+
+/*  ----  BottomMenu Style  ----  */
+.bottom-menu {
+    -fx-background-color: secondary;
+    -fx-padding: 4;
+}
+
+.bottom-menu .search-feedback {
+    -fx-text-fill: -fx-icon-fill;
+    -fx-padding: 4;
+}
+
+.bottom-menu .choice-box {
+    -fx-background-radius: 8;
+}
+
+.bottom-menu .text-field {
+    -fx-background-radius: 8;
+}
+
+
+/*  ----  PageMenu Style  ----  */
+.page-menu .buttons {
+    -fx-background-color: primary;
+    -fx-padding: 12 12 12 0;
+    -fx-spacing: 12;
+    -fx-background-radius: 0;
+}
+.page-menu .highlights {
+    -fx-background-color: primary;
+    -fx-padding: 22 4 22 0;
+    -fx-spacing: 32;
+    -fx-background-radius: 0 0 0 0;
+}
+.page-menu > .highlights > .highlight {
+    -fx-background-radius: 0 2 2 0;
+    -fx-padding: 0 8 0 0;
+    -fx-translate-x: -4;
+}
+.page-menu .button {
+    -fx-background-radius: 10;
+}
+
+
+/*  ----  Wizard Style  ----  */
+.wizard {
+    -fx-tab-max-height: -8;
+    -fx-background-color: primary;
+}
+.wizard > .tab-header-area > .tab-header-background {
+    -fx-background-color: primary;
+}
+.wizard > .tab {
+    -fx-background-color: transparent;
+}
+
+
+/*  ----  WorldView Style  ----  */
+.world-view {
+    -fx-background-color: black;
+}
+
+
+/* TODO */
+#highlight-on {
+    -fx-background-color: -fx-icon-fill;
+}
+#highlight-off {
+    -fx-background-color: primary;
+}

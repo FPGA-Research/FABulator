@@ -1,0 +1,58 @@
+LEFT:                   Links
+RIGHT:                  Rechts
+FILE:                   Datei
+EDIT:                   Bearbeiten
+VIEW:                   Ansicht
+OPEN:                   Öffnen
+OPEN_FILE:              Datei öffnen
+OPEN_HDL:               HDL Datei öffnen
+OPEN_FASM:              FASM Datei öffnen
+GARBAGE_COLLECT:        Garbage Collector starten
+ZOOM_IN:                Reinzoomen
+ZOOM_OUT:               Rauszoomen
+FULL_SCREEN:            Vollbild
+FABRIC_PAGE:            Fabric ansehen
+ARCH_PAGE:              Architektur bearbeiten
+SETTINGS_PAGE:          App-Einstellungen bearbeiten
+LOD:                    Detail
+SETTINGS:               Einstellungen
+ZOOM_INTENSITY:         Zoom Intensität
+GEN_WIRE_TOOLTIPS:      Routing Tooltips generieren (erhöht RAM-Nutzung)
+COLOR_CODE_TILES:       Tiles farbig hinterlegen (Benötigt Neuladen)
+REG_PORT_COLOR:         Port Farbe (Regulär)
+JUMP_PORT_COLOR:        Port Farbe (Jump)
+BEL_PORT_COLOR:         Port Farbe (Primitive)
+SIDE_MENU_POS:          Position des Seitenmenus (Benötigt Neustart)
+LANGUAGE:               Sprache
+SUGGEST_OPEN:           Öffnen der letzten Datei bei Startup vorschlagen
+AUTO_OPEN:              Geometry-Datei nach Startup automatisch öffnen
+SUGGEST_RELOAD:         Neuladen nach Änderung der Geometry-Datei vorschlagen
+AUTO_RELOAD:            Geometry-Datei nach Änderung automatisch neu laden
+LOADING_FABRIC:         FPGA wird geladen...
+REFRESH_FILE:           Datei aktualisieren
+MODIFICATION_DETECTED:  Eine Modifizierung der Quelldatei wurde festgestellt.
+RELOAD_QUESTION:        Möchten sie neuladen?
+DONT_ASK_AGAIN:         Nicht erneut fragen
+RELOAD:                 Neuladen
+CANCEL:                 Abbrechen
+OPEN_QUESTION:          Zuletzt geöffnete Datei öffnen?
+PERF_SETTINGS:          PERFORMANZ-EINSTELLUNGEN
+CONTROLS:               KONTROLLE
+COLOR_SETTINGS:         FARBEINSTELLUNGEN
+UI_SETTINGS:            UI EINSTELLUNGEN
+MISC_SETTINGS:          VERSCHIEDENES
+ANY:                    Alles
+PORT:                   Port
+BEL:                    Bel
+SWITCH_MATRIX:          Switch Matrix
+TILE:                   Tile
+SEARCH:                 Suchen
+HIDE_EMPTY_NETS:        Leere Netze verstecken
+WORLD_VIEW:             Weltansicht
+ELEMENT_VIEW:           Teilelemente
+HDL_VIEW:               HDL Code
+NETLIST_VIEW:           Netzliste
+EMPTY:                  Leer
+NEXT:                   Weiter
+NO_MORE_OCCURENCES:     Keine weiteren Elemente
+OF:                     von

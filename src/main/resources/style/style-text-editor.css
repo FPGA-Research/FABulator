@@ -1,0 +1,53 @@
+.keyword {
+    -fx-fill: orange;
+    -fx-font-weight: bold;
+}
+
+.semicolon {
+    -fx-font-weight: bold;
+}
+
+.paren {
+    -fx-fill: #3344CC;
+    -fx-font-weight: bold;
+}
+
+.bracket {
+    -fx-fill: darkgreen;
+    -fx-font-weight: bold;
+}
+
+.brace {
+    -fx-fill: teal;
+    -fx-font-weight: bold;
+}
+
+.string {
+    -fx-fill: blue;
+}
+
+.comment {
+	-fx-fill: cadetblue;
+}
+
+.code {
+	-fx-fill: white;
+}
+.code:selected {
+	-fx-fill: white;
+}
+.code:highlighted {
+	-fx-fill: white;
+}
+
+.paragraph-box:has-caret {
+    -fx-background-color: #f2f9fc;
+}
+
+.styled-text-area .selection {
+    -fx-fill: #182288;
+}
+
+.paragraph-box:has-caret {
+    -fx-background-color: #091133;
+}
