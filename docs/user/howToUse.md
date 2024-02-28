@@ -14,7 +14,7 @@ has to be created explicitly, which can be done in the FABulous Shell with the c
 
 ```
 load_fabric
-gen_fabric      # only needed once to generated matrix.csv file
+gen_fabric      # only needed once to generate matrix.csv files
 gen_geometry
 ```
 
@@ -52,3 +52,17 @@ Tab.
 ### Explore HDL
 By clicking on elements which are specified by HDL code (like bels), you 
 can explore their respective HDL code in the `HDL Code` Tab.
+
+### View programmable connections in a switch matrix
+Clicking on a port of a switch matrix will show
+its programmable connections. Be sure to properly
+click on the port itself, not the wire on top.
+Also note that the matrix.csv files must be generated
+for this feature.
+This is done in the FABulous shell (see above).
+
+### Highlight wires
+By right-clicking a wire, a color to highlight
+it with can be selected.
+Be aware that this is not available for the 
+programmable connections inside a switch matrix.

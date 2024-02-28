@@ -86,6 +86,7 @@ public class LineMap {
 
     public Set<Line> allLinesAt(Line line) {
         Set<Line> lines = new HashSet<>();
+        lines.add(line);
         Queue<Line> searchNear = new LinkedList<>();
         searchNear.add(line);
 
