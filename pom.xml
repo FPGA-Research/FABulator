@@ -6,7 +6,7 @@
 
     <groupId>fabulator</groupId>
     <artifactId>FABulator</artifactId>
-    <version>1.0.1-alpha</version>
+    <version>1.0.2-alpha</version>
     <name>FABulator</name>
 
     <properties>

@@ -3,10 +3,12 @@ package fabulator.util;
 import fabulator.FABulator;
 import fabulator.async.FileChangedManager;
 import fabulator.geometry.FabricGeometry;
+import fabulator.language.Text;
 import fabulator.lookup.BitstreamConfiguration;
 import fabulator.parse.FasmParser;
 import fabulator.parse.GeometryParser;
 import fabulator.ui.fabric.Fabric;
+import fabulator.ui.window.ErrorMessageDialog;
 import fabulator.ui.window.LoadingWindow;
 import javafx.application.Platform;
 import javafx.stage.FileChooser;
@@ -114,6 +116,8 @@ public class FileUtils {
         } else {
             Logger logger = LogManager.getLogger();
             logger.warn("Tried to open invalid file " + file.getName());
+
+            new ErrorMessageDialog(Text.INVALID_GEOM_FILE);
         }
     }
 
@@ -146,6 +150,8 @@ public class FileUtils {
         } else {
             Logger logger = LogManager.getLogger();
             logger.warn("Tried to open invalid file " + file.getName());
+
+            new ErrorMessageDialog(Text.INVALID_GEOM_FILE);
         }
     }
 
@@ -165,6 +171,8 @@ public class FileUtils {
         } else {
             Logger logger = LogManager.getLogger();
             logger.warn("Tried to open invalid file " + file.getName());
+
+            new ErrorMessageDialog(Text.INVALID_HDL_FILE);
         }
     }
 

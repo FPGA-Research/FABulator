@@ -56,3 +56,7 @@ EMPTY:                  Empty
 NEXT:                   Next
 NO_MORE_OCCURRENCES:    No more occurrences found
 OF:                     of
+ERROR:                  Error
+CLOSE:                  Close
+INVALID_GEOM_FILE:      Invalid geometry file
+INVALID_HDL_FILE:       Invalid HDL file

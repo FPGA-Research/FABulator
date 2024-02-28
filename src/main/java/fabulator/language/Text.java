@@ -70,7 +70,12 @@ public enum Text {
     EMPTY,
     NEXT,
     NO_MORE_OCCURRENCES,
-    OF;
+    OF,
+
+    ERROR,
+    CLOSE,
+    INVALID_GEOM_FILE,
+    INVALID_HDL_FILE;
 
     private StringProperty stringProperty;
 

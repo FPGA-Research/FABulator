@@ -25,9 +25,9 @@ BEL_PORT_COLOR:         Port Farbe (Primitive)
 SIDE_MENU_POS:          Position des Seitenmenus (Benötigt Neustart)
 LANGUAGE:               Sprache
 SUGGEST_OPEN:           Öffnen der letzten Datei bei Startup vorschlagen
-AUTO_OPEN:              Geometry-Datei nach Startup automatisch öffnen
-SUGGEST_RELOAD:         Neuladen nach Änderung der Geometry-Datei vorschlagen
-AUTO_RELOAD:            Geometry-Datei nach Änderung automatisch neu laden
+AUTO_OPEN:              Geometrie-Datei nach Startup automatisch öffnen
+SUGGEST_RELOAD:         Neuladen nach Änderung der Geometrie-Datei vorschlagen
+AUTO_RELOAD:            Geometrie-Datei nach Änderung automatisch neu laden
 LOADING_FABRIC:         FPGA wird geladen...
 REFRESH_FILE:           Datei aktualisieren
 MODIFICATION_DETECTED:  Eine Modifizierung der Quelldatei wurde festgestellt.
@@ -56,3 +56,7 @@ EMPTY:                  Leer
 NEXT:                   Weiter
 NO_MORE_OCCURENCES:     Keine weiteren Elemente
 OF:                     von
+ERROR:                  Fehler
+CLOSE:                  Schließen
+INVALID_GEOM_FILE:      Ungültige Geometrie-Datei
+INVALID_HDL_FILE:       Ungültige HDL-Datei
