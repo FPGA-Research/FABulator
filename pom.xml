@@ -6,7 +6,7 @@
 
     <groupId>fabulator</groupId>
     <artifactId>FABulator</artifactId>
-    <version>1.0.0-alpha</version>
+    <version>1.0.1-alpha</version>
     <name>FABulator</name>
 
     <properties>
@@ -91,11 +91,11 @@
                     <source>17</source>
                     <target>17</target>
                     <annotationProcessorPaths>
-                        <path>
+                        <annotationProcessorPath>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
                             <version>1.18.26</version>
-                        </path>
+                        </annotationProcessorPath>
                     </annotationProcessorPaths>
                     <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
@@ -129,11 +129,11 @@
                             <noHeaderFiles>true</noHeaderFiles>
 
                             <annotationProcessorPaths>
-                                <path>
+                                <annotationProcessorPath>
                                     <groupId>org.projectlombok</groupId>
                                     <artifactId>lombok</artifactId>
                                     <version>1.18.26</version>
-                                </path>
+                                </annotationProcessorPath>
                             </annotationProcessorPaths>
                         </configuration>
                     </execution>
