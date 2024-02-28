@@ -25,11 +25,22 @@ import java.util.stream.Collectors;
  */
 public class FileUtils {
 
+    private static final String EXPECTED_FIRST_LINE_GEOM_FILE = "PARAMS";
     private static final String GEOM_FILE_EXTENSION = ".csv";
     private static final List<String> HDL_EXTENSIONS = List.of(".v", ".vhd", ".vhdl");
 
     private static boolean isValidGeomFile(File file) {
         boolean valid = (file != null) && (file.getName().endsWith(GEOM_FILE_EXTENSION));
+
+        if (valid) {
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+                String firstLine = br.readLine();
+                valid = (firstLine.startsWith(EXPECTED_FIRST_LINE_GEOM_FILE));
+            } catch (IOException e) {
+                valid = false;
+            }
+        }
+
         return valid;
     }
 
@@ -99,6 +110,10 @@ public class FileUtils {
                     Platform.runLater(() -> LoadingWindow.getInstance().hide());
                 });
             }).start();
+
+        } else {
+            Logger logger = LogManager.getLogger();
+            logger.warn("Tried to open invalid file " + file.getName());
         }
     }
 
@@ -127,6 +142,10 @@ public class FileUtils {
                         .getMainView()
                         .setNewFabric(fabric);
             });
+
+        } else {
+            Logger logger = LogManager.getLogger();
+            logger.warn("Tried to open invalid file " + file.getName());
         }
     }
 
@@ -143,6 +162,9 @@ public class FileUtils {
 
             String fileName = file.getAbsolutePath();
             openHdlFile(fileName);
+        } else {
+            Logger logger = LogManager.getLogger();
+            logger.warn("Tried to open invalid file " + file.getName());
         }
     }
 
