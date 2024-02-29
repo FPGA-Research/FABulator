@@ -32,6 +32,13 @@ public class FileUtils {
     private static final String GEOM_FILE_EXTENSION = ".csv";
     private static final List<String> HDL_EXTENSIONS = List.of(".v", ".vhd", ".vhdl");
 
+
+    /**
+     * Checks if a file qualifies as a valid geometry file.
+     *
+     * @param file the file to check
+     * @return true if the file is a valid geometry file
+     */
     private static boolean isValidGeomFile(File file) {
         boolean valid = (file != null) && (file.getName().endsWith(GEOM_FILE_EXTENSION));
 
@@ -47,6 +54,12 @@ public class FileUtils {
         return valid;
     }
 
+    /**
+     * Checks if a file qualifies as a valid HDL file.
+     *
+     * @param file the file to check
+     * @return true if the file is a valid HDL file
+     */
     private static boolean isValidHdlFile(File file) {
         boolean valid = false;
 
@@ -63,9 +76,16 @@ public class FileUtils {
         return valid;
     }
 
+    /**
+     * Returns the parent directory of a file specified
+     * by the name of the file.
+     *
+     * @param fileName the fileName of the file
+     * @return the parent directory
+     */
     public static File directoryOf(String fileName) {
         File file = new File(fileName);
-        File directory =  file.getParentFile();
+        File directory = file.getParentFile();
         return directory;
     }
 
