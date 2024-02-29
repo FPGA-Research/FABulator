@@ -90,7 +90,7 @@ public class FileChangedManager {
     public void setFile(File file) {
         try {
             this.currentFileName = file.getCanonicalPath();
-            Config.getInstance().setOpenedFabricFileName(this.currentFileName);
+            Config.getInstance().getOpenedFabricFileName().set(this.currentFileName);
 
             Path path = Paths.get(this.currentFileName);
             this.lastModified = Files.getLastModifiedTime(path);
