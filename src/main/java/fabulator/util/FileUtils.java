@@ -7,6 +7,7 @@ import fabulator.language.Text;
 import fabulator.lookup.BitstreamConfiguration;
 import fabulator.parse.FasmParser;
 import fabulator.parse.GeometryParser;
+import fabulator.settings.Config;
 import fabulator.ui.fabric.Fabric;
 import fabulator.ui.window.ErrorMessageDialog;
 import fabulator.ui.window.LoadingWindow;
@@ -62,11 +63,32 @@ public class FileUtils {
         return valid;
     }
 
+    public static File directoryOf(String fileName) {
+        File file = new File(fileName);
+        File directory =  file.getParentFile();
+        return directory;
+    }
+
     /**
      * Opens a dialog for choosing a file to open.
      */
     public static void openFile() {
         FileChooser fileChooser = new FileChooser();
+
+        Config config = Config.getInstance();
+        String lastFileName = config.getOpenedFabricFileName().get();
+
+        if (!lastFileName.isEmpty()) {
+            File lastDir = directoryOf(lastFileName);
+
+            if (lastDir != null && lastDir.exists()) {
+                fileChooser.setInitialDirectory(lastDir);
+            } else {
+                Logger logger = LogManager.getLogger();
+                logger.info("Directory of last opened geometry file not found");
+            }
+        }
+
         File file = fileChooser.showOpenDialog(
                 FABulator.getApplication().getStage()
         );
@@ -115,9 +137,9 @@ public class FileUtils {
 
         } else {
             Logger logger = LogManager.getLogger();
-            logger.warn("Tried to open invalid file " + file.getName());
+            logger.warn("Tried to open invalid file " + file);
 
-            new ErrorMessageDialog(Text.INVALID_GEOM_FILE);
+            if (file != null) new ErrorMessageDialog(Text.INVALID_GEOM_FILE);
         }
     }
 
@@ -149,9 +171,9 @@ public class FileUtils {
 
         } else {
             Logger logger = LogManager.getLogger();
-            logger.warn("Tried to open invalid file " + file.getName());
+            logger.warn("Tried to open invalid file " + file);
 
-            new ErrorMessageDialog(Text.INVALID_GEOM_FILE);
+            if (file != null) new ErrorMessageDialog(Text.INVALID_GEOM_FILE);
         }
     }
 
@@ -160,6 +182,21 @@ public class FileUtils {
      */
     public static void openHdl() {
         FileChooser fileChooser = new FileChooser();
+
+        Config config = Config.getInstance();
+        String lastFileName = config.getOpenedHdlFileName().get();
+
+        if (!lastFileName.isEmpty()) {
+            File lastDir = directoryOf(lastFileName);
+
+            if (lastDir != null && lastDir.exists()) {
+                fileChooser.setInitialDirectory(lastDir);
+            } else {
+                Logger logger = LogManager.getLogger();
+                logger.info("Directory of last opened HDL file not found");
+            }
+        }
+
         File file = fileChooser.showOpenDialog(FABulator.getApplication().getStage());
 
         if (isValidHdlFile(file)) {
@@ -170,9 +207,9 @@ public class FileUtils {
             openHdlFile(fileName);
         } else {
             Logger logger = LogManager.getLogger();
-            logger.warn("Tried to open invalid file " + file.getName());
+            logger.warn("Tried to open invalid file " + file);
 
-            new ErrorMessageDialog(Text.INVALID_HDL_FILE);
+            if (file != null) new ErrorMessageDialog(Text.INVALID_HDL_FILE);
         }
     }
 
@@ -188,6 +225,9 @@ public class FileUtils {
                     .getMainView()
                     .openHdl(lines);
 
+            Config config = Config.getInstance();
+            config.getOpenedHdlFileName().set(fileName);
+
         } catch (IOException exception) {
             logger.error("HDL file " + fileName + " not found.");
         }
@@ -195,6 +235,21 @@ public class FileUtils {
 
     public static void openFasm() {
         FileChooser fileChooser = new FileChooser();
+
+        Config config = Config.getInstance();
+        String lastFileName = config.getOpenedFasmFileName().get();
+
+        if (!lastFileName.isEmpty()) {
+            File lastDir = directoryOf(lastFileName);
+
+            if (lastDir != null && lastDir.exists()) {
+                fileChooser.setInitialDirectory(lastDir);
+            } else {
+                Logger logger = LogManager.getLogger();
+                logger.info("Directory of last opened FASM file not found");
+            }
+        }
+
         File file = fileChooser.showOpenDialog(FABulator.getApplication().getStage());
 
         if (file != null) {
@@ -203,6 +258,8 @@ public class FileUtils {
             FABulator.getApplication()
                     .getMainView()
                     .displayBitstreamConfig(bitstreamConfiguration);
+
+            config.getOpenedFasmFileName().set(file.getAbsolutePath());
         }
     }
 }

@@ -24,6 +24,8 @@ public class Config {
     private Properties properties;
 
     private StringProperty openedFabricFileName;
+    private StringProperty openedFasmFileName;
+    private StringProperty openedHdlFileName;
     private BooleanProperty genWireTooltips;
     private DoubleProperty zoomIntensity;
     private StringProperty menuPosition;
@@ -95,6 +97,8 @@ public class Config {
 
     private void buildPropertyObjects() {
         this.openedFabricFileName   = this.buildStringSetting("openedFabricFileName");
+        this.openedFasmFileName     = this.buildStringSetting("openedFasmFileName");
+        this.openedHdlFileName      = this.buildStringSetting("openedHdlFileName");
         this.genWireTooltips        = this.buildBooleanSetting("genWireTooltips");
         this.zoomIntensity          = this.buildDoubleSetting("zoomIntensity");
         this.menuPosition           = this.buildStringSetting("menuPosition");
