@@ -107,8 +107,8 @@ public class AutoRefreshDialog {
         boolean dontShowAgain = this.dontAskAgain.isSelected();
 
         if (dontShowAgain) {
-            this.config.setSuggestAutoReload(false);
-            this.config.setAutoReload(autoOpen);
+            this.config.getSuggestAutoReload().set(false);
+            this.config.getAutoReload().set(autoOpen);
         }
     }
 
