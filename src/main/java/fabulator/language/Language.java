@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public enum Language {
     ENGLISH("English", "/language/english.txt"),
-    GERMAN("German", "/language/german.txt");
+    GERMAN("Deutsch", "/language/german.txt");
 
     private String displayName;
     private String fileName;
