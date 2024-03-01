@@ -1,6 +1,7 @@
 package fabulator.parse;
 
 import fabulator.geometry.*;
+import fabulator.util.StringUtils;
 import lombok.Getter;
 
 import java.io.BufferedReader;
@@ -149,12 +150,8 @@ public class GeometryParser {   //TODO: add more checks to make sure only valid 
         List<Location> locRow = new ArrayList<>();
         for (String token : tokens) {
             if (!token.equals("Null")) {
-                String[] coords = token.split("/");     // TODO: Do with string utils
-                Location loc = new Location(
-                        Double.parseDouble(coords[0]),
-                        Double.parseDouble(coords[1])
-                );
-                locRow.add(loc);
+                Location location = StringUtils.locFrom(token);
+                locRow.add(location);
             } else {
                 locRow.add(null);
             }

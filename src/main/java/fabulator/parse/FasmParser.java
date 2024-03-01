@@ -58,7 +58,7 @@ public class FasmParser {
         if (args.length != 3 || args[2].startsWith("INIT")) return;
 
         String locArg = args[0];
-        DiscreteLocation tileLoc = StringUtils.locFrom(locArg);
+        DiscreteLocation tileLoc = StringUtils.discreteLocFrom(locArg);
 
         this.config.addEntry(this.currentNetName, tileLoc, args[1], args[2]);
     }

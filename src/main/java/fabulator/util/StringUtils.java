@@ -1,6 +1,7 @@
 package fabulator.util;
 
 import fabulator.geometry.DiscreteLocation;
+import fabulator.geometry.Location;
 import javafx.scene.paint.Color;
 
 public class StringUtils {
@@ -12,7 +13,7 @@ public class StringUtils {
      * @param   locString   The string encoding the location
      * @return              parsed DiscreteLocation object
      */
-    public static DiscreteLocation locFrom(String locString) {
+    public static DiscreteLocation discreteLocFrom(String locString) {
         int xStart = locString.indexOf("X");
         int yStart = locString.indexOf("Y");
 
@@ -23,6 +24,22 @@ public class StringUtils {
         int y = Integer.parseInt(yString);
 
         DiscreteLocation location = new DiscreteLocation(x, y);
+        return location;
+    }
+
+    /**
+     * Parses a Location object from
+     * a location String such as "123/456".
+     *
+     * @param   locString   The string encoding the location
+     * @return              parsed Location object
+     */
+    public static Location locFrom(String locString) {
+        String[] coords = locString.split("/");
+        Location location = new Location(
+                Double.parseDouble(coords[0]),
+                Double.parseDouble(coords[1])
+        );
         return location;
     }
 

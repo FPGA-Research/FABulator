@@ -31,7 +31,7 @@ public class StringUtilsTest {
         assertEquals(sampleStrings.length, expectedLocs.length);
 
         for (int i = 0; i < sampleStrings.length; i++) {
-            DiscreteLocation produced = StringUtils.locFrom(sampleStrings[i]);
+            DiscreteLocation produced = StringUtils.discreteLocFrom(sampleStrings[i]);
             DiscreteLocation expected = expectedLocs[i];
             assertEquals(expected, produced);
         }
