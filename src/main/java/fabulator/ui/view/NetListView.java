@@ -5,6 +5,7 @@ import fabulator.lookup.BitstreamConfiguration;
 import fabulator.lookup.Net;
 import fabulator.ui.builder.LabelBuilder;
 import fabulator.ui.style.StyleClass;
+import javafx.collections.ListChangeListener;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -69,6 +70,9 @@ public class NetListView extends VBox {
 
         this.listView = new ListView<>();
         this.listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        ListChangeListener<Label> selectionListener = event -> this.displaySelectedNets();
+        this.listView.getSelectionModel().getSelectedItems().addListener(selectionListener);
         this.listView.prefHeightProperty().bind(
                 this.heightProperty().subtract(this.topBox.heightProperty())
         );
@@ -103,10 +107,6 @@ public class NetListView extends VBox {
 
                 if (!(hideEmpty && net.isEmpty()) && passesFilter) {
                     Label netLabel = new Label(netName);
-                    netLabel.setOnMouseClicked(event -> {
-                        this.displaySelectedNets();
-                    });
-
                     this.listView.getItems().add(netLabel);
                 }
             }

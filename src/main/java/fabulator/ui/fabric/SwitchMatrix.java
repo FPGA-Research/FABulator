@@ -362,6 +362,7 @@ public class SwitchMatrix extends Group implements FabricElement {
                 this.bitstreamConMap.get(discreteLocA)
         );
         Set<Shape> consAtPortB = this.bitstreamConMap.get(discreteLocB);
+        consAtPortB = consAtPortB == null ? Set.of() : consAtPortB;
         consAtPorts.retainAll(consAtPortB);
 
         for (Shape con : consAtPorts) {
