@@ -339,6 +339,13 @@ public class SwitchMatrix extends Group implements FabricElement {
 
         if (portA == null || portB == null) return null;
 
+        IO ioA = portA.getGeometry().getIo();
+        IO ioB = portB.getGeometry().getIo();
+
+        if (!((ioA == IO.INPUT || ioA == IO.INOUT) && (ioB == IO.OUTPUT || ioB == IO.INOUT))) {
+            return null;
+        }
+
         Location portLocA = new Location(
                 portA.getGeometry().getRelX(),
                 portA.getGeometry().getRelY()
