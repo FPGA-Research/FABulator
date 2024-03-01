@@ -83,8 +83,8 @@ public class SettingsView extends ScrollPane {
 
         Slider zoomIntensitySlider = new SliderBuilder()
                 .bindBidirectional(this.config.getZoomIntensity())
-                .setMin(0.002)
-                .setMax(0.02)
+                .setMin(0.001)
+                .setMax(0.01)
                 .build();
 
         Setting zoomIntensity = new Setting(Text.ZOOM_INTENSITY, zoomIntensitySlider);
