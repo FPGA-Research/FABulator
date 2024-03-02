@@ -210,20 +210,10 @@ public class SwitchMatrix extends Group implements FabricElement {
             AbstractPort portA = this.namePortMap.get(ports.getPortA());
             AbstractPort portB = this.namePortMap.get(ports.getPortB());
 
-            // TODO:
-            //  this happens because the fasm contains start and end ports
+            //  ports might be null as the fasm contains start and end ports
             //  of wires, that information is redundant in this model though.
             //  but it might allow for more efficient lookups.
             if (portA == null || portB == null) {
-                /*System.out.println("[WARNING]");
-                System.out.println(
-                        "Ports "
-                                + ports.getPortA()
-                                + " and "
-                                + ports.getPortB()
-                                + " not found in "
-                                + this.geometry.getName()
-                );*/
                 continue;
             }
 
