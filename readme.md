@@ -77,7 +77,10 @@ For information on how to use FABulator, see [How To Use](docs/user/howToUse.md)
 ![App Screenshot](docs/img/switch_matrix.png)
 
 ### Displaying a user design
-![App Screenshot](docs/img/fasm.png)
+![App Screenshot](docs/img/user_design.png)
+
+### Selecting nets
+![App Screenshot](docs/img/net_selection.png)
 
 ### Tiles can be color coded
 ![App Screenshot](docs/img/color_coding.png)
