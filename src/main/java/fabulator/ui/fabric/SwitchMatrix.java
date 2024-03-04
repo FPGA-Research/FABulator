@@ -1,23 +1,28 @@
 package fabulator.ui.fabric;
 
 import fabulator.geometry.*;
+import fabulator.lookup.BitstreamConfiguration;
+import fabulator.parse.SwitchMatrixParser;
+import fabulator.settings.Config;
 import fabulator.ui.builder.ArcBuilder;
 import fabulator.ui.builder.LineBuilder;
 import fabulator.ui.builder.RectangleBuilder;
 import fabulator.ui.fabric.element.ElementType;
 import fabulator.ui.fabric.element.FabricElement;
-import fabulator.ui.fabric.port.SmPort;
-import fabulator.lookup.BitstreamConfiguration;
-import fabulator.parse.SwitchMatrixParser;
-import fabulator.util.FileUtils;
 import fabulator.ui.fabric.port.AbstractPort;
 import fabulator.ui.fabric.port.JumpPort;
+import fabulator.ui.fabric.port.SmPort;
+import fabulator.util.FileUtils;
+import javafx.beans.property.Property;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.*;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -118,6 +123,8 @@ public class SwitchMatrix extends Group implements FabricElement {
         this.getChildren().removeAll(this.displayedConnections);
         this.displayedConnections.clear();
 
+        Config config = Config.getInstance();
+
         for (String name : connectedNames.keySet()) {
             AbstractPort port = this.namePortMap.get(name);
             if (port == null) continue;     // TODO: this should not happen
@@ -132,9 +139,11 @@ public class SwitchMatrix extends Group implements FabricElement {
             if (discreteLocA.equals(discreteLocB)) continue;
 
             String destName = port.getGeometry().getName();
-            Color color = Color.LIME;
+            Property<Color> colorProp = config.getSmConnJumpColor();
             if (connectedNames.get(destName) != null) {
-                color = connectedNames.get(destName) ? Color.YELLOW : Color.ORANGE;
+                colorProp = connectedNames.get(destName)
+                        ? config.getSmConnInColor()
+                        : config.getSmConnOutColor();
             }
 
             boolean drawCurve = false;
@@ -159,14 +168,14 @@ public class SwitchMatrix extends Group implements FabricElement {
                 Line startLine = new LineBuilder()
                         .setStart(discreteLocA.getX(), discreteLocA.getY())
                         .setEnd(discreteLocA.getX() + offsetX, discreteLocA.getY() + offsetY)
-                        .setStroke(color, 0.2)
+                        .setStroke(colorProp, 0.2)
                         .build();
                 this.displayedConnections.add(startLine);
 
                 Line endLine = new LineBuilder()
                         .setStart(discreteLocB.getX() + offsetX, discreteLocB.getY() + offsetY)
                         .setEnd(discreteLocB.getX(), discreteLocB.getY())
-                        .setStroke(color, 0.2)
+                        .setStroke(colorProp, 0.2)
                         .build();
                 this.displayedConnections.add(endLine);
 
@@ -182,7 +191,7 @@ public class SwitchMatrix extends Group implements FabricElement {
                         .setRadius(radiusX, radiusY)
                         .setStartAngle(startAngle)
                         .setLength(180)
-                        .setStroke(color, 0.2)
+                        .setStroke(colorProp, 0.2)
                         .setFill(Color.TRANSPARENT)
                         .build();
                 this.displayedConnections.add(arc);
@@ -191,7 +200,7 @@ public class SwitchMatrix extends Group implements FabricElement {
                 Line line = new LineBuilder()
                         .setStart(discreteLocA.getX(), discreteLocA.getY())
                         .setEnd(discreteLocB.getX(), discreteLocB.getY())
-                        .setStroke(color, 0.2)
+                        .setStroke(colorProp, 0.2)
                         .build();
                 this.displayedConnections.add(line);
             }
@@ -263,11 +272,13 @@ public class SwitchMatrix extends Group implements FabricElement {
                 drawCurve = true;
             }
 
+            Config config = Config.getInstance();
+
             if (drawCurve) {
                 Line startLine = new LineBuilder()
                         .setStart(portLocA.getX(), portLocA.getY())
                         .setEnd(portLocA.getX() + offsetX, portLocA.getY() + offsetY)
-                        .setStroke(Color.RED, 0.2)
+                        .setStroke(config.getUserDesignColor(), 0.2)
                         .build();
                 this.displayedBitstreamConfig.add(startLine);
                 this.bitstreamConMap.get(discreteLocA).add(startLine);
@@ -276,7 +287,7 @@ public class SwitchMatrix extends Group implements FabricElement {
                 Line endLine = new LineBuilder()
                         .setStart(portLocB.getX() + offsetX, portLocB.getY() + offsetY)
                         .setEnd(portLocB.getX(), portLocB.getY())
-                        .setStroke(Color.RED, 0.2)
+                        .setStroke(config.getUserDesignColor(), 0.2)
                         .build();
                 this.displayedBitstreamConfig.add(endLine);
                 this.bitstreamConMap.get(discreteLocA).add(endLine);
@@ -294,7 +305,7 @@ public class SwitchMatrix extends Group implements FabricElement {
                         .setRadius(radiusX, radiusY)
                         .setStartAngle(startAngle)
                         .setLength(180)
-                        .setStroke(Color.RED, 0.2)
+                        .setStroke(config.getUserDesignColor(), 0.2)
                         .setFill(Color.TRANSPARENT)
                         .build();
 
@@ -306,7 +317,7 @@ public class SwitchMatrix extends Group implements FabricElement {
                 Line line = new LineBuilder()
                         .setStart(portLocA.getX(), portLocA.getY())
                         .setEnd(portLocB.getX(), portLocB.getY())
-                        .setStroke(Color.RED, 0.2)
+                        .setStroke(config.getUserDesignColor(), 0.2)
                         .build();
                 this.displayedBitstreamConfig.add(line);
                 this.bitstreamConMap.get(discreteLocA).add(line);
@@ -317,8 +328,11 @@ public class SwitchMatrix extends Group implements FabricElement {
     }
 
     public void clearNets() {
+        Config config = Config.getInstance();
+        Property<Color> colorProp = config.getUserDesignColor();
+
         for (Shape wire : this.netWires) {
-            wire.setStroke(Color.RED);
+            wire.strokeProperty().bind(colorProp);
         }
         this.netWires.clear();
     }
@@ -362,8 +376,10 @@ public class SwitchMatrix extends Group implements FabricElement {
         consAtPortB = consAtPortB == null ? Set.of() : consAtPortB;
         consAtPorts.retainAll(consAtPortB);
 
+        Config config = Config.getInstance();
+
         for (Shape con : consAtPorts) {
-            con.setStroke(Color.LIME);
+            con.strokeProperty().bind(config.getUserDesignMarkedColor());
         }
         this.netWires.addAll(consAtPorts);
 

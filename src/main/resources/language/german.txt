@@ -19,9 +19,14 @@ SETTINGS:               Einstellungen
 ZOOM_INTENSITY:         Zoom Intensität
 GEN_WIRE_TOOLTIPS:      Routing Tooltips generieren (erhöht RAM-Nutzung)
 COLOR_CODE_TILES:       Tiles farbig hinterlegen (Benötigt Neuladen)
-REG_PORT_COLOR:         Port Farbe (Regulär)
-JUMP_PORT_COLOR:        Port Farbe (Jump)
-BEL_PORT_COLOR:         Port Farbe (Primitive)
+REG_PORT_COLOR:         Port (Regulär)
+JUMP_PORT_COLOR:        Port (Jump)
+BEL_PORT_COLOR:         Port (Primitive)
+SM_CONN_IN_COLOR:       Switch Matrix Verbindung (zu Input)
+SM_CONN_OUT_COLOR:      Switch Matrix Verbindung (zu Output)
+SM_CONN_JUMP_COLOR:     Switch Matrix Verbindung (zu Jump)
+USER_DES_COL:           Benutzerdesign
+USER_DES_MARKED:        Benutzerdesign (highlight)
 SIDE_MENU_POS:          Position des Seitenmenus (Benötigt Neustart)
 LANGUAGE:               Sprache
 SUGGEST_OPEN:           Öffnen der letzten Datei bei Startup vorschlagen

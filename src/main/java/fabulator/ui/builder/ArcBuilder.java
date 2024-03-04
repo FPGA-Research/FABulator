@@ -1,5 +1,7 @@
 package fabulator.ui.builder;
 
+import javafx.beans.property.Property;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Arc;
 import javafx.util.Builder;
@@ -45,6 +47,12 @@ public class ArcBuilder implements Builder<Arc> {
 
     public ArcBuilder setStroke(Paint paint, double width) {
         this.arc.setStroke(paint);
+        this.arc.setStrokeWidth(width);
+        return this;
+    }
+
+    public ArcBuilder setStroke(Property<Color> colorProp, double width) {
+        this.arc.strokeProperty().bind(colorProp);
         this.arc.setStrokeWidth(width);
         return this;
     }

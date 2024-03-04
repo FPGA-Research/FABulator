@@ -39,6 +39,11 @@ public class Config {
     private ObjectProperty<Color> regularPortColor;
     private ObjectProperty<Color> jumpPortColor;
     private ObjectProperty<Color> belPortColor;
+    private ObjectProperty<Color> smConnInColor;
+    private ObjectProperty<Color> smConnOutColor;
+    private ObjectProperty<Color> smConnJumpColor;
+    private ObjectProperty<Color> userDesignColor;
+    private ObjectProperty<Color> userDesignMarkedColor;
 
     private Config() {
         instance = this;
@@ -110,6 +115,11 @@ public class Config {
         this.regularPortColor       = this.buildColorSetting("regularPortColor");
         this.jumpPortColor          = this.buildColorSetting("jumpPortColor");
         this.belPortColor           = this.buildColorSetting("belPortColor");
+        this.smConnInColor          = this.buildColorSetting("smConnInColor");
+        this.smConnOutColor         = this.buildColorSetting("smConnOutColor");
+        this.smConnJumpColor         = this.buildColorSetting("smConnJumpColor");
+        this.userDesignColor        = this.buildColorSetting("userDesignColor");
+        this.userDesignMarkedColor  = this.buildColorSetting("userDesignMarkedColor");
 
         this.language = new SimpleObjectProperty<>(
                 Language.valueOf(this.properties.getProperty("language"))

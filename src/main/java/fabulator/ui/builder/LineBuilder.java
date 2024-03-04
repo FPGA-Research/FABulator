@@ -1,6 +1,8 @@
 package fabulator.ui.builder;
 
+import javafx.beans.property.Property;
 import javafx.scene.control.Tooltip;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.util.Builder;
@@ -27,6 +29,12 @@ public class LineBuilder implements Builder<Line> {
 
     public LineBuilder setStroke(Paint paint, double width) {
         this.line.setStroke(paint);
+        this.line.setStrokeWidth(width);
+        return this;
+    }
+
+    public LineBuilder setStroke(Property<Color> colorProp, double width) {
+        this.line.strokeProperty().bind(colorProp);
         this.line.setStrokeWidth(width);
         return this;
     }

@@ -1,9 +1,9 @@
 package fabulator.settings;
 
 import fabulator.FABulator;
-import fabulator.ui.builder.*;
 import fabulator.language.Language;
 import fabulator.language.Text;
+import fabulator.ui.builder.*;
 import fabulator.ui.style.StyleClass;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -111,12 +111,37 @@ public class SettingsView extends ScrollPane {
                 .bindBidirectional(this.config.getBelPortColor())
                 .build();
 
+        ColorPicker smConnInColorPicker = new ColorPickerBuilder()
+                .bindBidirectional(this.config.getSmConnInColor())
+                .build();
+
+        ColorPicker smConnOutColorPicker = new ColorPickerBuilder()
+                .bindBidirectional(this.config.getSmConnOutColor())
+                .build();
+
+        ColorPicker smConnJumpColorPicker = new ColorPickerBuilder()
+                .bindBidirectional(this.config.getSmConnJumpColor())
+                .build();
+
+        ColorPicker userDesignColorPicker = new ColorPickerBuilder()
+                .bindBidirectional(this.config.getUserDesignColor())
+                .build();
+
+        ColorPicker userDesignMarkedColorPicker = new ColorPickerBuilder()
+                .bindBidirectional(this.config.getUserDesignMarkedColor())
+                .build();
+
         SettingSection colorSection = new SettingSection(Text.COLOR_SETTINGS);
         colorSection.addSettings(
                 new Setting(Text.COLOR_CODE_TILES, colorCodeTilesBox),
                 new Setting(Text.REG_PORT_COLOR, regularPortColorPicker),
                 new Setting(Text.JUMP_PORT_COLOR, jumpPortColorPicker),
-                new Setting(Text.BEL_PORT_COLOR, belPortColorPicker)
+                new Setting(Text.BEL_PORT_COLOR, belPortColorPicker),
+                new Setting(Text.SM_CONN_IN_COLOR, smConnInColorPicker),
+                new Setting(Text.SM_CONN_OUT_COLOR, smConnOutColorPicker),
+                new Setting(Text.SM_CONN_JUMP_COLOR, smConnJumpColorPicker),
+                new Setting(Text.USER_DES_COL, userDesignColorPicker),
+                new Setting(Text.USER_DES_MARKED, userDesignMarkedColorPicker)
         );
         this.sections.add(colorSection);
     }

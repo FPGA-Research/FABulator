@@ -19,9 +19,14 @@ LOD:                    Level Of Detail
 ZOOM_INTENSITY:         Zoom Intensity
 GEN_WIRE_TOOLTIPS:      Generate Wire Tooltips (increases RAM usage)
 COLOR_CODE_TILES:       Color Code Tiles (requires reload)
-REG_PORT_COLOR:         Regular Port Color
-JUMP_PORT_COLOR:        Jump Port Color
-BEL_PORT_COLOR:         Bel Port Color
+REG_PORT_COLOR:         Regular Port
+JUMP_PORT_COLOR:        Jump Port
+BEL_PORT_COLOR:         Bel Port
+SM_CONN_IN_COLOR:       Switch Matrix Connection (to input)
+SM_CONN_OUT_COLOR:      Switch Matrix Connection (to output)
+SM_CONN_JUMP_COLOR:     Switch Matrix Connection (to jump)
+USER_DES_COL:           User design
+USER_DES_MARKED:        User design (highlight)
 SIDE_MENU_POS:          Side Menu Position (requires restart)
 LANGUAGE:               Language
 SUGGEST_OPEN:           Suggest opening of last file on startup

@@ -2,12 +2,14 @@ package fabulator.ui.fabric;
 
 import fabulator.geometry.*;
 import fabulator.lookup.BitstreamConfiguration;
+import fabulator.settings.Config;
 import fabulator.ui.builder.MenuItemBuilder;
 import fabulator.ui.builder.RectangleBuilder;
 import fabulator.ui.fabric.element.ElementType;
 import fabulator.ui.fabric.element.FabricElement;
 import fabulator.ui.fabric.port.AbstractPort;
 import fabulator.lookup.LineMap;
+import javafx.beans.property.Property;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Bounds;
@@ -165,13 +167,23 @@ public class Fabric extends Group {
     }
 
     public void highlightWire(AbstractPort port) {
+        Config config = Config.getInstance();
+        Property<Color> colorProp = config.getUserDesignColor();
+
         Set<Line> toBeColored = this.lineMap.allLinesAt(port);
-        for (Line wire : toBeColored) wire.setStroke(Color.RED);
+        for (Line wire : toBeColored) {
+            wire.strokeProperty().bind(colorProp);
+        }
     }
 
     public Set<Line> highlightNet(AbstractPort port) {
+        Config config = Config.getInstance();
+        Property<Color> colorProp = config.getUserDesignMarkedColor();
+
         Set<Line> toBeColored = this.lineMap.allLinesAt(port);
-        for (Line wire : toBeColored) wire.setStroke(Color.LIME);
+        for (Line wire : toBeColored) {
+            wire.strokeProperty().bind(colorProp);
+        }
         return toBeColored;
     }
 
