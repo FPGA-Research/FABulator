@@ -65,9 +65,7 @@ public class SettingsView extends ScrollPane {
     private void buildPerfSection() {
         SettingSection perfSection = new SettingSection(Text.PERF_SETTINGS);
 
-        Setting detailSetting = new Setting(Text.LOD, new Label("COMING SOON")); // TODO
-        perfSection.addSetting(detailSetting);
-
+        // TODO: Move to more appropriate section
         CheckBox genWireTooltips = new CheckBox();
         genWireTooltips.selectedProperty().bindBidirectional(
                 this.config.getGenWireTooltips()

@@ -55,14 +55,6 @@ public class MainView extends VBox implements ReferenceHolder {
                 .build();
         this.pageMenu.addPage(fabricPageButton, fabricPage);
 
-        VBox archPage = new VBox();
-        Button archPageButton = new ButtonBuilder()
-                .setIcon(CssIcon.EDIT_ARCH)
-                .setColor(UiColor.BLUE)
-                .setTooltip(Text.ARCH_PAGE)
-                .build();
-        this.pageMenu.addPage(archPageButton, archPage);
-
         this.pageMenu.build();
         this.pageMenu.changeTo(0);
 

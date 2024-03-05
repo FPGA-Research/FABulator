@@ -1,14 +1,16 @@
 package fabulator.ui.menu;
 
-import fabulator.ui.builder.ButtonBuilder;
-import fabulator.ui.icon.CssIcon;
 import fabulator.language.Text;
 import fabulator.settings.SettingsView;
+import fabulator.ui.builder.ButtonBuilder;
+import fabulator.ui.icon.CssIcon;
 import fabulator.ui.style.StyleClass;
 import fabulator.ui.style.UiColor;
+import javafx.event.Event;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -19,6 +21,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class PageMenu extends HBox {
 
@@ -41,6 +44,13 @@ public class PageMenu extends HBox {
     public PageMenu() {
         this.pageNodesList = new ArrayList<>();
         this.getStyleClass().add("page-menu");
+    }
+
+    private void registerEventFilters() {
+        this.pageNodesList.stream()
+                .map(node -> node.pageButton)
+                .filter(Objects::nonNull)
+                .forEach(button -> button.addEventFilter(KeyEvent.ANY, Event::consume));
     }
 
     public void addPage(Button pageButton, Region page) {
@@ -103,6 +113,8 @@ public class PageMenu extends HBox {
                 buttons,
                 this.pageBox
         );
+
+        this.registerEventFilters();
     }
 
     private void buildHighlights(int numberCells, int spacerIndex) {
