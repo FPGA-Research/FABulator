@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
@@ -85,7 +86,7 @@ public class GeometryParser {   //TODO: add more checks to make sure only valid 
     private void parse() throws IOException {
         this.parsingMode = ParsingMode.NONE;
 
-        try (BufferedReader br = new BufferedReader(new FileReader(this.file))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(this.file, StandardCharsets.UTF_8))) {
             String line;
             while ((line = br.readLine()) != null) {
                 this.processLine(line);
