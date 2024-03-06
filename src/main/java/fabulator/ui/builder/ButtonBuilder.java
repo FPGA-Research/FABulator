@@ -1,7 +1,7 @@
 package fabulator.ui.builder;
 
-import fabulator.ui.icon.CssIcon;
 import fabulator.language.Text;
+import fabulator.ui.icon.CssIcon;
 import fabulator.ui.style.UiColor;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

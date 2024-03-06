@@ -1,19 +1,19 @@
 package fabulator.ui.menu;
 
 import fabulator.FABulator;
-import fabulator.ui.fabric.Fabric;
-import fabulator.ui.fabric.element.ElementType;
-import fabulator.ui.fabric.element.FabricElement;
 import fabulator.geometry.Location;
 import fabulator.lookup.BitstreamConfiguration;
 import fabulator.lookup.Net;
+import fabulator.memory.ReferenceHolder;
 import fabulator.settings.Config;
+import fabulator.ui.fabric.Fabric;
+import fabulator.ui.fabric.element.ElementType;
+import fabulator.ui.fabric.element.FabricElement;
 import fabulator.ui.view.ContentInfoView;
 import fabulator.ui.view.fabric.FabricView;
+import fabulator.ui.window.AutoOpenDialog;
 import fabulator.util.FileUtils;
 import fabulator.util.StringUtils;
-import fabulator.memory.ReferenceHolder;
-import fabulator.ui.window.AutoOpenDialog;
 import javafx.application.Platform;
 import javafx.geometry.Bounds;
 import javafx.scene.control.SplitPane;

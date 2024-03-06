@@ -1,7 +1,7 @@
 package fabulator.lookup;
 
-import fabulator.ui.fabric.port.AbstractPort;
 import fabulator.geometry.DiscreteLocation;
+import fabulator.ui.fabric.port.AbstractPort;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;
 import javafx.scene.shape.Line;
@@ -79,7 +79,7 @@ public class LineMap {
 
         Set<Line> allLines = Set.of();
         if (lineOptional.isPresent()) {
-            allLines =  allLinesAt(lineOptional.get());
+            allLines = allLinesAt(lineOptional.get());
         }
         return allLines;
     }

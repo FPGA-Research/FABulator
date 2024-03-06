@@ -1,12 +1,12 @@
 package fabulator.ui.window;
 
 import fabulator.language.Text;
+import fabulator.settings.Config;
 import fabulator.ui.builder.ButtonBuilder;
 import fabulator.ui.builder.CheckBoxBuilder;
 import fabulator.ui.builder.LabelBuilder;
 import fabulator.ui.builder.StageBuilder;
 import fabulator.ui.icon.ImageIcon;
-import fabulator.settings.Config;
 import fabulator.util.FileUtils;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

@@ -1,17 +1,17 @@
 package fabulator.ui.view;
 
 import fabulator.FABulator;
-import fabulator.ui.fabric.Fabric;
 import fabulator.language.Text;
 import fabulator.lookup.BitstreamConfiguration;
+import fabulator.memory.ReferenceHolder;
+import fabulator.ui.builder.ButtonBuilder;
+import fabulator.ui.fabric.Fabric;
+import fabulator.ui.icon.CssIcon;
+import fabulator.ui.menu.BottomMenu;
+import fabulator.ui.menu.FabricMenu;
 import fabulator.ui.menu.PageMenu;
 import fabulator.ui.menu.TopMenu;
 import fabulator.ui.style.UiColor;
-import fabulator.ui.builder.ButtonBuilder;
-import fabulator.ui.icon.CssIcon;
-import fabulator.memory.ReferenceHolder;
-import fabulator.ui.menu.BottomMenu;
-import fabulator.ui.menu.FabricMenu;
 import javafx.geometry.Bounds;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Priority;

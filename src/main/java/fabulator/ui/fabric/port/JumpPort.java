@@ -1,8 +1,8 @@
 package fabulator.ui.fabric.port;
 
-import fabulator.ui.fabric.SwitchMatrix;
 import fabulator.geometry.PortGeometry;
 import fabulator.settings.Config;
+import fabulator.ui.fabric.SwitchMatrix;
 import javafx.beans.property.Property;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseButton;

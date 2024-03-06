@@ -1,7 +1,7 @@
 package fabulator.ui.fabric.element;
 
-import fabulator.ui.menu.Stateful;
 import fabulator.language.Text;
+import fabulator.ui.menu.Stateful;
 import javafx.beans.property.StringProperty;
 import lombok.Getter;
 

@@ -1,12 +1,12 @@
 package fabulator.ui.view;
 
 import fabulator.language.Text;
-import fabulator.ui.builder.TabBuilder;
-import fabulator.ui.fabric.Fabric;
-import fabulator.ui.fabric.element.FabricElement;
 import fabulator.lookup.BitstreamConfiguration;
 import fabulator.lookup.Net;
 import fabulator.memory.ReferenceHolder;
+import fabulator.ui.builder.TabBuilder;
+import fabulator.ui.fabric.Fabric;
+import fabulator.ui.fabric.element.FabricElement;
 import fabulator.ui.menu.FabricMenu;
 import fabulator.ui.style.StyleClass;
 import javafx.geometry.Bounds;

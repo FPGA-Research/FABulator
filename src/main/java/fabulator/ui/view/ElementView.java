@@ -1,9 +1,9 @@
 package fabulator.ui.view;
 
+import fabulator.memory.ReferenceHolder;
 import fabulator.ui.fabric.Bel;
 import fabulator.ui.fabric.Fabric;
 import fabulator.ui.fabric.Tile;
-import fabulator.memory.ReferenceHolder;
 import fabulator.ui.style.StyleClass;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -13,7 +13,8 @@ import java.util.List;
 
 public class ElementView extends TabPane implements ReferenceHolder {
 
-    static class FabricElement extends Label {}
+    static class FabricElement extends Label {
+    }
 
     private ContentInfoView parent;
 

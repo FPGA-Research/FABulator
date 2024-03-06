@@ -1,9 +1,9 @@
 package fabulator.settings;
 
 import fabulator.FABulator;
+import fabulator.language.Text;
 import fabulator.ui.builder.LabelBuilder;
 import fabulator.ui.builder.RectangleBuilder;
-import fabulator.language.Text;
 import fabulator.ui.style.StyleClass;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;

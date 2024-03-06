@@ -2,13 +2,13 @@ package fabulator.ui.fabric;
 
 import fabulator.geometry.*;
 import fabulator.lookup.BitstreamConfiguration;
+import fabulator.lookup.LineMap;
 import fabulator.settings.Config;
 import fabulator.ui.builder.MenuItemBuilder;
 import fabulator.ui.builder.RectangleBuilder;
 import fabulator.ui.fabric.element.ElementType;
 import fabulator.ui.fabric.element.FabricElement;
 import fabulator.ui.fabric.port.AbstractPort;
-import fabulator.lookup.LineMap;
 import javafx.beans.property.Property;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -26,7 +26,10 @@ import javafx.util.Pair;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 /**

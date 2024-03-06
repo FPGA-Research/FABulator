@@ -10,8 +10,8 @@ public class StringUtils {
      * Parses a DiscreteLocation object from
      * a location String such as "X6Y12".
      *
-     * @param   locString   The string encoding the location
-     * @return              parsed DiscreteLocation object
+     * @param locString The string encoding the location
+     * @return parsed DiscreteLocation object
      */
     public static DiscreteLocation discreteLocFrom(String locString) {
         int xStart = locString.indexOf("X");
@@ -31,8 +31,8 @@ public class StringUtils {
      * Parses a Location object from
      * a location String such as "123/456".
      *
-     * @param   locString   The string encoding the location
-     * @return              parsed Location object
+     * @param locString The string encoding the location
+     * @return parsed Location object
      */
     public static Location locFrom(String locString) {
         String[] coords = locString.split("/");
@@ -47,8 +47,8 @@ public class StringUtils {
      * Creates a hex string for a given color that can
      * be used for (de)serialization.
      *
-     * @param   color   The given Color object
-     * @return          Hex string for the given color
+     * @param color The given Color object
+     * @return Hex string for the given color
      */
     public static String toHexString(Color color) {
         int r = ((int) Math.round(color.getRed()     * 255)) << 24;
@@ -64,8 +64,8 @@ public class StringUtils {
      * Returns the whether the given String object is valid,
      * meaning that it is neither null nor the literal "null"
      *
-     * @param   string  The given String object
-     * @return          Whether the string is valid
+     * @param string The given String object
+     * @return Whether the string is valid
      */
     public static boolean valid(String string) {
         return string != null && !string.equals("null");

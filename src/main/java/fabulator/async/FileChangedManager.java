@@ -1,8 +1,8 @@
 package fabulator.async;
 
-import fabulator.util.FileUtils;
 import fabulator.settings.Config;
 import fabulator.ui.window.AutoRefreshDialog;
+import fabulator.util.FileUtils;
 import javafx.application.Platform;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -1,10 +1,10 @@
 package fabulator.ui.view.fabric;
 
 import fabulator.FABulator;
-import fabulator.ui.fabric.Fabric;
-import fabulator.settings.Config;
-import fabulator.ui.style.StyleClass;
 import fabulator.geometry.Location;
+import fabulator.settings.Config;
+import fabulator.ui.fabric.Fabric;
+import fabulator.ui.style.StyleClass;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.BoundingBox;

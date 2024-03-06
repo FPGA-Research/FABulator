@@ -1,9 +1,9 @@
 package fabulator.ui.menu;
 
 import fabulator.FABulator;
+import fabulator.language.Text;
 import fabulator.ui.builder.MenuBuilder;
 import fabulator.ui.builder.MenuItemBuilder;
-import fabulator.language.Text;
 import fabulator.util.FileUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

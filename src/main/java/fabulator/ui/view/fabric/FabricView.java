@@ -1,19 +1,22 @@
 package fabulator.ui.view.fabric;
 
+import fabulator.geometry.Location;
 import fabulator.language.Text;
+import fabulator.lookup.BitstreamConfiguration;
+import fabulator.lookup.Net;
+import fabulator.memory.ReferenceHolder;
 import fabulator.ui.fabric.Fabric;
 import fabulator.ui.fabric.element.ElementType;
 import fabulator.ui.fabric.element.FabricElement;
-import fabulator.geometry.Location;
-import fabulator.lookup.BitstreamConfiguration;
-import fabulator.lookup.Net;
 import fabulator.ui.style.StyleClass;
-import fabulator.memory.ReferenceHolder;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 import java.util.LinkedList;

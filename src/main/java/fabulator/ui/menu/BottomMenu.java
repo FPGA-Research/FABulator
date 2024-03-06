@@ -1,19 +1,21 @@
 package fabulator.ui.menu;
 
 import fabulator.language.Text;
+import fabulator.memory.ReferenceHolder;
+import fabulator.ui.builder.ButtonBuilder;
 import fabulator.ui.builder.StatefulChoiceBoxBuilder;
 import fabulator.ui.fabric.element.ElementType;
 import fabulator.ui.fabric.element.FabricElement;
 import fabulator.ui.style.StyleClass;
-import fabulator.ui.builder.ButtonBuilder;
-import fabulator.memory.ReferenceHolder;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 
 import java.util.LinkedList;
 import java.util.List;

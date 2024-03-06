@@ -1,10 +1,10 @@
 package fabulator.ui.fabric.port;
 
-import fabulator.ui.fabric.Bel;
-import fabulator.settings.Config;
-import fabulator.ui.fabric.Tile;
 import fabulator.geometry.Location;
 import fabulator.geometry.PortGeometry;
+import fabulator.settings.Config;
+import fabulator.ui.fabric.Bel;
+import fabulator.ui.fabric.Tile;
 import javafx.beans.property.Property;
 import javafx.scene.control.Tooltip;
 import javafx.scene.paint.Color;

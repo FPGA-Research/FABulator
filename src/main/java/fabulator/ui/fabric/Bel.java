@@ -1,12 +1,12 @@
 package fabulator.ui.fabric;
 
+import fabulator.geometry.BelGeometry;
+import fabulator.geometry.Location;
+import fabulator.geometry.PortGeometry;
 import fabulator.ui.builder.RectangleBuilder;
 import fabulator.ui.fabric.element.ElementType;
 import fabulator.ui.fabric.element.FabricElement;
 import fabulator.ui.fabric.port.BelPort;
-import fabulator.geometry.BelGeometry;
-import fabulator.geometry.Location;
-import fabulator.geometry.PortGeometry;
 import fabulator.util.FileUtils;
 import javafx.scene.Group;
 import javafx.scene.Node;

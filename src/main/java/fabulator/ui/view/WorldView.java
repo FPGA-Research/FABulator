@@ -1,14 +1,14 @@
 package fabulator.ui.view;
 
-import fabulator.ui.fabric.Fabric;
-import fabulator.ui.style.StyleClass;
-import fabulator.ui.builder.LabelBuilder;
-import fabulator.ui.builder.RectangleBuilder;
-import fabulator.ui.fabric.Tile;
 import fabulator.geometry.FabricGeometry;
 import fabulator.geometry.Location;
 import fabulator.geometry.TileGeometry;
 import fabulator.memory.ReferenceHolder;
+import fabulator.ui.builder.LabelBuilder;
+import fabulator.ui.builder.RectangleBuilder;
+import fabulator.ui.fabric.Fabric;
+import fabulator.ui.fabric.Tile;
+import fabulator.ui.style.StyleClass;
 import fabulator.util.TileColorUtils;
 import javafx.event.EventHandler;
 import javafx.geometry.Bounds;

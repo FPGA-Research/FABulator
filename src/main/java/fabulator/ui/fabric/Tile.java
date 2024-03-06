@@ -1,14 +1,14 @@
 package fabulator.ui.fabric;
 
-import fabulator.ui.fabric.element.ElementType;
-import fabulator.ui.fabric.element.FabricElement;
 import fabulator.geometry.*;
 import fabulator.lookup.BitstreamConfiguration;
 import fabulator.lookup.LineMap;
 import fabulator.settings.Config;
-import fabulator.util.TileColorUtils;
 import fabulator.ui.builder.LineBuilder;
 import fabulator.ui.builder.RectangleBuilder;
+import fabulator.ui.fabric.element.ElementType;
+import fabulator.ui.fabric.element.FabricElement;
+import fabulator.util.TileColorUtils;
 import javafx.collections.ObservableList;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;

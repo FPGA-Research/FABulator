@@ -1,8 +1,8 @@
 package fabulator.ui.fabric.port;
 
+import fabulator.geometry.PortGeometry;
 import fabulator.ui.fabric.element.ElementType;
 import fabulator.ui.fabric.element.FabricElement;
-import fabulator.geometry.PortGeometry;
 import javafx.scene.shape.Circle;
 import lombok.Getter;
 

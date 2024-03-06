@@ -1,9 +1,9 @@
 package fabulator.parse;
 
-import fabulator.ui.fabric.port.SmPort;
 import fabulator.geometry.IO;
 import fabulator.geometry.PortGeometry;
 import fabulator.lookup.SmConnectivity;
+import fabulator.ui.fabric.port.SmPort;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

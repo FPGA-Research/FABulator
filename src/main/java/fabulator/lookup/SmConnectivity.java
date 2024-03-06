@@ -41,8 +41,8 @@ public class SmConnectivity {
      * to be performed, as both are merged in jump ports, but not regular
      * ones.
      *
-     * @param   port    the port for which connections are to be looked up
-     * @return          names of connected ports and their lookup flag
+     * @param port the port for which connections are to be looked up
+     * @return names of connected ports and their lookup flag
      */
     public Map<String, Boolean> connectedNamesOf(AbstractPort port) {   // TODO: Use IO to lookup just in row or column
         Map<String, Boolean> connected = new HashMap<>();
@@ -81,8 +81,8 @@ public class SmConnectivity {
      * connected to port p, we look for a column named p, and
      * look up connected ports there.
      *
-     * @param   name    the name of a port of the switch matrix
-     * @return          names of connected ports
+     * @param name the name of a port of the switch matrix
+     * @return names of connected ports
      */
     private List<String> searchUsingColAsKeys(String name) {
         int nameIndex = this.leftColNames.indexOf(name);
@@ -115,8 +115,8 @@ public class SmConnectivity {
      * connected to port p, we look for a row named p, and
      * look up connected ports there.
      *
-     * @param   name    the name of a port of the switch matrix
-     * @return          names of connected ports
+     * @param name the name of a port of the switch matrix
+     * @return names of connected ports
      */
     private List<String> searchUsingRowAsKeys(String name) {
         int nameIndex = this.topRowNames.indexOf(name);

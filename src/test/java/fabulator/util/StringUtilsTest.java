@@ -41,11 +41,11 @@ public class StringUtilsTest {
     @DisplayName("Test Color to HexString conversion")
     void textColorToHexStringConversion() {
         Color[] sampleColors = {
-                Color.color(100d/255, 10d/255, 100d/255),
-                Color.color(255d/255, 255d/255, 255d/255),
-                Color.color(0d/255, 255d/255, 0d/255),
-                Color.color(0d/255, 0d/255, 0d/255),
-                Color.color(123d/255, 45d/255, 67d/255)
+                Color.color(100d / 255, 10d / 255, 100d / 255),
+                Color.color(255d / 255, 255d / 255, 255d / 255),
+                Color.color(0d / 255, 255d / 255, 0d / 255),
+                Color.color(0d / 255, 0d / 255, 0d / 255),
+                Color.color(123d / 255, 45d / 255, 67d / 255)
         };
 
         String[] expectedStrings = {
