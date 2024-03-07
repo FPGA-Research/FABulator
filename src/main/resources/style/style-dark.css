@@ -304,6 +304,33 @@
 }
 
 
+/*  ----  ColorPicker Style  ----  */
+.color-picker {
+    -fx-background-color: quaternary;
+    -fx-background-radius: 8;
+}
+.color-picker .label {
+    -fx-text-fill: -fx-icon-fill;
+}
+.color-picker > .arrow-button {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 0 5 5 0, 0 4 4 0, 0 3 3 0;
+}
+.color-palette .hyperlink, .color-palette .separator {
+  visibility: hidden ;
+}
+.color-palette {
+    -fx-background-color: quaternary;
+    -fx-padding: 15 15 -30 15;
+}
+.color-palette > .color-picker-grid > .color-square > .color-rect {
+    -fx-stroke: white;
+    -fx-stroke-width: 0.4;
+    -fx-border-color: white;
+}
+
+
 /* TODO */
 #highlight-on {
     -fx-background-color: -fx-icon-fill;

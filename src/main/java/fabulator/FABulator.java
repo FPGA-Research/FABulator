@@ -43,18 +43,17 @@ public class FABulator extends Application {
         this.stage = stage;
         this.stage.setTitle(APP_NAME);
         this.stage.getIcons().add(ImageIcon.FABULOUS.getImage());
-
         this.mainView = new MainView();
-        this.mainView.getStylesheets().addAll(
-                Style.DARK.getStyleSheet(),
-                Style.DARK.getIconSheet(),
-                Style.DARK.getColorSheet()
-        );
 
         Scene scene = new Scene(
                 this.mainView,
                 960,
                 720
+        );
+        scene.getStylesheets().addAll(
+                Style.DARK.getStyleSheet(),
+                Style.DARK.getIconSheet(),
+                Style.DARK.getColorSheet()
         );
 
         this.stage.setScene(scene);
