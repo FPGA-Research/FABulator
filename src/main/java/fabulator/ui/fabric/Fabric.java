@@ -1,15 +1,18 @@
 package fabulator.ui.fabric;
 
 import fabulator.geometry.*;
+import fabulator.language.Text;
 import fabulator.lookup.BitstreamConfiguration;
 import fabulator.lookup.LineMap;
 import fabulator.settings.Config;
 import fabulator.ui.builder.MenuItemBuilder;
 import fabulator.ui.builder.RectangleBuilder;
+import fabulator.ui.builder.SliderBuilder;
 import fabulator.ui.fabric.element.ElementType;
 import fabulator.ui.fabric.element.FabricElement;
 import fabulator.ui.fabric.port.AbstractPort;
 import javafx.beans.property.Property;
+import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Bounds;
@@ -17,6 +20,7 @@ import javafx.scene.Group;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Slider;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -46,6 +50,7 @@ public class Fabric extends Group {
     private LineMap lineMap;
     private Line currentlySelected;
     private ContextMenu lineMenu;
+    private Slider thicknessController;
 
     private Rectangle topLeft;
     private Rectangle topRight;
@@ -78,7 +83,22 @@ public class Fabric extends Group {
                 .setOnAction(colorPickedHandler)
                 .build();
 
-        this.lineMenu = new ContextMenu(colorItem);
+        ChangeListener<Number> thicknessListener = (obs, old, now) -> {
+            this.setWireThickness((Double) now);
+        };
+
+        this.thicknessController = new SliderBuilder()
+                .setMin(0.2)
+                .setMax(0.8)
+                .addListener(thicknessListener)
+                .build();
+
+        MenuItem thicknessItem = new MenuItemBuilder()
+                .setText(Text.THICKNESS)
+                .setGraphic(thicknessController)
+                .build();
+
+        this.lineMenu = new ContextMenu(thicknessItem, colorItem);
     }
 
     public void build() {
@@ -159,6 +179,7 @@ public class Fabric extends Group {
 
     public void openLineMenu(Line line, ContextMenuEvent event) {
         this.currentlySelected = line;
+        this.thicknessController.setValue(line.getStrokeWidth());
         this.lineMenu.show(line, event.getScreenX(), event.getScreenY());
     }
 
@@ -167,6 +188,13 @@ public class Fabric extends Group {
 
         Set<Line> toBeColored = this.lineMap.allLinesAt(this.currentlySelected);
         for (Line wire : toBeColored) wire.setStroke(color);
+    }
+
+    private void setWireThickness(Double value) {
+        assert this.currentlySelected != null;
+
+        Set<Line> toBeColored = this.lineMap.allLinesAt(this.currentlySelected);
+        for (Line wire : toBeColored) wire.setStrokeWidth(value);
     }
 
     public void highlightWire(AbstractPort port) {

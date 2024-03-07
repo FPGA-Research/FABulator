@@ -1,6 +1,7 @@
 package fabulator.ui.builder;
 
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.value.ChangeListener;
 import javafx.scene.control.Slider;
 import javafx.util.Builder;
 
@@ -24,6 +25,11 @@ public class SliderBuilder implements Builder<Slider> {
 
     public SliderBuilder setMax(double maxValue) {
         this.slider.setMax(maxValue);
+        return this;
+    }
+
+    public SliderBuilder addListener(ChangeListener<Number> changeListener) {
+        this.slider.valueProperty().addListener(changeListener);
         return this;
     }
 

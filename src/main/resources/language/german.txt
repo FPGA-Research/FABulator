@@ -65,3 +65,4 @@ ERROR:                  Fehler
 CLOSE:                  Schließen
 INVALID_GEOM_FILE:      Ungültige Geometrie-Datei
 INVALID_HDL_FILE:       Ungültige HDL-Datei
+THICKNESS:              Dicke

@@ -80,7 +80,9 @@ public enum Text {
     ERROR,
     CLOSE,
     INVALID_GEOM_FILE,
-    INVALID_HDL_FILE;
+    INVALID_HDL_FILE,
+
+    THICKNESS;
 
     private StringProperty stringProperty;
 
