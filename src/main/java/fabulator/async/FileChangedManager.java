@@ -82,7 +82,7 @@ public class FileChangedManager {
             boolean autoOpen = config.getAutoReload().get();
 
             if (autoOpen) {
-                Platform.runLater(() -> FileUtils.openAsync(path.toFile()));
+                Platform.runLater(() -> FileUtils.openFabricAsync(path.toFile()));
             }
         }
     }

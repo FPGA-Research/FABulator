@@ -4,6 +4,7 @@ FILE:                   File
 EDIT:                   Edit
 VIEW:                   View
 OPEN:                   Open
+OPEN_FOLDER:            Open Folder
 OPEN_FILE:              Open File
 OPEN_HDL:               Open HDL File
 OPEN_FASM:              Open FASM File
@@ -66,3 +67,8 @@ CLOSE:                  Close
 INVALID_GEOM_FILE:      Invalid geometry file
 INVALID_HDL_FILE:       Invalid HDL file
 THICKNESS:              Thickness
+COMPILE:                Compile
+EXPAND_ALL:             Expand All
+COLLAPSE_ALL:           Collapse All
+EXPLORER_HINT_1:        To open a folder: File > Open Folder
+EXPLORER_HINT_2:        Click a file to open it in the editor

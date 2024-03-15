@@ -1,12 +1,14 @@
 package fabulator.ui.builder;
 
 import fabulator.language.Text;
+import fabulator.ui.icon.CssIcon;
 import fabulator.ui.style.StyleClass;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.util.Builder;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 public class LabelBuilder implements Builder<Label> {
 
@@ -14,6 +16,12 @@ public class LabelBuilder implements Builder<Label> {
 
     public LabelBuilder() {
         this.label = new Label();
+    }
+
+    public LabelBuilder setIcon(CssIcon icon) {
+        this.label.setGraphic(new FontIcon());
+        this.label.setId(icon.getId());
+        return this;
     }
 
     public LabelBuilder setStyleClass(StyleClass styleClass) {

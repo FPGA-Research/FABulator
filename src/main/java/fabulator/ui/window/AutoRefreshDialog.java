@@ -70,7 +70,7 @@ public class AutoRefreshDialog {
         EventHandler<ActionEvent> yesHandler = event -> {
             this.checkDontShowAgain(true);
             this.stage.close();
-            Platform.runLater(() -> FileUtils.openAsync(this.path.toFile()));
+            Platform.runLater(() -> FileUtils.openFabricAsync(this.path.toFile()));
         };
 
         Button yesButton = new ButtonBuilder()

@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
+import java.io.File;
 import java.util.List;
 
 public class MainView extends VBox implements ReferenceHolder {
@@ -26,6 +27,7 @@ public class MainView extends VBox implements ReferenceHolder {
 
     private FabricMenu fabricMenu;
     private BottomMenu bottomMenu;
+    private EditDesignView designView;
 
     public MainView() {
         this.initialize();
@@ -43,6 +45,8 @@ public class MainView extends VBox implements ReferenceHolder {
         VBox.setVgrow(this.pageMenu, Priority.ALWAYS);
 
         this.fabricMenu = new FabricMenu();
+        VBox.setVgrow(this.fabricMenu, Priority.ALWAYS);
+
         this.bottomMenu = new BottomMenu(this.fabricMenu);
     }
 
@@ -54,6 +58,17 @@ public class MainView extends VBox implements ReferenceHolder {
                 .setTooltip(Text.FABRIC_PAGE)
                 .build();
         this.pageMenu.addPage(fabricPageButton, fabricPage);
+
+        this.designView = new EditDesignView();
+        VBox.setVgrow(this.designView, Priority.ALWAYS);
+
+        VBox editPage = new VBox(this.designView);
+        Button editPageButton = new ButtonBuilder()
+                .setIcon(CssIcon.EDIT_DESIGN)
+                .setColor(UiColor.BLUE)
+                .setTooltip(Text.EDIT)
+                .build();
+        this.pageMenu.addPage(editPageButton, editPage);
 
         this.pageMenu.build();
         this.pageMenu.changeTo(0);
@@ -72,14 +87,22 @@ public class MainView extends VBox implements ReferenceHolder {
 
     public void setNewFabric(Fabric fabric) {
         this.fabricMenu.setNewFabric(fabric);
+        this.pageMenu.changeTo(0);
     }
 
     public void displayBitstreamConfig(BitstreamConfiguration config) {
         this.fabricMenu.displayBitstreamConfig(config);
+        this.pageMenu.changeTo(0);
     }
 
     public void openHdl(List<String> hdl) {
         this.fabricMenu.openHdl(hdl);
+        this.pageMenu.changeTo(0);
+    }
+
+    public void openFolder(File folder) {
+        this.designView.openFolder(folder);
+        this.pageMenu.changeTo(1);
     }
 
     public void zoomIn() {

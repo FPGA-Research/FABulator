@@ -12,6 +12,7 @@ import fabulator.ui.fabric.Fabric;
 import fabulator.ui.window.ErrorMessageDialog;
 import fabulator.ui.window.LoadingWindow;
 import javafx.application.Platform;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,8 +21,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * A central util class for actions concerning the handling of a file.
@@ -51,6 +52,17 @@ public class FileUtils {
             }
         }
 
+        return valid;
+    }
+
+    /**
+     * Checks if a file qualifies as a valid folder
+     *
+     * @param file the file to check
+     * @return true if the file is a valid folder
+     */
+    private static boolean isValidFolder(File file) {
+        boolean valid = (file != null) && Files.isDirectory(file.toPath());
         return valid;
     }
 
@@ -92,7 +104,7 @@ public class FileUtils {
     /**
      * Opens a dialog for choosing a file to open.
      */
-    public static void openFile() {
+    public static void openFabric() {
         FileChooser fileChooser = new FileChooser();
 
         Config config = Config.getInstance();
@@ -112,7 +124,7 @@ public class FileUtils {
         File file = fileChooser.showOpenDialog(
                 FABulator.getApplication().getStage()
         );
-        openAsync(file);
+        openFabricAsync(file);
     }
 
     /**
@@ -129,7 +141,7 @@ public class FileUtils {
      *
      * @param file the name of the file to open
      */
-    public static void openAsync(File file) {
+    public static void openFabricAsync(File file) {
         if (isValidGeomFile(file)) {
             Logger logger = LogManager.getLogger();
             logger.info("Asynchronously opening fabric file " + file.getName());
@@ -168,7 +180,7 @@ public class FileUtils {
      *
      * @param file the file to open
      */
-    public static void openSync(File file) {
+    public static void openFabricSync(File file) {
         if (isValidGeomFile(file)) {
             Logger logger = LogManager.getLogger();
             logger.info("Synchronously opening fabric file " + file.getName());
@@ -194,6 +206,22 @@ public class FileUtils {
             logger.warn("Tried to open invalid file " + file);
 
             if (file != null) new ErrorMessageDialog(Text.INVALID_GEOM_FILE);
+        }
+    }
+
+    /**
+     * Opens a dialog for choosing a folder to open.
+     */
+    public static void openFolder() {
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        File file = directoryChooser.showDialog(
+                FABulator.getApplication().getStage()
+        );
+
+        if (isValidFolder(file)) {
+            FABulator.getApplication()
+                    .getMainView()
+                    .openFolder(file);
         }
     }
 
@@ -237,10 +265,9 @@ public class FileUtils {
         Logger logger = LogManager.getLogger();
         logger.info("Opening HDL file " + fileName);
 
-        try (FileReader fileReader = new FileReader(fileName)) {
-            BufferedReader reader = new BufferedReader(fileReader);
-
-            List<String> lines = reader.lines().collect(Collectors.toList());
+        try {
+            File file = new File(fileName);
+            List<String> lines = read(file);
             FABulator.getApplication()
                     .getMainView()
                     .openHdl(lines);
@@ -281,5 +308,21 @@ public class FileUtils {
 
             config.getOpenedFasmFileName().set(file.getAbsolutePath());
         }
+    }
+
+    /**
+     * Reads the contents of a file.
+     *
+     * @param file the name of the file to read
+     */
+    public static List<String> read(File file) throws IOException {
+        List<String> fileContents;
+
+        try (FileReader fileReader = new FileReader(file)) {
+            try (BufferedReader reader = new BufferedReader(fileReader)) {
+                fileContents = reader.lines().toList();
+            }
+        }
+        return fileContents;
     }
 }

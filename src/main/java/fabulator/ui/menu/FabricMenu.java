@@ -1,6 +1,5 @@
 package fabulator.ui.menu;
 
-import fabulator.FABulator;
 import fabulator.geometry.Location;
 import fabulator.lookup.BitstreamConfiguration;
 import fabulator.lookup.Net;
@@ -45,13 +44,6 @@ public class FabricMenu extends SplitPane implements ReferenceHolder {
     }
 
     private void setup() {
-        this.prefHeightProperty().bind(
-                FABulator.getApplication()
-                        .getStage()
-                        .heightProperty()
-                        .subtract(100)
-        );
-
         String menuPosition = Config.getInstance().getMenuPosition().get();
 
         if (menuPosition.equals("Right")) {
@@ -68,6 +60,7 @@ public class FabricMenu extends SplitPane implements ReferenceHolder {
             );
             this.setDividerPositions(0.2);
         }
+        SplitPane.setResizableWithParent(this.infoView, false);
 
         Platform.runLater(this::maybeOpenLastFabric);
     }
@@ -94,7 +87,7 @@ public class FabricMenu extends SplitPane implements ReferenceHolder {
         } else {
             boolean autoOpen = config.getAutoOpen().get();
             if (autoOpen) {
-                FileUtils.openAsync(path.toFile());
+                FileUtils.openFabricAsync(path.toFile());
             }
         }
     }

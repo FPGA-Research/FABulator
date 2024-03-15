@@ -4,6 +4,7 @@ FILE:                   Datei
 EDIT:                   Bearbeiten
 VIEW:                   Ansicht
 OPEN:                   Öffnen
+OPEN_FOLDER:            Ordner öffnen
 OPEN_FILE:              Datei öffnen
 OPEN_HDL:               HDL Datei öffnen
 OPEN_FASM:              FASM Datei öffnen
@@ -66,3 +67,8 @@ CLOSE:                  Schließen
 INVALID_GEOM_FILE:      Ungültige Geometrie-Datei
 INVALID_HDL_FILE:       Ungültige HDL-Datei
 THICKNESS:              Dicke
+COMPILE:                Kompilieren
+EXPAND_ALL:             Alle ausklappen
+COLLAPSE_ALL:           Alle einklappen
+EXPLORER_HINT_1:        Ordner öffnen: Datei > Ordner öffnen
+EXPLORER_HINT_2:        Anzuzeigende Datei anklicken

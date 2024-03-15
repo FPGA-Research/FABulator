@@ -6,8 +6,14 @@ import lombok.Getter;
 @Getter
 public enum CssIcon {
     CHIP("chip-icon"),
-    EDIT_ARCH("edit-arch-icon"),
-    SETTINGS("settings-icon");
+    EDIT_DESIGN("edit-design-icon"),
+    SETTINGS("settings-icon"),
+    DIRECTORY("directory-icon"),
+    FILE("file-icon"),
+    COMPILE("compile-icon"),
+    SEARCH("search-icon"),
+    EXPAND_ALL("expand-icon"),
+    COLLAPSE_ALL("collapse-icon");
 
     private String id;
 

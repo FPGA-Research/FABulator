@@ -15,6 +15,12 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Shows HDL code.
+ *
+ * @deprecated will be replaced by {@link CodeView} soon
+ */
+@Deprecated
 public class HdlView extends CodeArea {
 
     //TODO: put into external file

@@ -30,24 +30,30 @@ public class TopMenu extends MenuBar {
     }
 
     private void initializeFileMenu() {
-        MenuItem fileOpen = new MenuItemBuilder()
+        MenuItem fabricOpen = new MenuItemBuilder()
                 .setText(Text.OPEN)
-                .setOnAction(action -> FileUtils.openFile())
+                .setOnAction(event -> FileUtils.openFabric())
+                .build();
+
+        MenuItem folderOpen = new MenuItemBuilder()
+                .setText(Text.OPEN_FOLDER)
+                .setOnAction(event -> FileUtils.openFolder())
                 .build();
 
         MenuItem hdlOpen = new MenuItemBuilder()
                 .setText(Text.OPEN_HDL)
-                .setOnAction(actionEvent -> FileUtils.openHdl())
+                .setOnAction(event -> FileUtils.openHdl())
                 .build();
 
         MenuItem fasmOpen = new MenuItemBuilder()
                 .setText(Text.OPEN_FASM)
-                .setOnAction(actionEvent -> FileUtils.openFasm())
+                .setOnAction(event -> FileUtils.openFasm())
                 .build();
 
         this.fileMenu = new MenuBuilder()
                 .setText(Text.FILE)
-                .addItem(fileOpen)
+                .addItem(fabricOpen)
+                .addItem(folderOpen)
                 .addItem(hdlOpen)
                 .addItem(fasmOpen)
                 .build();
@@ -56,7 +62,7 @@ public class TopMenu extends MenuBar {
     private void initializeEditMenu() {
         MenuItem collectGarbage = new MenuItemBuilder()
                 .setText(Text.GARBAGE_COLLECT)
-                .setOnAction(action -> System.gc())
+                .setOnAction(event -> System.gc())
                 .build();
 
         this.editMenu = new MenuBuilder()
@@ -66,7 +72,7 @@ public class TopMenu extends MenuBar {
     }
 
     private void initializeViewMenu() {
-        EventHandler<ActionEvent> zoomInAction = action -> {
+        EventHandler<ActionEvent> zoomInAction = event -> {
             FABulator.getApplication()
                     .getMainView()
                     .zoomIn();
@@ -77,7 +83,7 @@ public class TopMenu extends MenuBar {
                 .setOnAction(zoomInAction)
                 .build();
 
-        EventHandler<ActionEvent> zoomOutAction = action -> {
+        EventHandler<ActionEvent> zoomOutAction = event -> {
             FABulator.getApplication()
                     .getMainView()
                     .zoomOut();
@@ -88,7 +94,7 @@ public class TopMenu extends MenuBar {
                 .setOnAction(zoomOutAction)
                 .build();
 
-        EventHandler<ActionEvent> fullScreenAction = action -> {
+        EventHandler<ActionEvent> fullScreenAction = event -> {
             Stage appStage = FABulator.getApplication().getStage();
 
             boolean fullScreen = appStage.isFullScreen();

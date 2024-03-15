@@ -9,8 +9,8 @@
     -fx-icon-size: 32px;
 }
 
-#edit-arch-icon .ikonli-font-icon {
-    -fx-icon-code: "mdi2t-table-edit";
+#edit-design-icon .ikonli-font-icon {
+    -fx-icon-code: "mdi2p-playlist-edit";
     -fx-icon-color: -fx-icon-fill;
     -fx-icon-size: 32px;
 }
@@ -19,4 +19,40 @@
     -fx-icon-code: "mdi2a-application-cog";
     -fx-icon-color: -fx-icon-fill;
     -fx-icon-size: 32px;
+}
+
+#directory-icon .ikonli-font-icon {
+    -fx-icon-code: "mdi2f-folder";
+    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-size: 20px;
+}
+
+#file-icon .ikonli-font-icon {
+    -fx-icon-code: "mdi2t-text";
+    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-size: 20px;
+}
+
+#compile-icon .ikonli-font-icon {
+    -fx-icon-code: "mdi2p-play";
+    -fx-icon-color: green;
+    -fx-icon-size: 24px;
+}
+
+#search-icon .ikonli-font-icon {
+    -fx-icon-code: "mdi2m-magnify";
+    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-size: 20px;
+}
+
+#expand-icon .ikonli-font-icon {
+    -fx-icon-code: "mdi2p-plus-box-multiple";
+    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-size: 20px;
+}
+
+#collapse-icon .ikonli-font-icon {
+    -fx-icon-code: "mdi2m-minus-box-multiple";
+    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-size: 20px;
 }

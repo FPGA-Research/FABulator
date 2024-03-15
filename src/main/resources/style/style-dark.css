@@ -1,6 +1,7 @@
 /*  ----  Global Style Colors  ----  */
 * {
     primary: #171729;
+    primary-hover: #232336;
     secondary: #313143;
     secondary-hover: #3C3C4F;
     tertiary: #4F4E63;
@@ -19,6 +20,7 @@
     -fx-background-color: primary;
 }
 .menu-bar .label {
+    -fx-font-size: 14;
     -fx-text-fill: -fx-icon-fill;
 }
 .menu-bar .menu:hover,
@@ -34,6 +36,7 @@
     -fx-background-color: primary;
 }
 .context-menu .label {
+    -fx-font-size: 14;
     -fx-text-fill: -fx-icon-fill;
 }
 .context-menu .menu-item:hover,
@@ -46,6 +49,13 @@
 /*  ----  SplitPane Style  ----  */
 .split-pane {
    -fx-background-color: transparent;
+}
+.split-pane > .split-pane-divider {
+    -fx-background-color: transparent;
+}
+.split-pane > .split-pane-divider:hover,
+.split-pane > .split-pane-divider:pressed {
+    -fx-background-color: primary-hover;
 }
 
 
@@ -74,8 +84,62 @@
     -fx-faint-focus-color: transparent;
 }
 .tab .tab-label {
-    -fx-padding: 2 8 2 8;
+    -fx-padding: 2 8 0 8;
+    -fx-font-size: 14;
     -fx-text-fill: -fx-icon-fill;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-close-button {
+    -fx-background-color: -fx-icon-fill;
+    -fx-scale-shape: false;
+    -fx-shape: "M 0,0 H1 L 4,3 7,0 H8 V1 L 5,4 8,7 V8 H7 L 4,5 1,8 H0 V7 L 3,4 0,1 Z";
+    -fx-effect: none;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-close-button:hover {
+    -fx-background-color: derive(-fx-icon-fill, -30%);
+}
+
+
+/*  ----  ScrollBar Style  ----  */
+.scroll-bar:horizontal {
+    -fx-scale-x: 0;
+    -fx-scale-y: 0;
+}
+.corner {
+    -fx-scale-x: 0;
+    -fx-scale-y: 0;
+}
+.scroll-bar {
+    -fx-background-color : tertiary;
+}
+.scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0;
+    -fx-border-radius: 2px;
+}
+.scroll-bar:vertical .increment-button,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+    -fx-padding: 0 10 0 0;
+}
+.scroll-bar .increment-arrow,
+.scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 1 0;
+}
+.scroll-bar:vertical .increment-arrow,
+.scroll-bar:vertical .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0 1;
+}
+.scroll-bar:vertical .thumb {
+    -fx-background-color: quaternary;
+    -fx-background-insets: 0, 0, 0;
+    -fx-background-radius: 0;
+}
+.scroll-bar:vertical .thumb:hover {
+    -fx-background-color: quaternary-hover;
 }
 
 
@@ -114,6 +178,7 @@
 .content-info-view .tree-view:focused {
     -fx-background-insets: 0;
     -fx-border-radius: 0;
+    -fx-padding: 0;
     -fx-border-color: secondary;
     -fx-background-color: secondary;
 }
@@ -147,47 +212,7 @@
 .content-info-view .list-cell:selected {
     -fx-background-color: tertiary;
 }
-.content-info-view .scroll-bar:horizontal {
-    -fx-scale-x: 0;
-    -fx-scale-y: 0;
-}
-.content-info-view .corner {
-    -fx-scale-x: 0;
-    -fx-scale-y: 0;
-}
-.content-info-view .scroll-bar {
-    -fx-background-color : tertiary;
-}
-.content-info-view .scroll-bar:vertical .track {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-background-radius: 0;
-    -fx-border-radius: 2px;
-}
-.content-info-view .scroll-bar:vertical .increment-button,
-.content-info-view .scroll-bar:vertical .decrement-button {
-    -fx-background-color: transparent;
-    -fx-background-radius: 0;
-    -fx-padding: 0 10 0 0;
-}
-.content-info-view .scroll-bar .increment-arrow,
-.content-info-view .scroll-bar .decrement-arrow {
-    -fx-shape: " ";
-    -fx-padding: 1 0;
-}
-.content-info-view .scroll-bar:vertical .increment-arrow,
-.content-info-view .scroll-bar:vertical .decrement-arrow {
-    -fx-shape: " ";
-    -fx-padding: 0 1;
-}
-.content-info-view .scroll-bar:vertical .thumb {
-    -fx-background-color: quaternary;
-    -fx-background-insets: 0, 0, 0;
-    -fx-background-radius: 6;
-}
-.content-info-view .scroll-bar:vertical .thumb:hover {
-    -fx-background-color: quaternary-hover;
-}
+
 
 /*  ----  SettingsView Style  ----  */
 .settings-view > .viewport {
@@ -199,39 +224,6 @@
 }
 .settings-view .title {
     -fx-padding: 16 0 -16 0;
-}
-.settings-view .scroll-bar {
-    -fx-background-color : tertiary;
-}
-.settings-view .scroll-bar:vertical .track {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-background-radius: 0;
-    -fx-border-radius: 2px;
-}
-.settings-view .scroll-bar:vertical .increment-button,
-.settings-view .scroll-bar:vertical .decrement-button {
-    -fx-background-color: transparent;
-    -fx-background-radius: 0;
-    -fx-padding: 0 10 0 0;
-}
-.settings-view .scroll-bar .increment-arrow,
-.settings-view .scroll-bar .decrement-arrow {
-    -fx-shape: " ";
-    -fx-padding: 1 0;
-}
-.settings-view .scroll-bar:vertical .increment-arrow,
-.settings-view .scroll-bar:vertical .decrement-arrow {
-    -fx-shape: " ";
-    -fx-padding: 0 1;
-}
-.settings-view .scroll-bar:vertical .thumb {
-    -fx-background-color: quaternary;
-    -fx-background-insets: 0, 0, 0;
-    -fx-background-radius: 6;
-}
-.settings-view .scroll-bar:vertical .thumb:hover {
-    -fx-background-color: quaternary-hover;
 }
 
 
@@ -247,16 +239,13 @@
     -fx-background-color: secondary;
     -fx-padding: 4;
 }
-
 .bottom-menu .search-feedback {
     -fx-text-fill: -fx-icon-fill;
     -fx-padding: 4;
 }
-
 .bottom-menu .choice-box {
     -fx-background-radius: 8;
 }
-
 .bottom-menu .text-field {
     -fx-background-radius: 8;
 }
@@ -328,6 +317,202 @@
     -fx-stroke: white;
     -fx-stroke-width: 0.4;
     -fx-border-color: white;
+}
+
+
+/*  ----  ExplorerView Style  ----  */
+.explorer-view .tree-view,
+.explorer-view .list-view {
+    -fx-background-insets: 0;
+    -fx-background-color: secondary;
+}
+.explorer-view .tree-view:focused,
+.explorer-view .list-view:focused {
+    -fx-background-insets: 0;
+    -fx-border-radius: 0;
+    -fx-padding: 0;
+    -fx-border-color: secondary;
+    -fx-background-color: secondary;
+}
+.explorer-view .tree-cell,
+.explorer-view .list-cell {
+    -fx-background-color: secondary;
+}
+.explorer-view .tree-cell:hover,
+.explorer-view .list-cell:hover {
+    -fx-background-color: secondary-hover;
+}
+.explorer-view .tree-cell:selected,
+.explorer-view .list-cell:selected {
+    -fx-background-color: tertiary;
+}
+.explorer-view .tree-cell > .tree-disclosure-node > .arrow {
+    -fx-shape: "M 400 400 L 300 550 Q 250 600 250 550 L 350 400 L 250 250 Q 250 200 300 250 Z";
+    -fx-scale-x: 1.4;
+    -fx-scale-y: 1.7;
+    -fx-background-color: -fx-icon-fill;
+}
+.explorer-view .label {
+    -fx-font-size: 14;
+    -fx-text-fill: -fx-icon-fill;
+}
+
+
+/*  ----  ExplorerMenu Style  ----  */
+.explorer-menu {
+    -fx-background-color: secondary;
+    -fx-spacing: 4;
+    -fx-padding: 8;
+    -fx-border-width: 0 0 0.3 0;
+    -fx-border-color: -fx-icon-fill;
+}
+.explorer-menu .button {
+    -fx-background-radius: 12;
+    -fx-background-color: secondary;
+}
+.explorer-menu .label {
+    -fx-background-radius: 12;
+    -fx-padding: 4;
+    -fx-background-color: secondary;
+}
+.explorer-menu .button:hover {
+    -fx-background-color: secondary-hover;
+}
+.explorer-menu .text-field {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-radius: 12;
+    -fx-background-color: transparent;
+    -fx-font-size: 14;
+    -fx-text-fill: -fx-icon-fill;
+    -fx-background-insets: 0;
+}
+
+
+/*  ----  EmptyHintView Style  ----  */
+.empty-hint-view {
+    -fx-background-color: tertiary;
+}
+.empty-hint-view .label {
+    -fx-font-size: 16;
+    -fx-text-fill: -fx-icon-fill;
+}
+
+
+/*  ----  EditDesignMenu Style  ----  */
+.edit-design-menu {
+    -fx-border-width: 0.5 0 0 0.5;
+    -fx-border-color: primary;
+    -fx-background-color: secondary;
+    -fx-background-radius: 12 0 0 0;
+    -fx-spacing: 8;
+    -fx-padding: 8 16 8 8;
+}
+.edit-design-menu .button {
+    -fx-border-width: 0.2;
+    -fx-border-radius: 8;
+    -fx-border-color: -fx-icon-fill;
+    -fx-padding: 2;
+    -fx-background-color: secondary;
+}
+.edit-design-menu .button:hover,
+.edit-design-menu .menu-button:hover {
+    -fx-background-color: secondary-hover;
+}
+.edit-design-menu .menu-button {
+    -fx-border-width: 0.2;
+    -fx-border-radius: 8;
+    -fx-border-color: -fx-icon-fill;
+    -fx-background-color: secondary;
+    -fx-background-radius: 8;
+}
+.edit-design-menu .label {
+    -fx-font-size: 14;
+    -fx-text-fill: -fx-icon-fill;
+}
+.edit-design-menu .bread-crumb-bar {
+    -fx-background-color: transparent;
+}
+.edit-design-menu .bread-crumb-bar .button {
+    -fx-padding: 4 16 4 16;
+    -fx-border-width: 0.3 0 0 0;
+    -fx-border-color: -fx-icon-fill;
+    -fx-font-size: 14;
+    -fx-text-fill: -fx-icon-fill;
+    -fx-background-color: secondary;
+    -fx-translate-x: -16;
+}
+.bread-crumb-bar .first {
+    -fx-padding: 4 16 4 64;
+    -fx-translate-x: -20;
+}
+
+
+/*  ----  CodeView Style  ----  */
+.code-view {
+    -fx-background-color: #1D1E1F;
+    -fx-font-size: 14;
+    -fx-padding: 4;
+}
+.code-view .paragraph-text {
+    -fx-font-family: "Consolas";
+    -fx-tab-size: 4;
+}
+.code-view .text {
+    -fx-fill: #D3D3D3;
+}
+.code-view .keyword {
+    -fx-fill: orange;
+}
+.code-view .semicolon {
+    -fx-fill: orange;
+    -fx-font-weight: bold;
+}
+.code-view .paren {
+    -fx-fill: #3344CC;
+    -fx-font-weight: bold;
+}
+.code-view .bracket {
+    -fx-fill: darkgreen;
+    -fx-font-weight: bold;
+}
+.code-view .brace {
+    -fx-fill: teal;
+    -fx-font-weight: bold;
+}
+.code-view .string {
+    -fx-fill: #CD9278;
+}
+.code-view .comment {
+	-fx-fill: #6A9955;
+}
+.code-view .multicomment {
+	-fx-fill: #6A9955;
+}
+.code-view .code {
+	-fx-fill: #D3D3D3;
+}
+.code-view .code:selected {
+	-fx-fill: #D3D3D3;
+}
+.code-view .code:highlighted {
+	-fx-fill: #D3D3D3;
+}
+.code-view .selection {
+    -fx-fill: #393C41;
+}
+.code-view .paragraph-box:has-caret {
+    -fx-background-color: #1D1E1F;
+}
+.code-view .caret {
+	-fx-stroke: #D3D3D3;
+}
+.code-view .lineno {
+    -fx-background-color: #1D1E1F;
+    -fx-font-family: "Consolas";
+}
+.code-view .lineno .text {
+    -fx-fill: #878685;
 }
 
 

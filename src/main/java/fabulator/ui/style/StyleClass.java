@@ -16,7 +16,12 @@ public enum StyleClass {
     WORLD_VIEW("world-view"),
     ELEMENT_VIEW("element-view"),
     NETLIST_VIEW("netlist-view"),
-    TITLE("title");
+    TITLE("title"),
+    EXPLORER_VIEW("explorer-view"),
+    EXPLORER_MENU("explorer-menu"),
+    EMPTY_HINT_VIEW("empty-hint-view"),
+    EDIT_DESIGN_MENU("edit-design-menu"),
+    CODE_VIEW("code-view");
 
     private String name;
 

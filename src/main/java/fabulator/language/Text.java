@@ -12,6 +12,7 @@ public enum Text {
     VIEW,
 
     OPEN,
+    OPEN_FOLDER,
     OPEN_FILE,
     OPEN_HDL,
     OPEN_FASM,
@@ -82,7 +83,13 @@ public enum Text {
     INVALID_GEOM_FILE,
     INVALID_HDL_FILE,
 
-    THICKNESS;
+    THICKNESS,
+
+    COMPILE,
+    EXPAND_ALL,
+    COLLAPSE_ALL,
+    EXPLORER_HINT_1,
+    EXPLORER_HINT_2;
 
     private StringProperty stringProperty;
 
