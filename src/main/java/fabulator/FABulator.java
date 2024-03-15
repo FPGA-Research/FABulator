@@ -26,6 +26,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 public class FABulator extends Application {
 
@@ -35,6 +38,8 @@ public class FABulator extends Application {
     private static FABulator application;
     private Stage stage;
     private MainView mainView;
+
+    private List<Runnable> closedListeners = new ArrayList<>();
 
     @Override
     public void start(Stage stage) {
@@ -63,5 +68,13 @@ public class FABulator extends Application {
     @Override
     public void stop() {
         FileChangedManager.getInstance().stopScheduler();
+
+        for (Runnable closedListener : this.closedListeners) {
+            closedListener.run();
+        }
+    }
+
+    public void addClosedListener(Runnable runnable) {
+        this.closedListeners.add(runnable);
     }
 }

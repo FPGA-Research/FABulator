@@ -37,6 +37,10 @@ public class ScrollableCodeView extends VBox implements View {
         this.codeView.open(file);
     }
 
+    public void close() {
+        this.codeView.close();
+    }
+
     public BooleanProperty getComputeHighlightingProperty() {
         return this.codeView.getComputeHighlightingProperty();
     }

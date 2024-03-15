@@ -1,5 +1,6 @@
 package fabulator.ui.view;
 
+import fabulator.FABulator;
 import fabulator.ui.style.StyleClass;
 import fabulator.util.FileUtils;
 import javafx.application.Platform;
@@ -25,6 +26,8 @@ public class CodeView extends CodeArea {
     private BooleanProperty computeHighlightingProperty = new SimpleBooleanProperty();
     private CodeMatcher codeMatcher = new CodeMatcher(Code.DEFAULT);
 
+    private ScheduledExecutorService scheduler;
+
     public CodeView() {
         this.getStyleClass().add(StyleClass.CODE_VIEW.getName());
         this.setParagraphGraphicFactory(
@@ -35,13 +38,15 @@ public class CodeView extends CodeArea {
     }
 
     private void startHighlighter() {
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
-        scheduler.scheduleAtFixedRate(
+        this.scheduler = Executors.newScheduledThreadPool(1);
+        this.scheduler.scheduleAtFixedRate(
                 this::runHighlighterInBackground,
                 50,
                 50,
                 TimeUnit.MILLISECONDS
         );
+
+        FABulator.getApplication().addClosedListener(this::close);
     }
 
     public void open(File file) throws IOException {
@@ -86,5 +91,9 @@ public class CodeView extends CodeArea {
             }
             executor.shutdown();
         }
+    }
+
+    public void close() {
+        this.scheduler.shutdown();
     }
 }

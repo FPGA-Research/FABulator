@@ -76,6 +76,7 @@ public class CodeMultiView extends StackPane implements View {
         tab.setOnClosed(event -> {
             this.tabMap.remove(fileInfo);
             this.infoMap.remove(tab);
+            codeView.close();
         });
 
         codeView.getComputeHighlightingProperty().bind(
