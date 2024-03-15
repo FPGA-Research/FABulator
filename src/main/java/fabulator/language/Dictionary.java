@@ -61,7 +61,7 @@ public class Dictionary {
             String[] lines = fileContent.split("\n");
 
             for (String line : lines) {
-                String[] lineSplit = line.split(":");
+                String[] lineSplit = line.split(":", 2);
                 assert lineSplit.length == 2;
 
                 String key = lineSplit[0].trim();
