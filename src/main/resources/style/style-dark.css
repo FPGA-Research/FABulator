@@ -430,22 +430,6 @@
     -fx-font-size: 14;
     -fx-text-fill: -fx-icon-fill;
 }
-.edit-design-menu .bread-crumb-bar {
-    -fx-background-color: transparent;
-}
-.edit-design-menu .bread-crumb-bar .button {
-    -fx-padding: 4 16 4 16;
-    -fx-border-width: 0.3 0 0 0;
-    -fx-border-color: -fx-icon-fill;
-    -fx-font-size: 14;
-    -fx-text-fill: -fx-icon-fill;
-    -fx-background-color: secondary;
-    -fx-translate-x: -16;
-}
-.bread-crumb-bar .first {
-    -fx-padding: 4 16 4 64;
-    -fx-translate-x: -20;
-}
 
 
 /*  ----  CodeView Style  ----  */
@@ -513,6 +497,15 @@
 }
 .code-view .lineno .text {
     -fx-fill: #878685;
+}
+
+
+/*  ----  CodeView Style  ----  */
+.bread-crumb-bar .button {
+    -fx-font-size: 14;
+    -fx-text-fill: -fx-icon-fill;
+    -fx-border-width: 0;
+    -fx-padding: 4;
 }
 
 

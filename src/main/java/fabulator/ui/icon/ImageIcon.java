@@ -6,7 +6,8 @@ import lombok.Getter;
 
 @Getter
 public enum ImageIcon {
-    FABULOUS("/img/FABulous.png");
+    FABULOUS("/img/FABulous.png"),
+    CHEVRON("/img/chevron.png");
 
     private String fileName;
     private Image image;

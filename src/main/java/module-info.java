@@ -10,7 +10,6 @@ module FABulator {
     requires org.fxmisc.flowless;
     requires org.fxmisc.undo;
     requires org.apache.logging.log4j;
-    requires org.controlsfx.controls;
 
     opens fabulator to javafx.graphics, javafx.controls;
     exports fabulator;

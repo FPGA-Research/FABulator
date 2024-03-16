@@ -13,7 +13,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.controlsfx.control.BreadCrumbBar;
 
 import java.io.File;
 import java.io.IOException;
@@ -97,7 +96,6 @@ class EditDesignMenu extends HBox implements View {
     @Override
     public void buildParts() {
         this.currentFileBar = new BreadCrumbBar<>();
-        this.currentFileBar.setAutoNavigationEnabled(false);
 
         this.compilerSetupButton = new MenuButton("Compiler Setup");
 
@@ -135,6 +133,6 @@ class EditDesignMenu extends HBox implements View {
         if (infoView != null) {
             item = infoView.getWrapper();
         }
-        this.currentFileBar.setSelectedCrumb(item);
+        this.currentFileBar.setSelected(item);
     }
 }

@@ -2,11 +2,13 @@ package fabulator.ui.builder;
 
 import fabulator.language.Text;
 import fabulator.ui.icon.CssIcon;
+import fabulator.ui.icon.ImageIcon;
 import fabulator.ui.style.UiColor;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tooltip;
+import javafx.scene.image.ImageView;
 import javafx.util.Builder;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -24,6 +26,11 @@ public class ButtonBuilder implements Builder<Button> {
         return this;
     }
 
+    public ButtonBuilder setIcon(ImageIcon icon) {
+        this.button.setGraphic(new ImageView(icon.getImage()));
+        return this;
+    }
+
     public ButtonBuilder setColor(UiColor color) {
         this.button.getStyleClass().add(color.getColorClass());
         return this;
@@ -38,6 +45,11 @@ public class ButtonBuilder implements Builder<Button> {
 
     public ButtonBuilder setText(Text text) {
         this.button.textProperty().bind(text.stringProperty());
+        return this;
+    }
+
+    public ButtonBuilder setString(String string) {
+        this.button.setText(string);
         return this;
     }
 
