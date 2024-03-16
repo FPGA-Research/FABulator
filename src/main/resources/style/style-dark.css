@@ -500,7 +500,7 @@
 }
 
 
-/*  ----  CodeView Style  ----  */
+/*  ----  BreadCrumbBar Style  ----  */
 .bread-crumb-bar .button {
     -fx-font-size: 14;
     -fx-text-fill: -fx-icon-fill;
