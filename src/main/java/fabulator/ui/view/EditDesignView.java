@@ -5,6 +5,8 @@ import fabulator.ui.builder.ButtonBuilder;
 import fabulator.ui.icon.CssIcon;
 import fabulator.ui.style.StyleClass;
 import fabulator.ui.window.EditSetupWindow;
+import fabulator.util.CompileUtils;
+import fabulator.util.FileUtils;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -57,6 +59,18 @@ public class EditDesignView extends VBox {
             this.topMenu.setBreadCrumb(fileInfoView);
         });
 
+        this.topMenu.setOnCompile(() -> {
+            File file = this.codeView.getCurrentFile();
+
+            if (FileUtils.isValidHdlFile(file)) {
+                try {
+                    CompileUtils.compile(file);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
         this.editPane = new SplitPane();
         this.editPane.getItems().addAll(
                 this.explorerView,
@@ -88,6 +102,8 @@ class EditDesignMenu extends HBox implements View {
     private MenuButton compilerSetupButton;
     private Button compileButton;
 
+    private Runnable compileHandler = () -> {};
+
     public EditDesignMenu() {
         this.getStyleClass().add(StyleClass.EDIT_DESIGN_MENU.getName());
         this.init();
@@ -107,6 +123,7 @@ class EditDesignMenu extends HBox implements View {
         this.compileButton = new ButtonBuilder()
                 .setTooltip(Text.COMPILE)
                 .setIcon(CssIcon.COMPILE)
+                .setOnAction(this::compile)
                 .build();
     }
 
@@ -127,6 +144,10 @@ class EditDesignMenu extends HBox implements View {
         EditSetupWindow.getInstance().show();
     }
 
+    private void compile(ActionEvent event) {
+        this.compileHandler.run();
+    }
+
     public void setBreadCrumb(FileInfoView infoView) {
         TreeItem<FileInfoView> item = null;
 
@@ -134,5 +155,9 @@ class EditDesignMenu extends HBox implements View {
             item = infoView.getWrapper();
         }
         this.currentFileBar.setSelected(item);
+    }
+
+    public void setOnCompile(Runnable compileHandler) {
+        this.compileHandler = compileHandler;
     }
 }

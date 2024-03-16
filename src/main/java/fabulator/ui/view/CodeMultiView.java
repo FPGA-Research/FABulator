@@ -5,7 +5,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.StackPane;
+import lombok.Getter;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.function.Consumer;
@@ -17,6 +19,9 @@ public class CodeMultiView extends StackPane implements View {
 
     private HashMap<FileInfoView, Tab> tabMap;
     private HashMap<Tab, FileInfoView> infoMap;
+
+    @Getter
+    private File currentFile;
 
     public CodeMultiView() {
         this.init();
@@ -44,6 +49,7 @@ public class CodeMultiView extends StackPane implements View {
 
     private void listenForSelection() {
         ChangeListener<Tab> listener = (obs, old, now) -> {
+            this.currentFile = this.infoMap.get(now).getFile();
             // TODO: enable/disable syntax highlighting computation to save cpu resources
         };
 
@@ -58,6 +64,7 @@ public class CodeMultiView extends StackPane implements View {
         } else {
             this.createNewTabFor(fileInfo);
         }
+        this.currentFile = fileInfo.getFile();
     }
 
     private void openTabOf(FileInfoView fileInfo) {

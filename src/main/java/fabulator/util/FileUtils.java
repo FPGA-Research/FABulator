@@ -72,7 +72,7 @@ public class FileUtils {
      * @param file the file to check
      * @return true if the file is a valid HDL file
      */
-    private static boolean isValidHdlFile(File file) {
+    public static boolean isValidHdlFile(File file) {
         boolean valid = false;
 
         if (file != null) {
@@ -298,15 +298,19 @@ public class FileUtils {
         }
 
         File file = fileChooser.showOpenDialog(FABulator.getApplication().getStage());
+        openFasmFile(file);
+    }
 
-        if (file != null) {
-            FasmParser fasmParser = new FasmParser(file.getAbsolutePath());
+    public static void openFasmFile(File fasmFile) {
+        if (fasmFile != null) {
+            FasmParser fasmParser = new FasmParser(fasmFile.getAbsolutePath());
             BitstreamConfiguration bitstreamConfiguration = fasmParser.getConfig();
             FABulator.getApplication()
                     .getMainView()
                     .displayBitstreamConfig(bitstreamConfiguration);
 
-            config.getOpenedFasmFileName().set(file.getAbsolutePath());
+            Config config = Config.getInstance();
+            config.getOpenedFasmFileName().set(fasmFile.getAbsolutePath());
         }
     }
 
