@@ -1,5 +1,6 @@
 package fabulator.async;
 
+import fabulator.FABulator;
 import fabulator.settings.Config;
 import fabulator.ui.window.AutoRefreshDialog;
 import fabulator.util.FileUtils;
@@ -34,10 +35,10 @@ public class FileChangedManager {
 
     private FileChangedManager() {
         instance = this;
-        this.startListener();
+        this.startScheduler();
     }
 
-    private void startListener() {
+    private void startScheduler() {
         this.scheduler = Executors.newScheduledThreadPool(1);
         this.scheduler.scheduleAtFixedRate(
                 this::checkFileChanged,
@@ -45,9 +46,10 @@ public class FileChangedManager {
                 2,
                 TimeUnit.SECONDS
         );
+        FABulator.getApplication().addClosedListener(this::stopScheduler);
     }
 
-    public void stopScheduler() {
+    private void stopScheduler() {
         if (this.scheduler != null) {
             this.scheduler.shutdown();
         }

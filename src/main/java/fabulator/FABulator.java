@@ -17,7 +17,6 @@
 
 package fabulator;
 
-import fabulator.async.FileChangedManager;
 import fabulator.ui.icon.ImageIcon;
 import fabulator.ui.style.Style;
 import fabulator.ui.view.MainView;
@@ -67,8 +66,6 @@ public class FABulator extends Application {
 
     @Override
     public void stop() {
-        FileChangedManager.getInstance().stopScheduler();
-
         for (Runnable closedListener : this.closedListeners) {
             closedListener.run();
         }
