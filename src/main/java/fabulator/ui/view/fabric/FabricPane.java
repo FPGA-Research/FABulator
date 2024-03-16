@@ -1,7 +1,7 @@
 package fabulator.ui.view.fabric;
 
 import fabulator.FABulator;
-import fabulator.geometry.Location;
+import fabulator.object.Location;
 import fabulator.settings.Config;
 import fabulator.ui.fabric.Fabric;
 import fabulator.ui.style.StyleClass;

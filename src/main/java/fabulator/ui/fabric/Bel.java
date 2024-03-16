@@ -1,7 +1,7 @@
 package fabulator.ui.fabric;
 
 import fabulator.geometry.BelGeometry;
-import fabulator.geometry.Location;
+import fabulator.object.Location;
 import fabulator.geometry.PortGeometry;
 import fabulator.ui.builder.RectangleBuilder;
 import fabulator.ui.fabric.element.ElementType;

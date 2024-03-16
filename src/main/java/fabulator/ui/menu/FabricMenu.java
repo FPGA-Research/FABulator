@@ -1,6 +1,6 @@
 package fabulator.ui.menu;
 
-import fabulator.geometry.Location;
+import fabulator.object.Location;
 import fabulator.lookup.BitstreamConfiguration;
 import fabulator.lookup.Net;
 import fabulator.memory.ReferenceHolder;

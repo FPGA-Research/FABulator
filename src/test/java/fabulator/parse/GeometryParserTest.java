@@ -1,6 +1,7 @@
 package fabulator.parse;
 
 import fabulator.geometry.*;
+import fabulator.object.Location;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

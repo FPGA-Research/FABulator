@@ -1,7 +1,7 @@
 package fabulator.ui.view;
 
 import fabulator.geometry.FabricGeometry;
-import fabulator.geometry.Location;
+import fabulator.object.Location;
 import fabulator.geometry.TileGeometry;
 import fabulator.memory.ReferenceHolder;
 import fabulator.ui.builder.LabelBuilder;

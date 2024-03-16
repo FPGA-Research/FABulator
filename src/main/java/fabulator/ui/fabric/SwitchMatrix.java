@@ -2,6 +2,8 @@ package fabulator.ui.fabric;
 
 import fabulator.geometry.*;
 import fabulator.lookup.BitstreamConfiguration;
+import fabulator.object.DiscreteLocation;
+import fabulator.object.Location;
 import fabulator.parse.SwitchMatrixParser;
 import fabulator.settings.Config;
 import fabulator.ui.builder.ArcBuilder;

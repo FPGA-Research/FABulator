@@ -1,6 +1,7 @@
 package fabulator.parse;
 
 import fabulator.geometry.*;
+import fabulator.object.Location;
 import fabulator.util.StringUtils;
 import lombok.Getter;
 
@@ -70,6 +71,8 @@ public class GeometryParser {   //TODO: add more checks to make sure only valid 
             exception.printStackTrace();
         }
 
+        // TODO: check if it is necessary to also have these parameters here
+        //  in addition to FabricGeometry
         this.geometry = new FabricGeometry(
                 this.name,
                 this.numberOfRows,

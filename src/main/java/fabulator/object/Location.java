@@ -1,4 +1,4 @@
-package fabulator.geometry;
+package fabulator.object;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

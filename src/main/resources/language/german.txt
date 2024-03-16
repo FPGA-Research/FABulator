@@ -68,6 +68,7 @@ INVALID_GEOM_FILE:      Ungültige Geometrie-Datei
 INVALID_HDL_FILE:       Ungültige HDL-Datei
 THICKNESS:              Dicke
 COMPILE:                Kompilieren
+UPLOAD:                 Hochladen
 EXPAND_ALL:             Alle ausklappen
 COLLAPSE_ALL:           Alle einklappen
 EXPLORER_HINT_1:        Ordner öffnen: Datei > Ordner öffnen

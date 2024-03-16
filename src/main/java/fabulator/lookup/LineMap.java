@@ -1,6 +1,6 @@
 package fabulator.lookup;
 
-import fabulator.geometry.DiscreteLocation;
+import fabulator.object.DiscreteLocation;
 import fabulator.ui.fabric.port.AbstractPort;
 import javafx.geometry.Point2D;
 import javafx.scene.Parent;

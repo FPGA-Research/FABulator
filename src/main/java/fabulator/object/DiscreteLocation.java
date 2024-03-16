@@ -1,4 +1,4 @@
-package fabulator.geometry;
+package fabulator.object;
 
 import javafx.geometry.Point2D;
 import lombok.AllArgsConstructor;

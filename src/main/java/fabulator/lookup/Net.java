@@ -1,6 +1,6 @@
 package fabulator.lookup;
 
-import fabulator.geometry.DiscreteLocation;
+import fabulator.object.DiscreteLocation;
 import javafx.util.Pair;
 import lombok.Getter;
 

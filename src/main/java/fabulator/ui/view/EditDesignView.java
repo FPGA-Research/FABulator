@@ -101,6 +101,7 @@ class EditDesignMenu extends HBox implements View {
     private BreadCrumbBar<FileInfoView> currentFileBar;
     private MenuButton compilerSetupButton;
     private Button compileButton;
+    private Button uploadButton;
 
     private Runnable compileHandler = () -> {};
 
@@ -125,6 +126,11 @@ class EditDesignMenu extends HBox implements View {
                 .setIcon(CssIcon.COMPILE)
                 .setOnAction(this::compile)
                 .build();
+
+        this.uploadButton = new ButtonBuilder()
+                .setTooltip(Text.UPLOAD)
+                .setIcon(CssIcon.UPLOAD)
+                .build();
     }
 
     @Override
@@ -136,7 +142,8 @@ class EditDesignMenu extends HBox implements View {
                 this.currentFileBar,
                 spacer,
                 this.compilerSetupButton,
-                this.compileButton
+                this.compileButton,
+                this.uploadButton
         );
     }
 

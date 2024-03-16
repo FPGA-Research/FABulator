@@ -1,6 +1,6 @@
 package fabulator.ui.fabric.element;
 
-import fabulator.geometry.Location;
+import fabulator.object.Location;
 
 public interface FabricElement {
 

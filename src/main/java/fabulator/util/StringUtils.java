@@ -1,7 +1,7 @@
 package fabulator.util;
 
-import fabulator.geometry.DiscreteLocation;
-import fabulator.geometry.Location;
+import fabulator.object.DiscreteLocation;
+import fabulator.object.Location;
 import javafx.scene.paint.Color;
 
 public class StringUtils {

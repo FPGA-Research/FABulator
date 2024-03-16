@@ -86,6 +86,7 @@ public enum Text {
     THICKNESS,
 
     COMPILE,
+    UPLOAD,
     EXPAND_ALL,
     COLLAPSE_ALL,
     EXPLORER_HINT_1,

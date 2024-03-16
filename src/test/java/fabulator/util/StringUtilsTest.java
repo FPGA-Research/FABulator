@@ -1,6 +1,6 @@
 package fabulator.util;
 
-import fabulator.geometry.DiscreteLocation;
+import fabulator.object.DiscreteLocation;
 import javafx.scene.paint.Color;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

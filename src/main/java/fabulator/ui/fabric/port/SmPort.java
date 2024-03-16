@@ -1,6 +1,6 @@
 package fabulator.ui.fabric.port;
 
-import fabulator.geometry.Location;
+import fabulator.object.Location;
 import fabulator.geometry.PortGeometry;
 import fabulator.settings.Config;
 import fabulator.ui.fabric.SwitchMatrix;

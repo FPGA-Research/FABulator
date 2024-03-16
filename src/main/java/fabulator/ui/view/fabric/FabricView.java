@@ -1,6 +1,6 @@
 package fabulator.ui.view.fabric;
 
-import fabulator.geometry.Location;
+import fabulator.object.Location;
 import fabulator.language.Text;
 import fabulator.lookup.BitstreamConfiguration;
 import fabulator.lookup.Net;

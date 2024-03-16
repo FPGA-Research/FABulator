@@ -11,6 +11,7 @@ public enum CssIcon {
     DIRECTORY("directory-icon"),
     FILE("file-icon"),
     COMPILE("compile-icon"),
+    UPLOAD("upload-icon"),
     SEARCH("search-icon"),
     EXPAND_ALL("expand-icon"),
     COLLAPSE_ALL("collapse-icon");

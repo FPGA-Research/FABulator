@@ -68,6 +68,7 @@ INVALID_GEOM_FILE:      Invalid geometry file
 INVALID_HDL_FILE:       Invalid HDL file
 THICKNESS:              Thickness
 COMPILE:                Compile
+UPLOAD:                 Upload
 EXPAND_ALL:             Expand All
 COLLAPSE_ALL:           Collapse All
 EXPLORER_HINT_1:        To open a folder: File > Open Folder

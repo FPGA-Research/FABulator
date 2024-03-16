@@ -39,6 +39,12 @@
     -fx-icon-size: 24px;
 }
 
+#upload-icon .ikonli-font-icon {
+    -fx-icon-code: "mdi2u-upload";
+    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-size: 24px;
+}
+
 #search-icon .ikonli-font-icon {
     -fx-icon-code: "mdi2m-magnify";
     -fx-icon-color: -fx-icon-fill;

@@ -1,5 +1,9 @@
 package fabulator.geometry;
 
+/**
+ * An enum used to store input/output information of a port.
+ * Is part of a {@link PortGeometry} object.
+ */
 public enum IO {
     INPUT("INPUT"),
     OUTPUT("OUTPUT"),

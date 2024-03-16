@@ -1,6 +1,6 @@
 package fabulator.parse;
 
-import fabulator.geometry.DiscreteLocation;
+import fabulator.object.DiscreteLocation;
 import fabulator.lookup.BitstreamConfiguration;
 import fabulator.util.StringUtils;
 import lombok.Getter;
