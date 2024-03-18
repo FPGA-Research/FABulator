@@ -6,6 +6,7 @@ import fabulator.ui.builder.ButtonBuilder;
 import fabulator.ui.icon.CssIcon;
 import fabulator.ui.style.StyleClass;
 import fabulator.ui.style.UiColor;
+import fabulator.util.LayoutUtils;
 import javafx.event.Event;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
@@ -75,9 +76,6 @@ public class PageMenu extends HBox {
             nodes.getPageButton().setOnAction(event -> this.changeTo(nodes));
         }
 
-        Region spacer = new Region();
-        VBox.setVgrow(spacer, Priority.ALWAYS);
-
         buttons.getChildren().addAll(
                 this.pageNodesList.stream()
                         .map(PageNodes::getPageButton)
@@ -92,7 +90,7 @@ public class PageMenu extends HBox {
                 .setTooltip(Text.SETTINGS_PAGE)
                 .setOnAction(event -> this.changeTo(settingNodes))
                 .build();
-        buttons.getChildren().addAll(spacer, settingsButton);
+        buttons.getChildren().addAll(LayoutUtils.vSpacer(), settingsButton);
 
         PageNodes dummyNodes = new PageNodes(null, null, numberCells - 2);
         this.pageNodesList.add(dummyNodes);

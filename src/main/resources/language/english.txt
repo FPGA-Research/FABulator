@@ -68,8 +68,12 @@ INVALID_GEOM_FILE:      Invalid geometry file
 INVALID_HDL_FILE:       Invalid HDL file
 THICKNESS:              Thickness
 COMPILE:                Compile
+COMPILER_SETUP:         Compiler Setup
+EDIT_COMPILER_SETUP:    Edit Compiler Setup
+TOP_MODULE_NAME:        Top Module Name
 UPLOAD:                 Upload
 EXPAND_ALL:             Expand All
 COLLAPSE_ALL:           Collapse All
 EXPLORER_HINT_1:        To open a folder: File > Open Folder
 EXPLORER_HINT_2:        Click a file to open it in the editor
+ERASE_FASM:             Erase fasm

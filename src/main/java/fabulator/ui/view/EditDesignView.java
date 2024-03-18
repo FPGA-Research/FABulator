@@ -7,6 +7,7 @@ import fabulator.ui.style.StyleClass;
 import fabulator.ui.window.EditSetupWindow;
 import fabulator.util.CompileUtils;
 import fabulator.util.FileUtils;
+import fabulator.util.LayoutUtils;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -135,12 +136,10 @@ class EditDesignMenu extends HBox implements View {
 
     @Override
     public void buildWhole() {
-        Pane spacer = new Pane();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
 
         this.getChildren().addAll(
                 this.currentFileBar,
-                spacer,
+                LayoutUtils.hSpacer(),
                 this.compilerSetupButton,
                 this.compileButton,
                 this.uploadButton

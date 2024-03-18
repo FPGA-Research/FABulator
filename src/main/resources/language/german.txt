@@ -68,8 +68,12 @@ INVALID_GEOM_FILE:      Ungültige Geometrie-Datei
 INVALID_HDL_FILE:       Ungültige HDL-Datei
 THICKNESS:              Dicke
 COMPILE:                Kompilieren
+COMPILER_SETUP:         Compiler Einstellungen
+EDIT_COMPILER_SETUP:    Compiler Einstellungen ändern
+TOP_MODULE_NAME:        Name Top Modul
 UPLOAD:                 Hochladen
 EXPAND_ALL:             Alle ausklappen
 COLLAPSE_ALL:           Alle einklappen
 EXPLORER_HINT_1:        Ordner öffnen: Datei > Ordner öffnen
 EXPLORER_HINT_2:        Anzuzeigende Datei anklicken
+ERASE_FASM:             Fasm entfernen

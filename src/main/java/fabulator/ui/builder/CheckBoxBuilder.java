@@ -5,6 +5,8 @@ import javafx.beans.property.BooleanProperty;
 import javafx.scene.control.CheckBox;
 import javafx.util.Builder;
 
+import java.util.function.Consumer;
+
 public class CheckBoxBuilder implements Builder<CheckBox> {
 
     private final CheckBox checkBox;
@@ -20,6 +22,13 @@ public class CheckBoxBuilder implements Builder<CheckBox> {
 
     public CheckBoxBuilder bindBidirectional(BooleanProperty property) {
         this.checkBox.selectedProperty().bindBidirectional(property);
+        return this;
+    }
+
+    public CheckBoxBuilder setOnChanged(Consumer<Boolean> handler) {
+        this.checkBox.selectedProperty().addListener((obs, old, now) -> {
+            handler.accept(now);
+        });
         return this;
     }
 

@@ -2,10 +2,10 @@ package fabulator.settings;
 
 import fabulator.language.Text;
 import fabulator.ui.builder.LabelBuilder;
+import fabulator.util.LayoutUtils;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.paint.Color;
 
 public class Setting extends HBox {
@@ -29,12 +29,9 @@ public class Setting extends HBox {
                 .setTextColor(Color.WHITE)
                 .build();
 
-        HBox spacer = new HBox();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
-
         this.getChildren().addAll(
                 nameLabel,
-                spacer,
+                LayoutUtils.hSpacer(),
                 this.adjustor
         );
     }

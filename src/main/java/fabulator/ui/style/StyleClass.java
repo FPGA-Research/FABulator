@@ -22,6 +22,7 @@ public enum StyleClass {
     EMPTY_HINT_VIEW("empty-hint-view"),
     EDIT_DESIGN_MENU("edit-design-menu"),
     CODE_VIEW("code-view"),
+    COMPILER_SETUP_VIEW("compiler-setup-view"),
     BREAD_CRUMB_BAR("bread-crumb-bar");
 
     private String name;

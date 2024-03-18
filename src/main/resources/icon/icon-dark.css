@@ -62,3 +62,9 @@
     -fx-icon-color: -fx-icon-fill;
     -fx-icon-size: 20px;
 }
+
+#erase-icon .ikonli-font-icon {
+    -fx-icon-code: "mdi2e-eraser";
+    -fx-icon-color: orangered;
+    -fx-icon-size: 20px;
+}

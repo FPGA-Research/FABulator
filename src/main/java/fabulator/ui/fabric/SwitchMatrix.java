@@ -16,6 +16,7 @@ import fabulator.ui.fabric.port.JumpPort;
 import fabulator.ui.fabric.port.SmPort;
 import fabulator.util.FileUtils;
 import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
@@ -55,6 +56,7 @@ public class SwitchMatrix extends Group implements FabricElement {
      * the bitstream config to or from that Port.
      */
     private HashMap<DiscreteLocation, Set<Shape>> bitstreamConMap;
+    private List<AbstractPort> bitstreamConPorts;
     private List<Shape> netWires;
 
     private HashMap<String, AbstractPort> namePortMap;
@@ -71,6 +73,7 @@ public class SwitchMatrix extends Group implements FabricElement {
         this.displayedConnections = new ArrayList<>();
         this.displayedBitstreamConfig = new ArrayList<>();
         this.bitstreamConMap = new HashMap<>();
+        this.bitstreamConPorts = new ArrayList<>();
         this.netWires = new ArrayList<>();
     }
 
@@ -210,13 +213,21 @@ public class SwitchMatrix extends Group implements FabricElement {
         this.getChildren().addAll(this.displayedConnections);
     }
 
-
-    public void displayBitstreamConfig(List<BitstreamConfiguration.ConnectedPorts> connectedPortsList) {
+    public void clearBitstreamConfig() {
         this.getChildren().removeAll(this.displayedBitstreamConfig);
         this.displayedBitstreamConfig.clear();
         this.bitstreamConMap.clear();
         this.netWires.clear();
 
+        Fabric fabric = this.getTile().getFabric();
+        Property<Color> regularColor = new SimpleObjectProperty<>(Color.WHITE);
+        for (AbstractPort port : this.bitstreamConPorts) {
+            fabric.colorWire(port, regularColor);
+        }
+        this.bitstreamConPorts.clear();
+    }
+
+    public void displayBitstreamConfig(List<BitstreamConfiguration.ConnectedPorts> connectedPortsList) {
         for (BitstreamConfiguration.ConnectedPorts ports : connectedPortsList) {
             AbstractPort portA = this.namePortMap.get(ports.getPortA());
             AbstractPort portB = this.namePortMap.get(ports.getPortB());
@@ -252,9 +263,13 @@ public class SwitchMatrix extends Group implements FabricElement {
             this.bitstreamConMap.computeIfAbsent(discreteLocA, k -> new HashSet<>());
             this.bitstreamConMap.computeIfAbsent(discreteLocB, k -> new HashSet<>());
 
+            Config config = Config.getInstance();
+            Property<Color> colorProp = config.getUserDesignColor();
             Fabric fabric = this.getTile().getFabric();
-            fabric.highlightWire(portA);
-            fabric.highlightWire(portB);
+            fabric.colorWire(portA, colorProp);
+            fabric.colorWire(portB, colorProp);
+            this.bitstreamConPorts.add(portA);
+            this.bitstreamConPorts.add(portB);
 
             boolean drawCurve = false;
             int offsetX = 0;
@@ -273,8 +288,6 @@ public class SwitchMatrix extends Group implements FabricElement {
                 offsetY = portLocA.getY() == 0 ? 1 : -1;
                 drawCurve = true;
             }
-
-            Config config = Config.getInstance();
 
             if (drawCurve) {
                 Line startLine = new LineBuilder()

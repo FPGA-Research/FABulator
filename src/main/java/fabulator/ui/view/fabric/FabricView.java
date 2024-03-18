@@ -115,7 +115,7 @@ public class FabricView extends VBox implements ReferenceHolder {
     public void displayBitstreamConfig(BitstreamConfiguration config) {
         if (this.fabric != null) {
             this.fabric.displayBitstreamConfig(config);
-        }
+        } // TODO: Warning for user if fabric == null (= no Fabric loaded)
     }
 
     public void clearNets() {

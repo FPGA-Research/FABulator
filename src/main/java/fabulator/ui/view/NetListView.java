@@ -1,12 +1,16 @@
 package fabulator.ui.view;
 
+import fabulator.FABulator;
 import fabulator.language.Text;
 import fabulator.lookup.BitstreamConfiguration;
 import fabulator.lookup.Net;
-import fabulator.ui.builder.LabelBuilder;
+import fabulator.ui.builder.ButtonBuilder;
+import fabulator.ui.builder.CheckBoxBuilder;
+import fabulator.ui.builder.TextFieldBuilder;
+import fabulator.ui.icon.CssIcon;
 import fabulator.ui.style.StyleClass;
+import fabulator.util.LayoutUtils;
 import javafx.collections.ListChangeListener;
-import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -22,10 +26,10 @@ public class NetListView extends VBox {
     private ContentInfoView parent;
 
     private HBox topBox;
+    private HBox bottomBox;
     private TextField searchField;
-    private HBox spacer;
-    private Label hideLabel;
     private CheckBox hideEmptyNets;
+    private Button eraseFasmButton;
     private ListView<Label> listView;
 
     private BitstreamConfiguration config;
@@ -40,34 +44,26 @@ public class NetListView extends VBox {
     }
 
     private void initialize() {
+        this.initializeTopBox();
+        this.initializeListView();
+        this.initializeBottomBox();
+    }
+
+    private void initializeTopBox() {
         this.topBox = new HBox();
-        this.topBox.setPadding(
-                new Insets(4)
-        );
-        this.topBox.setSpacing(4);
 
-        this.searchField = new TextField();
-        this.searchField.promptTextProperty().bind(Text.SEARCH.stringProperty());
-        this.searchField.textProperty().addListener((obs, old, now) -> this.filter());
-
-        this.spacer = new HBox();
-        HBox.setHgrow(this.spacer, Priority.ALWAYS);
-
-        this.hideLabel = new LabelBuilder()
-                .setText(Text.HIDE_EMPTY_NETS)
+        this.searchField = new TextFieldBuilder()
+                .setPrompt(Text.SEARCH)
+                .setOnChanged(this::filter)
                 .build();
 
-        this.hideLabel.setPadding(
-                new Insets(4)
-        );
+        this.hideEmptyNets = new CheckBoxBuilder()
+                .setText(Text.HIDE_EMPTY_NETS)
+                .setOnChanged(bool -> this.filter())
+                .build();
+    }
 
-        this.hideEmptyNets = new CheckBox();
-        this.hideEmptyNets.setSelected(true);
-        this.hideEmptyNets.setPadding(
-                new Insets(4)
-        );
-        this.hideEmptyNets.selectedProperty().addListener((obs, old, now) -> this.filter());
-
+    private void initializeListView() { //TODO: builder
         this.listView = new ListView<>();
         this.listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
@@ -78,21 +74,43 @@ public class NetListView extends VBox {
         );
     }
 
+    private void initializeBottomBox() {
+        this.bottomBox = new HBox();
+
+        this.eraseFasmButton = new ButtonBuilder()
+                .setIcon(CssIcon.ERASE)
+                .setText(Text.ERASE_FASM)
+                .setTooltip(Text.ERASE_FASM)
+                .setOnAction(event -> this.eraseFasm())
+                .build();
+
+    }
+
     private void setup() {
         this.topBox.getChildren().addAll(
                 this.searchField,
-                this.spacer,
-                this.hideLabel,
+                LayoutUtils.hSpacer(),
                 this.hideEmptyNets
+        );
+
+        this.bottomBox.getChildren().addAll(
+                LayoutUtils.hSpacer(),
+                this.eraseFasmButton
         );
 
         this.getChildren().addAll(
                 this.topBox,
-                this.listView
+                this.listView,
+                this.bottomBox
         );
     }
 
     private void filter() {
+        String filterString = this.searchField.getText();
+        this.filter(filterString);
+    }
+
+    private void filter(String filterString) {
         this.listView.getItems().clear();
         boolean hideEmpty = this.hideEmptyNets.isSelected();
 
@@ -103,7 +121,7 @@ public class NetListView extends VBox {
                 String netName = entry.getKey();
                 Net net = entry.getValue();
 
-                boolean passesFilter = netName.contains(this.searchField.getText());
+                boolean passesFilter = netName.contains(filterString);
 
                 if (!(hideEmpty && net.isEmpty()) && passesFilter) {
                     Label netLabel = new Label(netName);
@@ -129,6 +147,12 @@ public class NetListView extends VBox {
         this.dropReferences();
         this.config = config;
         this.filter();
+    }
+
+    public void eraseFasm() {
+        FABulator.getApplication()
+                .getMainView()
+                .displayBitstreamConfig(BitstreamConfiguration.empty());
     }
 
     public void dropReferences() {

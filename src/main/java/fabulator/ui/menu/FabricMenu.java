@@ -51,14 +51,12 @@ public class FabricMenu extends SplitPane implements ReferenceHolder {
                     this.fabricView,
                     this.infoView
             );
-            this.setDividerPositions(0.8);
 
         } else {
             this.getItems().addAll(
                     this.infoView,
                     this.fabricView
             );
-            this.setDividerPositions(0.2);
         }
         SplitPane.setResizableWithParent(this.infoView, false);
 

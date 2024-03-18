@@ -200,13 +200,10 @@ public class Fabric extends Group {
         for (Line wire : toBeColored) wire.setStrokeWidth(value);
     }
 
-    public void highlightWire(AbstractPort port) {
-        Config config = Config.getInstance();
-        Property<Color> colorProp = config.getUserDesignColor();
-
+    public void colorWire(AbstractPort port, Property<Color> colorProperty) {
         Set<Line> toBeColored = this.lineMap.allLinesAt(port);
         for (Line wire : toBeColored) {
-            wire.strokeProperty().bind(colorProp);
+            wire.strokeProperty().bind(colorProperty);
         }
     }
 
@@ -221,7 +218,19 @@ public class Fabric extends Group {
         return toBeColored;
     }
 
+    private void clearBitstreamConfig() {
+        for (List<Tile> tileList : this.tiles) {
+            for (Tile tile : tileList) {
+                if (tile != null) {
+                    tile.clearBitstreamConfig();
+                }
+            }
+        }
+    }
+
     public void displayBitstreamConfig(BitstreamConfiguration config) {
+        this.clearBitstreamConfig();
+
         for (Map.Entry<DiscreteLocation, List<BitstreamConfiguration.ConnectedPorts>> entry : config.getConnectivityMap().entrySet()) {
             DiscreteLocation location = entry.getKey();
             Tile tile = this.getTile(location.getY(), location.getX());

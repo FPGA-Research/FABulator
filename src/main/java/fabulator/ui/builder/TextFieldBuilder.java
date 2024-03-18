@@ -21,6 +21,11 @@ public class TextFieldBuilder implements Builder<TextField> {
         return this;
     }
 
+    public TextFieldBuilder setText(String text) {
+        this.textField.setText(text);
+        return this;
+    }
+
     public TextFieldBuilder setOnAction(EventHandler<ActionEvent> eventHandler) {
         this.textField.setOnAction(eventHandler);
         return this;

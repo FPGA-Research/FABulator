@@ -15,6 +15,27 @@
 }
 
 
+/*  ----  FABulatorWindow Style  ----  */
+.loading-pane {
+    -fx-background-color: secondary;
+    -fx-background-radius: 12;
+}
+.loading-pane .label {
+    -fx-text-fill: -fx-icon-fill;
+    -fx-font-size: 16;
+}
+
+
+/*  ----  TextField Style  ----  */
+.text-field {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-background-radius: 8;
+    -fx-font-size: 14;
+    -fx-background-insets: 0;
+}
+
+
 /*  ----  MenuBar Style  ----  */
 .menu-bar {
     -fx-background-color: primary;
@@ -143,6 +164,16 @@
 }
 
 
+/*  ----  ProgressIndicator Style  ----  */
+.progress-indicator:indeterminate {
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+}
+.progress-indicator:indeterminate .segment {
+    -fx-background-color: -fx-icon-fill;
+}
+
+
 /*  ----  FabricPane Style  ----  */
 .fabric-pane > .viewport {
     -fx-background-color: transparent;
@@ -194,8 +225,24 @@
 .content-info-view .element-view .label {
     -fx-text-fill: -fx-icon-fill;
 }
-.content-info-view .netlist-view .label {
+.content-info-view .netlist-view .label,
+.content-info-view .netlist-view .check-box {
+    -fx-padding: 4;
+    -fx-font-size: 14;
     -fx-text-fill: -fx-icon-fill;
+}
+.content-info-view .netlist-view HBox {
+    -fx-padding: 4;
+    -fx-spacing: 4;
+}
+.content-info-view .netlist-view .button {
+    -fx-background-radius: 12;
+    -fx-background-color: secondary;
+    -fx-text-fill: -fx-icon-fill;
+    -fx-font-size: 14;
+}
+.content-info-view .netlist-view .button:hover {
+    -fx-background-color: secondary-hover;
 }
 .content-info-view .tree-view .tree-cell .tree-disclosure-node .arrow  {
     -fx-background-color: -fx-icon-fill;
@@ -237,7 +284,7 @@
 /*  ----  BottomMenu Style  ----  */
 .bottom-menu {
     -fx-background-color: secondary;
-    -fx-padding: 4;
+    -fx-padding: 8;
 }
 .bottom-menu .search-feedback {
     -fx-text-fill: -fx-icon-fill;
@@ -246,8 +293,9 @@
 .bottom-menu .choice-box {
     -fx-background-radius: 8;
 }
-.bottom-menu .text-field {
-    -fx-background-radius: 8;
+.bottom-menu .label,
+.bottom-menu .button {
+    -fx-font-size: 14;
 }
 
 
@@ -381,7 +429,6 @@
 .explorer-menu .text-field {
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
-    -fx-background-radius: 12;
     -fx-background-color: transparent;
     -fx-font-size: 14;
     -fx-text-fill: -fx-icon-fill;
@@ -508,6 +555,15 @@
     -fx-padding: 4;
 }
 
+
+/*  ----  CompilerSetupView Style  ----  */
+.compiler-setup-view {
+    -fx-background-color: primary;
+}
+.compiler-setup-view .label {
+    -fx-font-size: 14;
+    -fx-text-fill: -fx-icon-fill;
+}
 
 /* TODO */
 #highlight-on {

@@ -41,4 +41,8 @@ public class BitstreamConfiguration {
         this.connectivityMap.get(location).add(ports);
         this.netMap.get(netName).add(location, ports);
     }
+
+    public static BitstreamConfiguration empty() {
+        return new BitstreamConfiguration();
+    }
 }

@@ -7,6 +7,7 @@ import fabulator.ui.builder.StatefulChoiceBoxBuilder;
 import fabulator.ui.fabric.element.ElementType;
 import fabulator.ui.fabric.element.FabricElement;
 import fabulator.ui.style.StyleClass;
+import fabulator.util.LayoutUtils;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -14,7 +15,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.util.LinkedList;
@@ -33,7 +33,6 @@ public class BottomMenu extends VBox implements ReferenceHolder {
     private Button nextButton;
     private ChoiceBox<ElementType> typeBox;
     private Label resultText;
-    private HBox spacer;
     private Label elementLabel;
 
     private boolean search = false;
@@ -89,9 +88,6 @@ public class BottomMenu extends VBox implements ReferenceHolder {
         this.resultText = new Label();
         this.resultText.getStyleClass().add(StyleClass.SEARCH_FEEDBACK.getName());
 
-        this.spacer = new HBox();
-        HBox.setHgrow(this.spacer, Priority.ALWAYS);
-
         this.elementLabel = new Label();
         this.elementLabel.getStyleClass().add(StyleClass.SEARCH_FEEDBACK.getName());
     }
@@ -102,7 +98,7 @@ public class BottomMenu extends VBox implements ReferenceHolder {
                 this.nextButton,
                 this.typeBox,
                 this.resultText,
-                this.spacer,
+                LayoutUtils.hSpacer(),
                 this.elementLabel
         );
         this.getChildren().add(this.searchWrapper);

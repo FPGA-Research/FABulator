@@ -134,6 +134,10 @@ public class Tile extends Group implements FabricElement {
         }
     }
 
+    public void clearBitstreamConfig() {
+        this.switchMatrix.clearBitstreamConfig();
+    }
+
     public void displayBitstreamConfig(List<BitstreamConfiguration.ConnectedPorts> connectedPortsList) {
         this.switchMatrix.displayBitstreamConfig(connectedPortsList);
     }

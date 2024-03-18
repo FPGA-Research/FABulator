@@ -1,44 +1,34 @@
 package fabulator.ui.window;
 
-import fabulator.ui.builder.StageBuilder;
-import fabulator.ui.icon.ImageIcon;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
+import fabulator.language.Text;
+import fabulator.ui.view.CompilerSetupView;
 
-public class EditSetupWindow {
+import static javafx.stage.Modality.APPLICATION_MODAL;
+
+public class EditSetupWindow extends FABulatorWindow {
+
+    private static final int INIT_WIDTH = 480;
+    private static final int INIT_HEIGHT = 320;
+    private static final Text TITLE = Text.EDIT_COMPILER_SETUP;
 
     private static EditSetupWindow instance;
 
-    private Stage stage;
-
     private EditSetupWindow() {
+        super(
+                INIT_WIDTH,
+                INIT_HEIGHT,
+                TITLE,
+                APPLICATION_MODAL
+        );
         instance = this;
 
         this.buildSelf();
     }
 
     private void buildSelf() {
-        this.stage = new StageBuilder()
-                .initModality(Modality.APPLICATION_MODAL)
-                .setIcon(ImageIcon.FABULOUS)
-                .build();
-
-        this.stage.setTitle("Edit Compiler Setup");
-        this.stage.setWidth(480);
-        this.stage.setHeight(320);
-
-        StackPane root = new StackPane(
-                new Label("Work In Progress")
+        this.setRoot(
+                new CompilerSetupView()
         );
-        Scene scene = new Scene(root, 480, 320);
-        this.stage.setScene(scene);
-    }
-
-    public void show() {
-        this.stage.show();
     }
 
     public static EditSetupWindow getInstance() {

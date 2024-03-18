@@ -86,11 +86,16 @@ public enum Text {
     THICKNESS,
 
     COMPILE,
+    COMPILER_SETUP,
+    EDIT_COMPILER_SETUP,
+    TOP_MODULE_NAME,
     UPLOAD,
     EXPAND_ALL,
     COLLAPSE_ALL,
     EXPLORER_HINT_1,
-    EXPLORER_HINT_2;
+    EXPLORER_HINT_2,
+
+    ERASE_FASM;
 
     private StringProperty stringProperty;
 
