@@ -1,9 +1,9 @@
 package fabulator.ui.menu;
 
-import fabulator.object.Location;
 import fabulator.lookup.BitstreamConfiguration;
 import fabulator.lookup.Net;
 import fabulator.memory.ReferenceHolder;
+import fabulator.object.Location;
 import fabulator.settings.Config;
 import fabulator.ui.fabric.Fabric;
 import fabulator.ui.fabric.element.ElementType;

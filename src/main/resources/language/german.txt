@@ -77,3 +77,4 @@ COLLAPSE_ALL:           Alle einklappen
 EXPLORER_HINT_1:        Ordner öffnen: Datei > Ordner öffnen
 EXPLORER_HINT_2:        Anzuzeigende Datei anklicken
 ERASE_FASM:             Fasm entfernen
+CLEAR_SELECTION:        Auswahl aufheben

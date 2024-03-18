@@ -77,3 +77,4 @@ COLLAPSE_ALL:           Collapse All
 EXPLORER_HINT_1:        To open a folder: File > Open Folder
 EXPLORER_HINT_2:        Click a file to open it in the editor
 ERASE_FASM:             Erase fasm
+CLEAR_SELECTION:        Clear Selection

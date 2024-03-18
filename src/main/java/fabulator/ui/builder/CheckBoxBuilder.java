@@ -15,6 +15,11 @@ public class CheckBoxBuilder implements Builder<CheckBox> {
         this.checkBox = new CheckBox();
     }
 
+    public CheckBoxBuilder setSelected(boolean value) {
+        this.checkBox.setSelected(value);
+        return this;
+    }
+
     public CheckBoxBuilder setText(Text text) {
         this.checkBox.textProperty().bind(text.stringProperty());
         return this;

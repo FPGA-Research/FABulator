@@ -29,6 +29,7 @@ public class NetListView extends VBox {
     private HBox bottomBox;
     private TextField searchField;
     private CheckBox hideEmptyNets;
+    private Button clearSelectionButton;
     private Button eraseFasmButton;
     private ListView<Label> listView;
 
@@ -58,6 +59,7 @@ public class NetListView extends VBox {
                 .build();
 
         this.hideEmptyNets = new CheckBoxBuilder()
+                .setSelected(true)
                 .setText(Text.HIDE_EMPTY_NETS)
                 .setOnChanged(bool -> this.filter())
                 .build();
@@ -77,13 +79,19 @@ public class NetListView extends VBox {
     private void initializeBottomBox() {
         this.bottomBox = new HBox();
 
+        this.clearSelectionButton = new ButtonBuilder()
+                .setIcon(CssIcon.CLEAR_SELECTION)
+                .setText(Text.CLEAR_SELECTION)
+                .setTooltip(Text.CLEAR_SELECTION)
+                .setOnAction(event -> this.clearSelection())
+                .build();
+
         this.eraseFasmButton = new ButtonBuilder()
                 .setIcon(CssIcon.ERASE)
                 .setText(Text.ERASE_FASM)
                 .setTooltip(Text.ERASE_FASM)
                 .setOnAction(event -> this.eraseFasm())
                 .build();
-
     }
 
     private void setup() {
@@ -95,6 +103,7 @@ public class NetListView extends VBox {
 
         this.bottomBox.getChildren().addAll(
                 LayoutUtils.hSpacer(),
+                this.clearSelectionButton,
                 this.eraseFasmButton
         );
 
@@ -149,14 +158,19 @@ public class NetListView extends VBox {
         this.filter();
     }
 
-    public void eraseFasm() {
+    private void eraseFasm() {
         FABulator.getApplication()
                 .getMainView()
                 .displayBitstreamConfig(BitstreamConfiguration.empty());
     }
 
+    private void clearSelection() {
+        this.listView.getSelectionModel().clearSelection();
+    }
+
     public void dropReferences() {
-        this.config = null;
+        this.listView.getSelectionModel().clearSelection();
         this.listView.getItems().clear();
+        this.config = null;
     }
 }

@@ -95,7 +95,8 @@ public enum Text {
     EXPLORER_HINT_1,
     EXPLORER_HINT_2,
 
-    ERASE_FASM;
+    ERASE_FASM,
+    CLEAR_SELECTION;
 
     private StringProperty stringProperty;
 

@@ -15,7 +15,8 @@ public enum CssIcon {
     SEARCH("search-icon"),
     EXPAND_ALL("expand-icon"),
     COLLAPSE_ALL("collapse-icon"),
-    ERASE("erase-icon");
+    ERASE("erase-icon"),
+    CLEAR_SELECTION("clear-selection-icon");
 
     private String id;
 

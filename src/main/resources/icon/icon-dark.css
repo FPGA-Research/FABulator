@@ -68,3 +68,9 @@
     -fx-icon-color: orangered;
     -fx-icon-size: 20px;
 }
+
+#clear-selection-icon .ikonli-font-icon {
+    -fx-icon-code: "mdi2s-selection-off";
+    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-size: 20px;
+}
