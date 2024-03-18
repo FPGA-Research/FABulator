@@ -12,7 +12,8 @@ import java.io.InputStream;
 public enum Code {
     DEFAULT("/keywords/default.txt"),
     VERILOG("/keywords/verilog.txt", ".v"),
-    VHDL("/keywords/vhdl.txt", ".vhd", ".vhdl");
+    VHDL("/keywords/vhdl.txt", ".vhd", ".vhdl"),
+    FASM("/keywords/fasm.txt", ".fasm");
 
     private String[] keywords;
     private String[] fileExtensions;
