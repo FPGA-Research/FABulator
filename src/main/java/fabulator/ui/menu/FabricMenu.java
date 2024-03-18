@@ -117,7 +117,9 @@ public class FabricMenu extends SplitPane implements ReferenceHolder {
         }
         averageLocation.scaleInverse(nets.size());
 
-        this.fabricView.navigateToGlobal(averageLocation, 1.25);
+        if (averageLocation.valid()) {
+            this.fabricView.navigateToGlobal(averageLocation, 1.25);
+        }
     }
 
     public void openHdl(List<String> hdl) {

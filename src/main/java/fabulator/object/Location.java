@@ -54,6 +54,10 @@ public class Location {
         return average;
     }
 
+    public boolean valid() {
+        return !(Double.isNaN(this.x) || Double.isNaN(this.y));
+    }
+
     @Override
     public boolean equals(Object object) {
         boolean equal = false;
