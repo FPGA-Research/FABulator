@@ -15,6 +15,7 @@ import fabulator.ui.fabric.element.FabricElement;
 import fabulator.ui.fabric.port.AbstractPort;
 import fabulator.ui.view.fabric.LodManager;
 import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -26,7 +27,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Pair;
@@ -78,7 +78,9 @@ public class Fabric extends Group {
 
         ColorPicker colorPicker = new ColorPicker();
         EventHandler<ActionEvent> colorPickedHandler = event -> {
-            this.colorWire(colorPicker.getValue());
+            Color pickedColor = colorPicker.getValue();
+            Property<Color> pickedColorProp = new SimpleObjectProperty<>(pickedColor);
+            this.colorWire(pickedColorProp);
         };
 
         MenuItem colorItem = new MenuItemBuilder()
@@ -186,11 +188,13 @@ public class Fabric extends Group {
         this.lineMenu.show(line, event.getScreenX(), event.getScreenY());
     }
 
-    private void colorWire(Paint color) {
+    private void colorWire(Property<Color> colorProperty) {
         assert this.currentlySelected != null;
 
         Set<Line> toBeColored = this.lineMap.allLinesAt(this.currentlySelected);
-        for (Line wire : toBeColored) wire.setStroke(color);
+        for (Line wire : toBeColored) {
+            wire.strokeProperty().bind(colorProperty);
+        }
     }
 
     private void setWireThickness(Double value) {
