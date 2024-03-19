@@ -4,6 +4,8 @@ import fabulator.FABulator;
 import fabulator.async.FileChangedManager;
 import fabulator.geometry.FabricGeometry;
 import fabulator.language.Text;
+import fabulator.logging.LogManager;
+import fabulator.logging.Logger;
 import fabulator.lookup.BitstreamConfiguration;
 import fabulator.parse.FasmParser;
 import fabulator.parse.GeometryParser;
@@ -14,8 +16,6 @@ import fabulator.ui.window.LoadingWindow;
 import javafx.application.Platform;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.File;

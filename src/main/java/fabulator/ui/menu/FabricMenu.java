@@ -1,5 +1,7 @@
 package fabulator.ui.menu;
 
+import fabulator.logging.LogManager;
+import fabulator.logging.Logger;
 import fabulator.lookup.BitstreamConfiguration;
 import fabulator.lookup.Net;
 import fabulator.memory.ReferenceHolder;
@@ -17,9 +19,6 @@ import javafx.application.Platform;
 import javafx.geometry.Bounds;
 import javafx.scene.control.SplitPane;
 import lombok.Getter;
-import org.apache.logging.log4j.Level;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
@@ -75,7 +74,7 @@ public class FabricMenu extends SplitPane implements ReferenceHolder {
             path = Paths.get(lastFile);
         } catch (InvalidPathException exception) {
             Logger logger = LogManager.getLogger();
-            logger.log(Level.ERROR, "Cannot open last fabric due to invalid path", exception);
+            logger.error("Cannot open last fabric due to invalid path");
             return;
         }
 

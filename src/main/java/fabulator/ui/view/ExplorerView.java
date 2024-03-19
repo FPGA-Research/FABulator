@@ -1,6 +1,8 @@
 package fabulator.ui.view;
 
 import fabulator.language.Text;
+import fabulator.logging.LogManager;
+import fabulator.logging.Logger;
 import fabulator.ui.builder.ButtonBuilder;
 import fabulator.ui.builder.LabelBuilder;
 import fabulator.ui.builder.TextFieldBuilder;
@@ -11,8 +13,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;

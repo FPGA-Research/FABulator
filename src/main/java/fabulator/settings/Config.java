@@ -1,15 +1,14 @@
 package fabulator.settings;
 
 import fabulator.language.Language;
+import fabulator.logging.LogManager;
+import fabulator.logging.Logger;
 import fabulator.util.StringUtils;
 import javafx.beans.property.*;
 import javafx.scene.paint.Color;
 import lombok.Getter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.*;
-import java.net.URL;
 import java.util.Properties;
 
 @Getter
@@ -74,12 +73,11 @@ public class Config {
     private Properties loadDefaultProperties() throws IOException {
         Properties defaultProperties = new Properties();
 
-        URL defaultUrl = getClass().getResource(DEFAULT_PROPS);
-        assert defaultUrl != null;
+        InputStream stream = getClass().getResourceAsStream(DEFAULT_PROPS);
+        assert stream != null;
 
-        FileInputStream defaultStream = new FileInputStream(defaultUrl.getFile());
-        defaultProperties.load(defaultStream);
-        defaultStream.close();
+        defaultProperties.load(stream);
+        stream.close();
 
         return defaultProperties;
     }

@@ -1,12 +1,12 @@
 package fabulator.async;
 
 import fabulator.FABulator;
+import fabulator.logging.LogManager;
+import fabulator.logging.Logger;
 import fabulator.settings.Config;
 import fabulator.ui.window.AutoRefreshDialog;
 import fabulator.util.FileUtils;
 import javafx.application.Platform;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;

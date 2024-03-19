@@ -1,9 +1,9 @@
 package fabulator.language;
 
+import fabulator.logging.LogManager;
+import fabulator.logging.Logger;
 import fabulator.settings.Config;
 import javafx.beans.value.ObservableValue;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,7 +45,7 @@ public class Dictionary {
 
         } catch (IOException exception) {
             Logger logger = LogManager.getLogger();
-            logger.fatal("Failed to retrieve language file!");
+            logger.error("Failed to retrieve language file!");
             System.exit(1);
         }
     }

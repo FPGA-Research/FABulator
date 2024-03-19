@@ -40,6 +40,10 @@ public class FABulator extends Application {
 
     private List<Runnable> closedListeners = new ArrayList<>();
 
+    public static void main(String[] args) {
+        launch(args);
+    }
+
     @Override
     public void start(Stage stage) {
         application = this;

@@ -1,11 +1,11 @@
 package fabulator.lookup;
 
+import fabulator.logging.LogManager;
+import fabulator.logging.Logger;
 import fabulator.ui.fabric.port.AbstractPort;
 import fabulator.ui.fabric.port.JumpPort;
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;

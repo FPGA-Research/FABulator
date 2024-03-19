@@ -1,6 +1,8 @@
 package fabulator.ui.view;
 
 import fabulator.language.Text;
+import fabulator.logging.LogManager;
+import fabulator.logging.Logger;
 import fabulator.ui.builder.ButtonBuilder;
 import fabulator.ui.icon.CssIcon;
 import fabulator.ui.style.StyleClass;
@@ -14,8 +16,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;

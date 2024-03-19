@@ -1,8 +1,8 @@
 package fabulator.ui.view;
 
+import fabulator.logging.LogManager;
+import fabulator.logging.Logger;
 import lombok.Getter;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,7 +34,7 @@ public enum Code {
 
         } catch (IOException e) {
             Logger logger = LogManager.getLogger();
-            logger.fatal("Could not load keyword resources");
+            logger.error("Could not load keyword resources");
 
             System.exit(1);
         }
