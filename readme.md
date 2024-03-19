@@ -68,7 +68,7 @@ To build and run:
 mvn javafx:run
 ```
 
-Or alternatively:
+**Or alternatively:**
 
 Build an executable jar:
 ```
