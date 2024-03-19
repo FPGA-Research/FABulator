@@ -29,6 +29,7 @@ public class CodeView extends CodeArea {
     private ScheduledExecutorService scheduler;
 
     public CodeView() {
+        this.setEditable(false);
         this.getStyleClass().add(StyleClass.CODE_VIEW.getName());
         this.setParagraphGraphicFactory(
                 LineNumberFactory.get(this)
