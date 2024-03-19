@@ -18,7 +18,6 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.io.File;
-import java.util.List;
 
 public class MainView extends VBox implements ReferenceHolder {
 
@@ -95,8 +94,8 @@ public class MainView extends VBox implements ReferenceHolder {
         this.pageMenu.changeTo(0);
     }
 
-    public void openHdl(List<String> hdl) {
-        this.fabricMenu.openHdl(hdl);
+    public void openHdl(File hdlFile) {
+        this.fabricMenu.openHdl(hdlFile);
         this.pageMenu.changeTo(0);
     }
 

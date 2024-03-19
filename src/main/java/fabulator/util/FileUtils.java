@@ -265,19 +265,13 @@ public class FileUtils {
         Logger logger = LogManager.getLogger();
         logger.info("Opening HDL file " + fileName);
 
-        try {
-            File file = new File(fileName);
-            List<String> lines = read(file);
-            FABulator.getApplication()
-                    .getMainView()
-                    .openHdl(lines);
+        File file = new File(fileName);
+        FABulator.getApplication()
+                .getMainView()
+                .openHdl(file);
 
-            Config config = Config.getInstance();
-            config.getOpenedHdlFileName().set(fileName);
-
-        } catch (IOException exception) {
-            logger.error("HDL file " + fileName + " not found.");
-        }
+        Config config = Config.getInstance();
+        config.getOpenedHdlFileName().set(fileName);
     }
 
     public static void openFasm() {

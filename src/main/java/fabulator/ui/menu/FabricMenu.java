@@ -20,6 +20,7 @@ import javafx.geometry.Bounds;
 import javafx.scene.control.SplitPane;
 import lombok.Getter;
 
+import java.io.File;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -121,8 +122,8 @@ public class FabricMenu extends SplitPane implements ReferenceHolder {
         }
     }
 
-    public void openHdl(List<String> hdl) {
-        this.infoView.openHdl(hdl);
+    public void openHdl(File hdlFile) {
+        this.infoView.openHdl(hdlFile);
     }
 
     public List<FabricElement> searchView(ElementType type, Pattern regex) {

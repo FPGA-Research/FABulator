@@ -1,6 +1,8 @@
 package fabulator.ui.view;
 
 import fabulator.language.Text;
+import fabulator.logging.LogManager;
+import fabulator.logging.Logger;
 import fabulator.lookup.BitstreamConfiguration;
 import fabulator.lookup.Net;
 import fabulator.memory.ReferenceHolder;
@@ -13,6 +15,8 @@ import javafx.geometry.Bounds;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class ContentInfoView extends TabPane implements ReferenceHolder {
@@ -26,7 +30,7 @@ public class ContentInfoView extends TabPane implements ReferenceHolder {
 
     private WorldView worldView;
     private ElementView elementView;
-    private HdlView hdlView;
+    private ScrollableCodeView hdlView;
     private NetListView netListView;
 
     public ContentInfoView(FabricMenu parent) {
@@ -40,7 +44,7 @@ public class ContentInfoView extends TabPane implements ReferenceHolder {
     private void initialize() {
         this.worldView = new WorldView(this);
         this.elementView = new ElementView(this);
-        this.hdlView = new HdlView();
+        this.hdlView = new ScrollableCodeView();
         this.netListView = new NetListView(this);
 
         this.worldViewTab = new TabBuilder()
@@ -91,8 +95,13 @@ public class ContentInfoView extends TabPane implements ReferenceHolder {
         this.parent.displayNets(nets);
     }
 
-    public void openHdl(List<String> hdl) {
-        this.hdlView.openHdl(hdl);
+    public void openHdl(File hdlFile) {
+        try {
+            this.hdlView.open(hdlFile);
+        } catch (IOException e) {
+            Logger logger = LogManager.getLogger();
+            logger.error("HDL file " + hdlFile.getName() + "not found.");
+        }
     }
 
     public void updateWorldView(Bounds viewPortBounds) {

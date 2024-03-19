@@ -37,6 +37,10 @@ public class ScrollableCodeView extends VBox implements View {
         this.codeView.open(file);
     }
 
+    public void setEditable(boolean editable) {
+        this.codeView.setEditable(editable);
+    }
+
     public void close() {
         this.codeView.close();
     }
