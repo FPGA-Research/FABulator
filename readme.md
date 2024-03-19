@@ -60,11 +60,26 @@ git clone https://github.com/FPGA-Research-Manchester/FABulator
 cd FABulator
 ```
 
+
+### Build and Run
 To build and run:
 
 ```
 mvn javafx:run
 ```
+
+Or alternatively:
+
+Build an executable jar:
+```
+mvn clean package
+```
+And run with
+```
+java -jar <output_jar>
+```
+
+### Usage
 
 For information on how to use FABulator, see [How To Use](docs/user/howToUse.md)
 
