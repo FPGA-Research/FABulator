@@ -7,10 +7,12 @@ import fabulator.language.Text;
 import fabulator.logging.LogManager;
 import fabulator.logging.Logger;
 import fabulator.lookup.BitstreamConfiguration;
+import fabulator.object.Version;
 import fabulator.parse.FasmParser;
 import fabulator.parse.GeometryParser;
 import fabulator.settings.Config;
 import fabulator.ui.fabric.Fabric;
+import fabulator.ui.window.ChoiceDialog;
 import fabulator.ui.window.ErrorMessageDialog;
 import fabulator.ui.window.LoadingWindow;
 import javafx.application.Platform;
@@ -146,26 +148,7 @@ public class FileUtils {
             Logger logger = LogManager.getLogger();
             logger.info("Asynchronously opening fabric file " + file.getName());
 
-            LoadingWindow.getInstance().show();
-
-            FABulator.getApplication()
-                    .getMainView()
-                    .dropReferences();
-
-            new Thread(() -> {
-                FileChangedManager.getInstance().setFile(file);
-
-                GeometryParser parser = new GeometryParser(file);
-                FabricGeometry geometry = parser.getGeometry();
-                Fabric fabric = new Fabric(geometry);
-
-                Platform.runLater(() -> {
-                    FABulator.getApplication()
-                            .getMainView()
-                            .setNewFabric(fabric);
-                    Platform.runLater(() -> LoadingWindow.getInstance().hide());
-                });
-            }).start();
+            openFabricWithVersionCheck(file, true);
 
         } else {
             Logger logger = LogManager.getLogger();
@@ -185,21 +168,7 @@ public class FileUtils {
             Logger logger = LogManager.getLogger();
             logger.info("Synchronously opening fabric file " + file.getName());
 
-            FABulator.getApplication()
-                    .getMainView()
-                    .dropReferences();
-
-            FileChangedManager.getInstance().setFile(file);
-
-            GeometryParser parser = new GeometryParser(file);
-            FabricGeometry geometry = parser.getGeometry();
-            Fabric fabric = new Fabric(geometry);
-
-            Platform.runLater(() -> {
-                FABulator.getApplication()
-                        .getMainView()
-                        .setNewFabric(fabric);
-            });
+            openFabricWithVersionCheck(file, false);
 
         } else {
             Logger logger = LogManager.getLogger();
@@ -207,6 +176,82 @@ public class FileUtils {
 
             if (file != null) new ErrorMessageDialog(Text.INVALID_GEOM_FILE);
         }
+    }
+
+    /**
+     * Opens a fabric file and does a version check to
+     * ensure that the generatorVersion of the file is
+     * supported.
+     *
+     * @param file the file to open
+     * @param async open the fabric asynchronously
+     */
+    private static void openFabricWithVersionCheck(File file, boolean async) {
+        GeometryParser parser = new GeometryParser(file);
+
+        Config config = Config.getInstance();
+        Version minGeneratorVersion = config.getMinGeneratorVersion();
+        Version generatorVersion = parser.getGeneratorVersion();
+
+        if (!Version.outdated(minGeneratorVersion, generatorVersion)) {
+            openGeomOf(parser, async);
+        } else {
+            LoadingWindow.getInstance().hide();
+
+            ChoiceDialog dialog = new ChoiceDialog(
+                    400,
+                    260,
+                    Text.OUTDATED_VERSION,
+                    Text.OUTDATED_INFO_1,
+                    Text.OUTDATED_INFO_2,
+                    Text.OPEN_ANYWAYS
+            );
+            dialog.setYesRunnable(() -> openGeomOf(parser, async));
+            dialog.show();
+        }
+    }
+
+    /**
+     * Opens a fabric from a {@link GeometryParser} object.
+     *
+     * @param parser the {@link GeometryParser} object
+     * @param async open the fabric asynchronously
+     */
+    private static void openGeomOf(GeometryParser parser, boolean async) {
+        if (async) {
+            LoadingWindow.getInstance().show();
+        }
+
+        FABulator.getApplication()
+                .getMainView()
+                .dropReferences();
+
+        FabricGeometry geometry = parser.getGeometry();
+
+        if (async) {
+            Thread openGeomThread = new Thread(() -> {
+                openGeom(geometry, parser.getFile());
+            });
+            openGeomThread.start();
+        } else {
+            openGeom(geometry, parser.getFile());
+        }
+    }
+
+    private static void openGeom(FabricGeometry geometry, File file) {
+        Fabric fabric = new Fabric(geometry);
+
+        Platform.runLater(() -> {
+            FABulator.getApplication()
+                    .getMainView()
+                    .setNewFabric(fabric);
+
+            FileChangedManager.getInstance().setFile(file);
+
+            Platform.runLater(() -> {
+                LoadingWindow.getInstance().hide();
+            });
+        });
     }
 
     /**

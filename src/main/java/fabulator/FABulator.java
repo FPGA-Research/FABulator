@@ -23,6 +23,7 @@ import fabulator.ui.view.MainView;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -38,6 +39,7 @@ public class FABulator extends Application {
     private Stage stage;
     private MainView mainView;
 
+    private List<Runnable> closedRequestListeners = new ArrayList<>();
     private List<Runnable> closedListeners = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -49,8 +51,10 @@ public class FABulator extends Application {
         application = this;
 
         this.stage = stage;
+        this.stage.setOnCloseRequest(this::closeRequested);
         this.stage.setTitle(APP_NAME);
         this.stage.getIcons().add(ImageIcon.FABULOUS.getImage());
+
         this.mainView = new MainView();
 
         Scene scene = new Scene(
@@ -73,6 +77,16 @@ public class FABulator extends Application {
         for (Runnable closedListener : this.closedListeners) {
             closedListener.run();
         }
+    }
+
+    private void closeRequested(WindowEvent event) {
+        for (Runnable closedRequestListener : this.closedRequestListeners) {
+            closedRequestListener.run();
+        }
+    }
+
+    public void addClosedRequestListener(Runnable runnable) {
+        this.closedRequestListeners.add(runnable);
     }
 
     public void addClosedListener(Runnable runnable) {

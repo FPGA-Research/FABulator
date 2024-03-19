@@ -1,3 +1,5 @@
+YES:                    Ja
+NO:                     Nein
 LEFT:                   Links
 RIGHT:                  Rechts
 FILE:                   Datei
@@ -78,3 +80,7 @@ EXPLORER_HINT_1:        Ordner öffnen: Datei > Ordner öffnen
 EXPLORER_HINT_2:        Anzuzeigende Datei anklicken
 ERASE_FASM:             Fasm entfernen
 CLEAR_SELECTION:        Auswahl aufheben
+OUTDATED_VERSION:       Veraltete Version
+OUTDATED_INFO_1:        Die gewählte Datei wurde mit einer veralteten geometry_generator Version erzeugt.
+OUTDATED_INFO_2:        Mit veralteten Versionen generierte geometry-Dateien können fehlerhaft sein oder Kompatibilitätsprobleme auslösen.
+OPEN_ANYWAYS:           Trotzdem öffnen?

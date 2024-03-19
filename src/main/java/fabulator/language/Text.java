@@ -4,6 +4,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 public enum Text {
+    YES,
+    NO,
     LEFT,
     RIGHT,
 
@@ -96,7 +98,12 @@ public enum Text {
     EXPLORER_HINT_2,
 
     ERASE_FASM,
-    CLEAR_SELECTION;
+    CLEAR_SELECTION,
+
+    OUTDATED_VERSION,
+    OUTDATED_INFO_1,
+    OUTDATED_INFO_2,
+    OPEN_ANYWAYS;
 
     private StringProperty stringProperty;
 

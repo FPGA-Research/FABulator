@@ -15,14 +15,38 @@
 }
 
 
-/*  ----  FABulatorWindow Style  ----  */
-.loading-pane {
+/*  ----  LoadingWindow Style  ----  */
+.loading-window {
     -fx-background-color: secondary;
     -fx-background-radius: 12;
 }
-.loading-pane .label {
+.loading-window .label {
     -fx-text-fill: -fx-icon-fill;
     -fx-font-size: 16;
+}
+
+
+/*  ----  Choice-Dialog Style  ----  */
+.choice-dialog {
+    -fx-background-color: secondary;
+    -fx-padding: 16;
+}
+.choice-dialog,
+.choice-dialog HBox {
+    -fx-spacing: 8;
+}
+.choice-dialog .label {
+    -fx-text-fill: -fx-icon-fill;
+    -fx-font-size: 14;
+}
+.choice-dialog .button {
+    -fx-background-color: tertiary;
+    -fx-background-radius: 8;
+    -fx-text-fill: -fx-icon-fill;
+    -fx-font-size: 14;
+}
+.choice-dialog .button:hover {
+    -fx-background-color: tertiary-hover;
 }
 
 
@@ -565,10 +589,24 @@
     -fx-text-fill: -fx-icon-fill;
 }
 
-/* TODO */
+/* TODO: extra css file for ids */
 #highlight-on {
     -fx-background-color: -fx-icon-fill;
 }
 #highlight-off {
     -fx-background-color: primary;
+}
+
+#yesButton {
+    -fx-background-color: secondary;
+}
+#yesButton:hover {
+    -fx-background-color: #315443;
+}
+
+#noButton {
+    -fx-background-color: secondary;
+}
+#noButton:hover {
+    -fx-background-color: secondary-hover;
 }

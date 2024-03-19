@@ -3,6 +3,7 @@ package fabulator.settings;
 import fabulator.language.Language;
 import fabulator.logging.LogManager;
 import fabulator.logging.Logger;
+import fabulator.object.Version;
 import fabulator.util.StringUtils;
 import javafx.beans.property.*;
 import javafx.scene.paint.Color;
@@ -21,6 +22,8 @@ public class Config {
     private static Config instance;
 
     private Properties properties;
+
+    private Version minGeneratorVersion;
 
     private StringProperty openedFabricFileName;
     private StringProperty openedFasmFileName;
@@ -63,6 +66,7 @@ public class Config {
 
             Properties defaultProperties = this.loadDefaultProperties();
             this.properties = this.loadProperties(defaultProperties);
+            this.buildNonPropertyObjs();
             this.buildPropertyObjects();
 
         } catch (IOException e) {
@@ -98,6 +102,12 @@ public class Config {
         return success;
     }
 
+    private void buildNonPropertyObjs() {
+        this.minGeneratorVersion = new Version(
+                this.properties.getProperty("minGeneratorVersion")
+        );
+    }
+
     private void buildPropertyObjects() {
         this.openedFabricFileName   = this.buildStringSetting("openedFabricFileName");
         this.openedFasmFileName     = this.buildStringSetting("openedFasmFileName");
@@ -115,7 +125,7 @@ public class Config {
         this.belPortColor           = this.buildColorSetting("belPortColor");
         this.smConnInColor          = this.buildColorSetting("smConnInColor");
         this.smConnOutColor         = this.buildColorSetting("smConnOutColor");
-        this.smConnJumpColor         = this.buildColorSetting("smConnJumpColor");
+        this.smConnJumpColor        = this.buildColorSetting("smConnJumpColor");
         this.userDesignColor        = this.buildColorSetting("userDesignColor");
         this.userDesignMarkedColor  = this.buildColorSetting("userDesignMarkedColor");
 

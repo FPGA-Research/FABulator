@@ -39,6 +39,11 @@ public class LabelBuilder implements Builder<Label> {
         return this;
     }
 
+    public LabelBuilder setWrapText(boolean wrapText) {
+        this.label.setWrapText(wrapText);
+        return this;
+    }
+
     public LabelBuilder setTranslateX(double translateX) {
         this.label.setTranslateX(translateX);
         return this;

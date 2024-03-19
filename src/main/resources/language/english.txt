@@ -1,3 +1,5 @@
+YES:                    Yes
+NO:                     No
 LEFT:                   Left
 RIGHT:                  Right
 FILE:                   File
@@ -78,3 +80,7 @@ EXPLORER_HINT_1:        To open a folder: File > Open Folder
 EXPLORER_HINT_2:        Click a file to open it in the editor
 ERASE_FASM:             Erase fasm
 CLEAR_SELECTION:        Clear Selection
+OUTDATED_VERSION:       Outdated Version
+OUTDATED_INFO_1:        The selected file was created with an outdated geometry_generator version.
+OUTDATED_INFO_2:        Geometry files which were created with an outdated version can be faulty or cause compatibility issues.
+OPEN_ANYWAYS:           Open anyways?

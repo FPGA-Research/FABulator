@@ -36,6 +36,11 @@ public class ButtonBuilder implements Builder<Button> {
         return this;
     }
 
+    public ButtonBuilder setId(String id) {
+        this.button.setId(id);
+        return this;
+    }
+
     public ButtonBuilder setTooltip(Text text) {
         Tooltip tooltip = new Tooltip();
         tooltip.textProperty().bind(text.stringProperty());

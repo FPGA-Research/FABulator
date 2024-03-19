@@ -2,6 +2,7 @@ package fabulator.parse;
 
 import fabulator.geometry.*;
 import fabulator.object.Location;
+import fabulator.object.Version;
 import fabulator.util.StringUtils;
 import lombok.Getter;
 
@@ -37,7 +38,8 @@ public class GeometryParser {   //TODO: add more checks to make sure only valid 
     }
     private ParsingMode parsingMode;
 
-    private String generatorVersion;
+    private Version generatorVersion;
+
     private String name;
     private int numberOfRows;
     private int numberOfColumns;
@@ -136,7 +138,7 @@ public class GeometryParser {   //TODO: add more checks to make sure only valid 
         assert tokens.length == 2;
 
         switch (attribute) {
-            case "GeneratorVersion" -> this.generatorVersion = tokens[1];
+            case "GeneratorVersion" -> this.generatorVersion = new Version(tokens[1]);
             case "Name"             -> this.name = tokens[1];
             case "Rows"             -> this.numberOfRows = Integer.parseInt(tokens[1]);
             case "Columns"          -> this.numberOfColumns = Integer.parseInt(tokens[1]);

@@ -46,7 +46,7 @@ public class LoadingWindow extends FABulatorWindow {
         );
         root.setAlignment(Pos.CENTER);
         root.setSpacing(20);
-        root.getStyleClass().add("loading-pane");
+        root.getStyleClass().add("loading-window");   // TODO: Add to StyleClass
 
         this.setRoot(root);
     }

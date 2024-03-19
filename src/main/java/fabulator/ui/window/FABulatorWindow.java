@@ -1,5 +1,6 @@
 package fabulator.ui.window;
 
+import fabulator.FABulator;
 import fabulator.language.Text;
 import fabulator.ui.icon.ImageIcon;
 import fabulator.ui.style.Style;
@@ -27,6 +28,7 @@ public class FABulatorWindow extends Stage {
         this.setHeight(height);
         this.setIcon();
         this.initScene();
+        this.initListeners();
         this.setStyle();
     }
 
@@ -57,6 +59,10 @@ public class FABulatorWindow extends Stage {
                 this.getHeight()
         );
         this.setScene(this.scene);
+    }
+
+    private void initListeners() {
+        FABulator.getApplication().addClosedRequestListener(this::close);
     }
 
     public void setRoot(Pane root) {
