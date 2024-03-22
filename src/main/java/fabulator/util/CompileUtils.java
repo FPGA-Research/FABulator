@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
@@ -14,13 +15,6 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class CompileUtils {
-
-    private static final String COMPILE_TO_FASM = String.join(" ", new String[]{
-            "nextpnr-generic",
-            "--uarch fabulous",
-            "--json %s",
-            "-o fasm=%s"
-    });
 
     public static void compile(File file, String topModuleName, List<File> includeFiles) throws IOException {
         // TODO
@@ -81,11 +75,11 @@ public class CompileUtils {
         String fasmFileName = "out.fasm";
         Path fasmFilePath = Paths.get(parentDir.getAbsolutePath(), fasmFileName);
 
-        String compileToFasmCmd = String.format(
-                COMPILE_TO_FASM,
-                jsonFilePath,
-                fasmFilePath
-        );
+        String[] compileToFasmCmd = new String[4];
+        compileToFasmCmd[0] = "nextpnr-generic";
+        compileToFasmCmd[1] = "--uarch fabulous";
+        compileToFasmCmd[2] = String.format("--json %s", jsonFilePath);
+        compileToFasmCmd[3] = String.format("-o fasm=%s", fasmFilePath);
 
         ScheduledExecutorService service = new ScheduledThreadPoolExecutor(1);
         service.scheduleAtFixedRate(
@@ -95,7 +89,7 @@ public class CompileUtils {
                 TimeUnit.MILLISECONDS
         );
 
-        System.out.println(compileToFasmCmd);
+        System.out.println(Arrays.toString(compileToFasmCmd));
         ProcessBuilder processBuilder = new ProcessBuilder(compileToFasmCmd);
         processBuilder.start();
     }
