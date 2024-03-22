@@ -1,5 +1,6 @@
 package fabulator.util;
 
+import fabulator.FABulator;
 import javafx.application.Platform;
 
 import java.io.File;
@@ -46,10 +47,10 @@ public class CompileUtils {
                 100,
                 TimeUnit.MILLISECONDS
         );
+        FABulator.getApplication().addClosedListener(service::shutdown);
 
-        ProcessBuilder processBuilder = new ProcessBuilder(
-                compileToJsonCmd
-        );
+        ProcessBuilder processBuilder = new ProcessBuilder(compileToJsonCmd);
+        processBuilder.inheritIO();
         processBuilder.command().forEach(System.out::println);
         processBuilder.start();
     }
@@ -90,8 +91,10 @@ public class CompileUtils {
                 100,
                 TimeUnit.MILLISECONDS
         );
+        FABulator.getApplication().addClosedListener(service::shutdown);
 
         ProcessBuilder processBuilder = new ProcessBuilder(compileToFasmCmd);
+        processBuilder.inheritIO();
         processBuilder.command().forEach(System.out::println);
         processBuilder.start();
     }
