@@ -6,16 +6,17 @@ All Bugs are planned to be resolved
 
 This was not actually a bug of FABulator, but
 a bug of the geometry_generator in FABulous.
-It was resolved for all tested fabrics by a fix. 
-However, fabrics with larger supertiles of
-at least width or height 3 will need to be 
-tested.
+It was resolved for all tested fabrics, 
+so be sure to use the most recent version of
+FABulous to generate the geometry file.
 
 ### Fasm is not displayed correctly
 
-The bug has been resolved by a fix for all tested fabrics.
-Further testing will need to be done to make sure of it 
-being fully resolved.
+The bug has been resolved for all tested fabrics,
+so be sure to use the most recent version of
+FABulous to generate the geometry file and use the
+most recent version of FABulator to display
+fasm files.
 
 ### OutOfMemoryError is thrown when loading a fabric
 
@@ -31,13 +32,10 @@ To increase the heap size to, say, 8 Gigabytes, one
 can add
 
 ```
-<options>
-    <option>-Xmx8g</option>
-</options>
+<option>-Xmx8g</option>
 ```
-in the pom.xml file right after the line containing
-```<mainClass>FABulator/fabulator.FABulator</mainClass>```
-in the javafx-maven-plugin section.
+in the pom.xml file in the `<options>` section
+within the javafx-maven-plugin section.
 
 To check if the error is resolved, run the application
 as usual with ```mvn javafx:run```
