@@ -571,6 +571,40 @@
 }
 
 
+/*  ----  StatisticView Style  ----  */
+.statistic-view {
+    -fx-background-color: secondary;
+    -fx-padding: 16;
+}
+.statistic-view > .viewport {
+    -fx-background-color: transparent;
+}
+.statistic-view .label {
+    -fx-font-size: 14;
+    -fx-text-fill: -fx-icon-fill;
+}
+.statistic-view .key-value-title {
+    -fx-padding: 0 10 0 35;
+}
+.statistic-view .accordion .titled-pane .title {
+    -fx-background-color: tertiary;
+    -fx-background-radius: 8;
+}
+.statistic-view .accordion .titled-pane>*.content {
+    -fx-background-color: tertiary;
+    -fx-background-radius: 0 0 8 8;
+    -fx-background-insets: 0 8 0 8;
+    -fx-padding: 4;
+    -fx-border-width: 0;
+}
+.statistic-view .accordion .titled-pane .title:hover {
+    -fx-background-color: tertiary-hover;
+}
+.statistic-view .accordion .titled-pane>.title>.arrow-button>.arrow {
+    -fx-background-color: -fx-icon-fill;
+}
+
+
 /*  ----  BreadCrumbBar Style  ----  */
 .bread-crumb-bar .button {
     -fx-font-size: 14;
@@ -582,9 +616,19 @@
 
 /*  ----  CompilerSetupView Style  ----  */
 .compiler-setup-view {
-    -fx-background-color: primary;
+    -fx-background-color: secondary;
+    -fx-spacing: 8;
+    -fx-padding: 16;
 }
 .compiler-setup-view .label {
+    -fx-font-size: 16;
+    -fx-text-fill: -fx-icon-fill;
+}
+.compiler-setup-view .title {
+    -fx-font-size: 20;
+}
+
+.compiler-setup-view .radio-button {
     -fx-font-size: 14;
     -fx-text-fill: -fx-icon-fill;
 }
@@ -597,15 +641,14 @@
     -fx-background-color: primary;
 }
 
-#yesButton {
+#yesButton, #noButton {
     -fx-background-color: secondary;
+    -fx-background-radius: 8;
+    -fx-font-size: 14;
+    -fx-text-fill: -fx-icon-fill;
 }
 #yesButton:hover {
     -fx-background-color: #315443;
-}
-
-#noButton {
-    -fx-background-color: secondary;
 }
 #noButton:hover {
     -fx-background-color: secondary-hover;

@@ -33,6 +33,11 @@ public class PortGeometry {
     private IO io;
 
     /**
+     * Side of the port
+     */
+    private Side side;
+
+    /**
      * X coordinate of the port, relative to the top
      * left position of its parent, i.e. {@link BelGeometry}
      * or {@link SwitchMatrixGeometry}.

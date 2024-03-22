@@ -6,7 +6,7 @@ import fabulator.logging.Logger;
 import fabulator.ui.builder.ButtonBuilder;
 import fabulator.ui.icon.CssIcon;
 import fabulator.ui.style.StyleClass;
-import fabulator.ui.window.EditSetupWindow;
+import fabulator.ui.window.CompilerSetupWindow;
 import fabulator.util.CompileUtils;
 import fabulator.util.FileUtils;
 import fabulator.util.LayoutUtils;
@@ -16,10 +16,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import lombok.Getter;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.MalformedInputException;
+import java.util.List;
 
 public class EditDesignView extends VBox {
 
@@ -62,10 +64,19 @@ public class EditDesignView extends VBox {
 
         this.topMenu.setOnCompile(() -> {
             File file = this.codeView.getCurrentFile();
+            String topModuleNameName = this.topMenu.getTopModuleName();
+            List<File> includeFiles = FileUtils.allFilesInDirSatisfying(
+                    file.getParentFile(),
+                    FileUtils::isValidHdlFile
+            );
 
             if (FileUtils.isValidHdlFile(file)) {
                 try {
-                    CompileUtils.compile(file);
+                    CompileUtils.compile(
+                            file,
+                            topModuleNameName,
+                            includeFiles
+                    );
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -104,7 +115,11 @@ class EditDesignMenu extends HBox implements View {
     private Button compileButton;
     private Button uploadButton;
 
-    private Runnable compileHandler = () -> {};
+    private Runnable compileHandler = () -> {
+    };
+
+    @Getter
+    private String topModuleName;
 
     public EditDesignMenu() {
         this.getStyleClass().add(StyleClass.EDIT_DESIGN_MENU.getName());
@@ -147,7 +162,13 @@ class EditDesignMenu extends HBox implements View {
     }
 
     private void editSetup(ActionEvent event) {
-        EditSetupWindow.getInstance().show();
+        CompilerSetupWindow setupWindow = CompilerSetupWindow.getInstance();
+        setupWindow.setOnReady(data -> {
+            if (data.isApply()) {
+                this.topModuleName = data.getTopModule();
+            }
+        });
+        setupWindow.show();
     }
 
     private void compile(ActionEvent event) {

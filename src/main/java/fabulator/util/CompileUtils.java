@@ -7,22 +7,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class CompileUtils {
-
-    private static final String COMPILE_TO_JSON = String.join(" ", new String[]{
-            "yosys",
-            "-p",
-            "\"synth_fabulous",
-            "-top top_wrapper",
-            "-json %s\"",
-            "%s",
-            "%s"
-    });
 
     private static final String COMPILE_TO_FASM = String.join(" ", new String[]{
             "nextpnr-generic",
@@ -31,24 +22,23 @@ public class CompileUtils {
             "-o fasm=%s"
     });
 
-    public static void compile(File file) throws IOException {
+    public static void compile(File file, String topModuleName, List<File> includeFiles) throws IOException {
         // TODO
         // THIS IS WORK IN PROGRESS
 
         File parentDir = file.getParentFile();
-        String fileName  = file.getName().replaceFirst("[.][^.]+$", "");
-        String jsonName = fileName + ".json";
-        String topWrapperName = "top_wrapper.v";
-
+        String jsonName = "out.json";
         Path jsonFilePath = Paths.get(parentDir.getAbsolutePath(), jsonName);
-        Path topWrapperPath = Paths.get(parentDir.getAbsolutePath(), topWrapperName);
 
-        String compileToJsonCmd = String.format(
-                COMPILE_TO_JSON,
-                jsonFilePath,
-                file.toPath(),
-                topWrapperPath
-        );
+        String[] compileToJsonCmd = new String[includeFiles.size() + 3];
+        compileToJsonCmd[0] = "yosys";
+        compileToJsonCmd[1] = "-p";
+        compileToJsonCmd[2] = String.format("synth_fabulous -top %s -json %s", topModuleName, jsonFilePath);
+
+        for (int i = 0; i < includeFiles.size(); i++) {
+            File includeFile = includeFiles.get(i);
+            compileToJsonCmd[i + 3] = includeFile.getAbsolutePath();
+        }
 
         ScheduledExecutorService service = new ScheduledThreadPoolExecutor(1);
         service.scheduleAtFixedRate(
@@ -64,10 +54,11 @@ public class CompileUtils {
                 TimeUnit.MILLISECONDS
         );
 
-        ProcessBuilder processBuilder = new ProcessBuilder(compileToJsonCmd);
-        Process process = processBuilder.start();
-
-        System.out.println(compileToJsonCmd);
+        ProcessBuilder processBuilder = new ProcessBuilder(
+                compileToJsonCmd
+        );
+        processBuilder.command().forEach(System.out::println);
+        processBuilder.start();
     }
 
     private static void compileToJson() {
@@ -86,12 +77,8 @@ public class CompileUtils {
     private static void compileToFasm(Path jsonFilePath) throws IOException {
         System.out.println("Compiling to fasm");
 
-        String fileName  = jsonFilePath.toFile()
-                .getName()
-                .replaceFirst("[.][^.]+$", "");
-
         File parentDir = jsonFilePath.toFile().getParentFile();
-        String fasmFileName = fileName + ".fasm";
+        String fasmFileName = "out.fasm";
         Path fasmFilePath = Paths.get(parentDir.getAbsolutePath(), fasmFileName);
 
         String compileToFasmCmd = String.format(

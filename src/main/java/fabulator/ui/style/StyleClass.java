@@ -23,7 +23,8 @@ public enum StyleClass {
     EDIT_DESIGN_MENU("edit-design-menu"),
     CODE_VIEW("code-view"),
     COMPILER_SETUP_VIEW("compiler-setup-view"),
-    BREAD_CRUMB_BAR("bread-crumb-bar");
+    BREAD_CRUMB_BAR("bread-crumb-bar"),
+    STATISTIC_VIEW("statistic-view");
 
     private String name;
 

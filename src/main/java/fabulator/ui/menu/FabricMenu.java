@@ -6,6 +6,7 @@ import fabulator.lookup.BitstreamConfiguration;
 import fabulator.lookup.Net;
 import fabulator.memory.ReferenceHolder;
 import fabulator.object.Location;
+import fabulator.object.Statistics;
 import fabulator.settings.Config;
 import fabulator.ui.fabric.Fabric;
 import fabulator.ui.fabric.element.ElementType;
@@ -124,6 +125,10 @@ public class FabricMenu extends SplitPane implements ReferenceHolder {
 
     public void openHdl(File hdlFile) {
         this.infoView.openHdl(hdlFile);
+    }
+
+    public void openStats(Statistics statistics) {
+        this.infoView.openStatistics(statistics);
     }
 
     public List<FabricElement> searchView(ElementType type, Pattern regex) {

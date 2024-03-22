@@ -4,6 +4,7 @@ import fabulator.geometry.*;
 import fabulator.lookup.BitstreamConfiguration;
 import fabulator.lookup.LineMap;
 import fabulator.object.Location;
+import fabulator.object.Statistics;
 import fabulator.settings.Config;
 import fabulator.ui.builder.LineBuilder;
 import fabulator.ui.builder.RectangleBuilder;
@@ -213,5 +214,10 @@ public class Tile extends Group implements FabricElement {
     @Override
     public double getViewableZoom() {
         return 2;
+    }
+
+    @Override
+    public Statistics getStatistics() {         // TODO
+        return new Statistics();
     }
 }

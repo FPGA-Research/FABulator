@@ -7,6 +7,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javafx.util.Builder;
 import org.kordamp.ikonli.javafx.FontIcon;
 
@@ -66,6 +67,11 @@ public class LabelBuilder implements Builder<Label> {
 
     public LabelBuilder setAlignment(Pos pos) {
         this.label.setAlignment(pos);
+        return this;
+    }
+
+    public LabelBuilder setTextAlignment(TextAlignment alignment) {
+        this.label.setTextAlignment(alignment);
         return this;
     }
 

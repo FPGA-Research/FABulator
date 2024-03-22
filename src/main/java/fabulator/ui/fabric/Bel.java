@@ -1,8 +1,13 @@
 package fabulator.ui.fabric;
 
+import fabulator.FABulator;
 import fabulator.geometry.BelGeometry;
-import fabulator.object.Location;
 import fabulator.geometry.PortGeometry;
+import fabulator.language.Text;
+import fabulator.object.Location;
+import fabulator.object.Statistics;
+import fabulator.object.StatisticsCategory;
+import fabulator.object.StatisticsSection;
 import fabulator.ui.builder.RectangleBuilder;
 import fabulator.ui.fabric.element.ElementType;
 import fabulator.ui.fabric.element.FabricElement;
@@ -14,12 +19,15 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Pair;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * A class representing a single bel of a tile.
@@ -27,6 +35,8 @@ import java.util.regex.Pattern;
 @Getter
 @Setter
 public class Bel extends Group implements FabricElement {
+
+    private Statistics statistics;
 
     private BelGeometry geometry;
     private Tile tile;
@@ -63,6 +73,10 @@ public class Bel extends Group implements FabricElement {
     private void onClicked(MouseEvent event) {
         if (event.getButton() == MouseButton.PRIMARY) {
             FileUtils.openHdlFile(this.geometry.getSrc());
+
+            FABulator.getApplication()
+                    .getMainView()
+                    .openStats(this.getStatistics());
         }
     }
 
@@ -118,5 +132,42 @@ public class Bel extends Group implements FabricElement {
     @Override
     public double getViewableZoom() {
         return 12;
+    }
+
+    @Override
+    public Statistics getStatistics() {
+        if (this.statistics == null) {
+            this.buildStatistics();
+        }
+        return this.statistics;
+    }
+
+    private void buildStatistics() {
+        this.statistics = Statistics.of(
+                StatisticsCategory.of(
+                        Text.NAME,
+                        this.geometry.getName()
+                ),
+                StatisticsCategory.of(
+                        Text.AMOUNT_PORTS_TOTAL,
+                        this.geometry.getNumberPorts(),
+                        StatisticsSection.of(
+                                Text.AMOUNT_PORTS_B,
+                                this.geometry.getNumberPorts(),
+                                entriesOf(this.geometry.getPortGeometryList())
+                        )
+                )
+        );
+    }
+
+    private List<Pair<String, String>> entriesOf(List<PortGeometry> geoms) {
+        AtomicInteger counter = new AtomicInteger(1);
+
+        return geoms.stream()
+                .map(portGeom -> new Pair<>(
+                        String.valueOf(counter.getAndIncrement()),
+                        portGeom.getName()
+                ))
+                .collect(Collectors.toList());
     }
 }

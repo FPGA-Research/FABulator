@@ -24,7 +24,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * A central util class for actions concerning the handling of a file.
@@ -101,6 +104,19 @@ public class FileUtils {
         File file = new File(fileName);
         File directory = file.getParentFile();
         return directory;
+    }
+
+    // TODO: documentation
+    public static List<File> allFilesInDirSatisfying(File directory, Predicate<File> predicate) {
+        File[] files = directory.listFiles();
+        List<File> filesSatisfyingPredicate = List.of();
+
+        if (files != null) {
+            filesSatisfyingPredicate = Arrays.stream(files)
+                    .filter(predicate)
+                    .collect(Collectors.toList());
+        }
+        return filesSatisfyingPredicate;
     }
 
     /**
@@ -183,7 +199,7 @@ public class FileUtils {
      * ensure that the generatorVersion of the file is
      * supported.
      *
-     * @param file the file to open
+     * @param file  the file to open
      * @param async open the fabric asynchronously
      */
     private static void openFabricWithVersionCheck(File file, boolean async) {
@@ -215,7 +231,7 @@ public class FileUtils {
      * Opens a fabric from a {@link GeometryParser} object.
      *
      * @param parser the {@link GeometryParser} object
-     * @param async open the fabric asynchronously
+     * @param async  open the fabric asynchronously
      */
     private static void openGeomOf(GeometryParser parser, boolean async) {
         if (async) {

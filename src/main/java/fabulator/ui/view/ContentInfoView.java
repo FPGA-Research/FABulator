@@ -6,6 +6,7 @@ import fabulator.logging.Logger;
 import fabulator.lookup.BitstreamConfiguration;
 import fabulator.lookup.Net;
 import fabulator.memory.ReferenceHolder;
+import fabulator.object.Statistics;
 import fabulator.ui.builder.TabBuilder;
 import fabulator.ui.fabric.Fabric;
 import fabulator.ui.fabric.element.FabricElement;
@@ -27,11 +28,13 @@ public class ContentInfoView extends TabPane implements ReferenceHolder {
     private Tab elementViewTab;
     private Tab hdlViewTab;
     private Tab netListTab;
+    private Tab statisticsTab;
 
     private WorldView worldView;
     private ElementView elementView;
     private ScrollableCodeView hdlView;
     private NetListView netListView;
+    private StatisticView statisticsView;
 
     public ContentInfoView(FabricMenu parent) {
         this.getStyleClass().add(StyleClass.CONTENT_INFO_VIEW.getName());
@@ -46,6 +49,7 @@ public class ContentInfoView extends TabPane implements ReferenceHolder {
         this.elementView = new ElementView(this);
         this.hdlView = new ScrollableCodeView();
         this.netListView = new NetListView(this);
+        this.statisticsView = new StatisticView();
 
         this.worldViewTab = new TabBuilder()
                 .setText(Text.WORLD_VIEW)
@@ -66,6 +70,11 @@ public class ContentInfoView extends TabPane implements ReferenceHolder {
                 .setText(Text.NETLIST_VIEW)
                 .setContent(this.netListView)
                 .build();
+
+        this.statisticsTab = new TabBuilder()
+                .setText(Text.STATISTICS)
+                .setContent(this.statisticsView)
+                .build();
     }
 
     private void setup() {
@@ -73,7 +82,8 @@ public class ContentInfoView extends TabPane implements ReferenceHolder {
                 this.worldViewTab,
                 this.elementViewTab,
                 this.hdlViewTab,
-                this.netListTab
+                this.netListTab,
+                this.statisticsTab
         );
         for (Tab tab : this.getTabs()) tab.setClosable(false);
     }
@@ -102,6 +112,10 @@ public class ContentInfoView extends TabPane implements ReferenceHolder {
             Logger logger = LogManager.getLogger();
             logger.error("HDL file " + hdlFile.getName() + "not found.");
         }
+    }
+
+    public void openStatistics(Statistics statistics) {
+        this.statisticsView.show(statistics);
     }
 
     public void updateWorldView(Bounds viewPortBounds) {

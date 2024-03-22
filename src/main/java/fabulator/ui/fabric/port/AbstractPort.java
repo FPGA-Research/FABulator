@@ -1,6 +1,7 @@
 package fabulator.ui.fabric.port;
 
 import fabulator.geometry.PortGeometry;
+import fabulator.object.Statistics;
 import fabulator.ui.fabric.element.ElementType;
 import fabulator.ui.fabric.element.FabricElement;
 import javafx.scene.shape.Circle;
@@ -32,5 +33,10 @@ public abstract class AbstractPort extends Circle implements FabricElement {
     @Override
     public double getViewableZoom() {
         return 64;
+    }
+
+    @Override
+    public Statistics getStatistics() {         // TODO
+        return new Statistics();
     }
 }

@@ -70,7 +70,8 @@ INVALID_GEOM_FILE:      Ungültige Geometrie-Datei
 INVALID_HDL_FILE:       Ungültige HDL-Datei
 THICKNESS:              Dicke
 COMPILE:                Kompilieren
-COMPILER_SETUP:         Compiler Einstellungen
+COMPILER_SETUP:         COMPILER EINSTELLUNGEN
+APPLY:                  Übernehmen
 EDIT_COMPILER_SETUP:    Compiler Einstellungen ändern
 TOP_MODULE_NAME:        Name Top Modul
 UPLOAD:                 Hochladen
@@ -84,3 +85,12 @@ OUTDATED_VERSION:       Veraltete Version
 OUTDATED_INFO_1:        Die gewählte Datei wurde mit einer veralteten geometry_generator Version erzeugt.
 OUTDATED_INFO_2:        Mit veralteten Versionen generierte geometry-Dateien können fehlerhaft sein oder Kompatibilitätsprobleme auslösen.
 OPEN_ANYWAYS:           Trotzdem öffnen?
+STATISTICS:             Statistik
+NAME:                   Name
+AMOUNT_PORTS_TOTAL:     Gesamtanzahl Ports
+AMOUNT_PORTS_N:         Anzahl Ports (Norden)
+AMOUNT_PORTS_S:         Anzahl Ports (Süden)
+AMOUNT_PORTS_E:         Anzahl Ports (Osten)
+AMOUNT_PORTS_W:         Anzahl Ports (Westen)
+AMOUNT_PORTS_J:         Anzahl Ports (Jump)
+AMOUNT_PORTS_B:         Anzahl Ports (Bel)

@@ -4,6 +4,7 @@ import fabulator.FABulator;
 import fabulator.language.Text;
 import fabulator.lookup.BitstreamConfiguration;
 import fabulator.memory.ReferenceHolder;
+import fabulator.object.Statistics;
 import fabulator.ui.builder.ButtonBuilder;
 import fabulator.ui.fabric.Fabric;
 import fabulator.ui.icon.CssIcon;
@@ -97,6 +98,10 @@ public class MainView extends VBox implements ReferenceHolder {
     public void openHdl(File hdlFile) {
         this.fabricMenu.openHdl(hdlFile);
         this.pageMenu.changeTo(0);
+    }
+
+    public void openStats(Statistics statistics) {
+        this.fabricMenu.openStats(statistics);
     }
 
     public void openFolder(File folder) {

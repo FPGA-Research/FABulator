@@ -274,6 +274,10 @@ public class GeometryParser {   //TODO: add more checks to make sure only valid 
                 IO io = IO.fromIdentifier(tokens[1]);
                 this.currentSmPortGeom.setIo(io);
             }
+            case "Side" -> {
+                Side side = Side.fromIdentifier(tokens[1]);
+                this.currentSmPortGeom.setSide(side);
+            }
             case "RelX" -> {
                 double relX = Double.parseDouble(tokens[1]);
                 this.currentSmPortGeom.setRelX(relX);

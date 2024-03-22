@@ -1,20 +1,22 @@
 # Setup
 
 ### User Setup
-
-To set up FABulator:
-
-```
-git clone https://github.com/FPGA-Research-Manchester/FABulator
-cd FABulator
-```
-
-To run:
+To build and run FABulator:
 
 ```
 mvn javafx:run
 ```
 
+**Or alternatively:**
+
+Build an executable jar:
+```
+mvn clean package
+```
+And run with
+```
+java -jar <output_jar>
+```
 
 ### Development Setup in IntelliJ
 

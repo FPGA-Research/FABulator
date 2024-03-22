@@ -63,4 +63,8 @@ public class BelGeometry {
     public BelGeometry(String name) {
         this.name = name;
     }
+
+    public int getNumberPorts() {
+        return this.portGeometryList.size();
+    }
 }

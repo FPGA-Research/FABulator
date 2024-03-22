@@ -89,6 +89,7 @@ public enum Text {
 
     COMPILE,
     COMPILER_SETUP,
+    APPLY,
     EDIT_COMPILER_SETUP,
     TOP_MODULE_NAME,
     UPLOAD,
@@ -103,7 +104,17 @@ public enum Text {
     OUTDATED_VERSION,
     OUTDATED_INFO_1,
     OUTDATED_INFO_2,
-    OPEN_ANYWAYS;
+    OPEN_ANYWAYS,
+
+    STATISTICS,
+    NAME,
+    AMOUNT_PORTS_TOTAL,
+    AMOUNT_PORTS_N,
+    AMOUNT_PORTS_S,
+    AMOUNT_PORTS_E,
+    AMOUNT_PORTS_W,
+    AMOUNT_PORTS_J,
+    AMOUNT_PORTS_B;
 
     private StringProperty stringProperty;
 

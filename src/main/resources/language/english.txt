@@ -70,7 +70,8 @@ INVALID_GEOM_FILE:      Invalid geometry file
 INVALID_HDL_FILE:       Invalid HDL file
 THICKNESS:              Thickness
 COMPILE:                Compile
-COMPILER_SETUP:         Compiler Setup
+COMPILER_SETUP:         COMPILER SETUP
+APPLY:                  Apply
 EDIT_COMPILER_SETUP:    Edit Compiler Setup
 TOP_MODULE_NAME:        Top Module Name
 UPLOAD:                 Upload
@@ -84,3 +85,12 @@ OUTDATED_VERSION:       Outdated Version
 OUTDATED_INFO_1:        The selected file was created with an outdated geometry_generator version.
 OUTDATED_INFO_2:        Geometry files which were created with an outdated version can be faulty or cause compatibility issues.
 OPEN_ANYWAYS:           Open anyways?
+STATISTICS:             Statistics
+NAME:                   Name
+AMOUNT_PORTS_TOTAL:     Total amount of Ports
+AMOUNT_PORTS_N:         Amount of Ports (north)
+AMOUNT_PORTS_S:         Amount of Ports (south)
+AMOUNT_PORTS_E:         Amount of Ports (east)
+AMOUNT_PORTS_W:         Amount of Ports (west)
+AMOUNT_PORTS_J:         Amount of Ports (jump)
+AMOUNT_PORTS_B:         Amount of Ports (bel)
