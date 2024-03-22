@@ -23,21 +23,21 @@ and a description of their contents.
 | memory   | contains classes concerned with memory management, will be expanded in the future                               |
 | parse    | contains classes concerned with parsing information from files                                                  |
 | settings | contains classes loading/displaying/persisting settings                                                         |
-| ui       | contains classes specifying UI related objects, such as views, menus,...                                        |
+| ui       | contains classes representing UI related objects, such as views, menus,...                                      |
 | util     | contains util classes                                                                                           |
 
 
 ### Within the ui package
 The following contains a list of the packages just within the ui package
 
-| Package | description                                                                                                    |
-|---------|----------------------------------------------------------------------------------------------------------------|
-| builder | contains builder classes                                                                                       |
-| fabric  | contains classes that represent (parts of) the rendered fabric                                                 |
-| icon    | contains classes concerned with loading/providing icons                                                        |
-| menu    | contains classes specifying a UI menu                                                                          |
-| style   | contains classes loading/managing UI styling                                                                   |
-| view    | contains classes specifying a UI view. Sometimes, the line between this package and the menu package is blurry |
-| window  | contains classes specifying a UI window                                                                        |
+| Package | description                                                                                                      |
+|---------|------------------------------------------------------------------------------------------------------------------|
+| builder | contains builder classes                                                                                         |
+| fabric  | contains classes that represent (parts of) the rendered fabric                                                   |
+| icon    | contains classes concerned with loading/providing icons                                                          |
+| menu    | contains classes specifying a UI menu                                                                            |
+| style   | contains classes loading/managing UI styling                                                                     |
+| view    | contains classes representing a UI view. Sometimes, the line between this package and the menu package is blurry |
+| window  | contains classes representing a UI window                                                                        |
 
 
