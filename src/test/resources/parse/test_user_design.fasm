@@ -1,0 +1,11 @@
+# routing for net 'test_net_1'
+X0Y1.test_port_1.test_port_2
+X0Y1.test_port_2.test_port_3
+X2Y1.test_port_1.test_port_4
+X0Y3.test_port_5.test_port_7
+
+# routing for net 'test_net_2'
+
+# routing for net 'test_net_3'
+X11Y1.test_port_4.test_port_1
+X7Y13.test_port7.test_port_6

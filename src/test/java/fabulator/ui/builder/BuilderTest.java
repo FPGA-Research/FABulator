@@ -1,7 +1,6 @@
-package fabulator.builder;
+package fabulator.ui.builder;
 
 import fabulator.language.Text;
-import fabulator.ui.builder.*;
 import fabulator.ui.style.StyleClass;
 import fabulator.ui.style.UiColor;
 import javafx.geometry.Pos;

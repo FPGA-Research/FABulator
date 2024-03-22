@@ -3,7 +3,7 @@ package fabulator.object;
 import lombok.Getter;
 
 @Getter
-public class Version {  // TODO: tests
+public class Version {
 
     private int major;
     private int minor;

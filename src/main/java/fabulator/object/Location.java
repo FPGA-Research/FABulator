@@ -23,12 +23,6 @@ public class Location {
         this.y = 0;
     }
 
-    public double distSquared(Location other) {
-        double dx = this.x - other.getX();
-        double dy = this.y - other.getY();
-        return dx * dx + dy * dy;
-    }
-
     public void add(Location other) {
         this.x += other.getX();
         this.y += other.getY();
