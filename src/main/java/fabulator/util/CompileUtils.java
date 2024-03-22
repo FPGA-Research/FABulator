@@ -74,11 +74,14 @@ public class CompileUtils {
         String fasmFileName = "out.fasm";
         Path fasmFilePath = Paths.get(parentDir.getAbsolutePath(), fasmFileName);
 
-        String[] compileToFasmCmd = new String[4];
+        String[] compileToFasmCmd = new String[7];
         compileToFasmCmd[0] = "nextpnr-generic";
-        compileToFasmCmd[1] = "--uarch fabulous";
-        compileToFasmCmd[2] = String.format("--json %s", jsonFilePath);
-        compileToFasmCmd[3] = String.format("-o fasm=%s", fasmFilePath);
+        compileToFasmCmd[1] = "--uarch";
+        compileToFasmCmd[2] = "fabulous";
+        compileToFasmCmd[3] = "--json";
+        compileToFasmCmd[4] = jsonFilePath.toString();
+        compileToFasmCmd[5] = "-o";
+        compileToFasmCmd[6] = String.format("fasm=%s", fasmFilePath);
 
         ScheduledExecutorService service = new ScheduledThreadPoolExecutor(1);
         service.scheduleAtFixedRate(
