@@ -147,9 +147,9 @@ public class Compiler {
                         NPNR_CMD_ARGS[4],
                         jsonFilePath
                 ),
-                NPNR_CMD_ARGS[4],
+                NPNR_CMD_ARGS[5],
                 String.format(
-                        NPNR_CMD_ARGS[5],
+                        NPNR_CMD_ARGS[6],
                         fasmFilePath
                 )
         );
