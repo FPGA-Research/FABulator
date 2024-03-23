@@ -42,14 +42,10 @@ public class StatisticView extends ScrollPane implements View {
     }
 
     private Node buildCategory(StatisticsCategory category) {
-        switch (category.getType()) {
-            case SIMPLE -> {
-                return this.buildSimpleCategory(category);
-            }
-            case COMPLEX, default -> {
-                return this.buildComplexCategory(category);
-            }
-        }
+        return switch (category.getType()) {
+            case SIMPLE -> this.buildSimpleCategory(category);
+            case COMPLEX -> this.buildComplexCategory(category);
+        };
     }
 
     private Node buildSimpleCategory(StatisticsCategory category) {

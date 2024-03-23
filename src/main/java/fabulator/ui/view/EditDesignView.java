@@ -1,13 +1,15 @@
 package fabulator.ui.view;
 
+import fabulator.async.Compiler;
 import fabulator.language.Text;
 import fabulator.logging.LogManager;
 import fabulator.logging.Logger;
 import fabulator.ui.builder.ButtonBuilder;
+import fabulator.ui.builder.MenuButtonBuilder;
+import fabulator.ui.builder.MenuItemBuilder;
 import fabulator.ui.icon.CssIcon;
 import fabulator.ui.style.StyleClass;
 import fabulator.ui.window.CompilerSetupWindow;
-import fabulator.util.CompileUtils;
 import fabulator.util.FileUtils;
 import fabulator.util.LayoutUtils;
 import javafx.event.ActionEvent;
@@ -16,7 +18,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import lombok.Getter;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +31,7 @@ public class EditDesignView extends VBox {
 
     private ExplorerView explorerView;
     private CodeMultiView codeView;
+    private Compiler compiler = Compiler.getInstance();
     private Console console;        // TODO
 
     public EditDesignView() {
@@ -61,27 +63,7 @@ public class EditDesignView extends VBox {
         this.codeView.setOnSelectionChanged(fileInfoView -> {
             this.topMenu.setBreadCrumb(fileInfoView);
         });
-
-        this.topMenu.setOnCompile(() -> {
-            File file = this.codeView.getCurrentFile();
-            String topModuleNameName = this.topMenu.getTopModuleName();
-            List<File> includeFiles = FileUtils.allFilesInDirSatisfying(
-                    file.getParentFile(),
-                    FileUtils::isValidHdlFile
-            );
-
-            if (FileUtils.isValidHdlFile(file)) {
-                try {
-                    CompileUtils.compile(
-                            file,
-                            topModuleNameName,
-                            includeFiles
-                    );
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
+        this.topMenu.setOnCompile(this::compile);
 
         this.editPane = new SplitPane();
         this.editPane.getItems().addAll(
@@ -106,20 +88,30 @@ public class EditDesignView extends VBox {
             throw new RuntimeException(e);
         }
     }
+
+    private void compile() {
+        File file = this.codeView.getCurrentFile();
+        File outputDir = this.codeView.getCurrentFile().getParentFile();
+
+        List<File> includeFiles = FileUtils.allFilesInDirSatisfying(
+                file.getParentFile(),
+                FileUtils::isValidHdlFile
+        );
+
+        this.compiler.setOutputDirectory(outputDir);
+        this.compiler.compile(includeFiles);
+    }
 }
 
 class EditDesignMenu extends HBox implements View {
 
     private BreadCrumbBar<FileInfoView> currentFileBar;
     private MenuButton compilerSetupButton;
+    private MenuItem editSetupItem;
     private Button compileButton;
     private Button uploadButton;
 
-    private Runnable compileHandler = () -> {
-    };
-
-    @Getter
-    private String topModuleName;
+    private Runnable compileHandler = () -> {};
 
     public EditDesignMenu() {
         this.getStyleClass().add(StyleClass.EDIT_DESIGN_MENU.getName());
@@ -130,16 +122,21 @@ class EditDesignMenu extends HBox implements View {
     public void buildParts() {
         this.currentFileBar = new BreadCrumbBar<>();
 
-        this.compilerSetupButton = new MenuButton("Compiler Setup");
+        this.editSetupItem = new MenuItemBuilder()
+                .setText(Text.EDIT_COMPILER_SETUP)
+                .setOnAction(this::editSetup)
+                .build();
 
-        MenuItem editSetup = new MenuItem("Edit Setup");
-        editSetup.setOnAction(this::editSetup);
-
-        this.compilerSetupButton.getItems().add(editSetup);
+        this.compilerSetupButton = new MenuButtonBuilder()
+                .setIcon(CssIcon.SETUP)
+                .setText(Text.COMPILER_SETUP)
+                .addItem(this.editSetupItem)
+                .build();
 
         this.compileButton = new ButtonBuilder()
                 .setTooltip(Text.COMPILE)
                 .setIcon(CssIcon.COMPILE)
+                .bindDisable(Compiler.getInstance().getCompilingProperty())
                 .setOnAction(this::compile)
                 .build();
 
@@ -165,7 +162,7 @@ class EditDesignMenu extends HBox implements View {
         CompilerSetupWindow setupWindow = CompilerSetupWindow.getInstance();
         setupWindow.setOnReady(data -> {
             if (data.isApply()) {
-                this.topModuleName = data.getTopModule();
+                Compiler.getInstance().setTopModuleName(data.getTopModule());
             }
         });
         setupWindow.show();

@@ -114,9 +114,6 @@
                 <version>0.0.8</version>
                 <configuration>
                     <mainClass>FABulator/fabulator.FABulator</mainClass>
-                    <options>
-                        <option>--enable-preview</option>
-                    </options>
                 </configuration>
             </plugin>
 

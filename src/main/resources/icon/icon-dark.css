@@ -45,6 +45,12 @@
     -fx-icon-size: 24px;
 }
 
+#setup-icon .ikonli-font-icon {
+    -fx-icon-code: "mdi2f-file-cog";
+    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-size: 20px;
+}
+
 #search-icon .ikonli-font-icon {
     -fx-icon-code: "mdi2m-magnify";
     -fx-icon-color: -fx-icon-fill;

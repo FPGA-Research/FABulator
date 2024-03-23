@@ -12,6 +12,7 @@ public enum CssIcon {
     FILE("file-icon"),
     COMPILE("compile-icon"),
     UPLOAD("upload-icon"),
+    SETUP("setup-icon"),
     SEARCH("search-icon"),
     EXPAND_ALL("expand-icon"),
     COLLAPSE_ALL("collapse-icon"),

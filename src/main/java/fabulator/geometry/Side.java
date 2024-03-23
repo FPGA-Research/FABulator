@@ -19,7 +19,7 @@ public enum Side {
             case "SOUTH" -> Side.SOUTH;
             case "EAST" -> Side.EAST;
             case "WEST" -> Side.WEST;
-            case default -> Side.ANY;
+            default -> Side.ANY;
         };
         return side;
     }
