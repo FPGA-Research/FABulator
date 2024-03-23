@@ -88,6 +88,7 @@ public enum Text {
     THICKNESS,
 
     COMPILE,
+    STOP_COMPILATION,
     COMPILER_SETUP,
     APPLY,
     EDIT_COMPILER_SETUP,

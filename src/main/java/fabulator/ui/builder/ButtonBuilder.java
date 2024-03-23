@@ -4,7 +4,7 @@ import fabulator.language.Text;
 import fabulator.ui.icon.CssIcon;
 import fabulator.ui.icon.ImageIcon;
 import fabulator.ui.style.UiColor;
-import javafx.beans.property.BooleanProperty;
+import javafx.beans.value.ObservableBooleanValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -64,8 +64,8 @@ public class ButtonBuilder implements Builder<Button> {
         return this;
     }
 
-    public ButtonBuilder bindDisable(BooleanProperty property) {
-        this.button.disableProperty().bind(property);
+    public ButtonBuilder bindDisable(ObservableBooleanValue binding) {
+        this.button.disableProperty().bind(binding);
         return this;
     }
 

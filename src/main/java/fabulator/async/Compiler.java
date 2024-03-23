@@ -60,7 +60,7 @@ public class Compiler {
     }
 
     private void registerCloseListener() {
-        FABulator.getApplication().addClosedListener(this::finishCompilation);
+        FABulator.getApplication().addClosedListener(this::stopCompilation);
     }
 
     public void compile(List<File> includeFiles) {
@@ -77,7 +77,7 @@ public class Compiler {
         this.compilingProperty.set(true);
     }
 
-    private void finishCompilation() {
+    public void stopCompilation() {
         this.compileService.shutdown();
 
         if (this.compileProcess != null) {
@@ -168,7 +168,7 @@ public class Compiler {
         if (Files.exists(fasmFilePath)) {
             this.logger.info("Compilation to FASM completed");
 
-            this.finishCompilation();
+            this.stopCompilation();
 
             Platform.runLater(() -> FileUtils.openFasmFile(fasmFilePath.toFile()));
         }
@@ -198,7 +198,7 @@ public class Compiler {
 
         } catch (IOException e) {
             this.logger.error("Failed to run process: " + e.getMessage());
-            this.finishCompilation();
+            this.stopCompilation();
         }
     }
 

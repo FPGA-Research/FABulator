@@ -11,6 +11,7 @@ public enum CssIcon {
     DIRECTORY("directory-icon"),
     FILE("file-icon"),
     COMPILE("compile-icon"),
+    STOP("stop-icon"),
     UPLOAD("upload-icon"),
     SETUP("setup-icon"),
     SEARCH("search-icon"),

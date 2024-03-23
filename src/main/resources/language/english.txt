@@ -70,6 +70,7 @@ INVALID_GEOM_FILE:      Invalid geometry file
 INVALID_HDL_FILE:       Invalid HDL file
 THICKNESS:              Thickness
 COMPILE:                Compile
+STOP_COMPILATION:       Stop Compilation
 COMPILER_SETUP:         COMPILER SETUP
 APPLY:                  Apply
 EDIT_COMPILER_SETUP:    Edit Compiler Setup

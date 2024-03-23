@@ -91,6 +91,8 @@ public class EditDesignView extends VBox {
 
     private void compile() {
         File file = this.codeView.getCurrentFile();
+
+        // TODO: handle no file selected (= file == null)
         File outputDir = this.codeView.getCurrentFile().getParentFile();
 
         List<File> includeFiles = FileUtils.allFilesInDirSatisfying(
@@ -109,6 +111,7 @@ class EditDesignMenu extends HBox implements View {
     private MenuButton compilerSetupButton;
     private MenuItem editSetupItem;
     private Button compileButton;
+    private Button stopButton;
     private Button uploadButton;
 
     private Runnable compileHandler = () -> {};
@@ -140,6 +143,13 @@ class EditDesignMenu extends HBox implements View {
                 .setOnAction(this::compile)
                 .build();
 
+        this.stopButton = new ButtonBuilder()
+                .setTooltip(Text.STOP_COMPILATION)
+                .setIcon(CssIcon.STOP)
+                .bindDisable(Compiler.getInstance().getCompilingProperty().not())
+                .setOnAction(this::stopCompilation)
+                .build();
+
         this.uploadButton = new ButtonBuilder()
                 .setTooltip(Text.UPLOAD)
                 .setIcon(CssIcon.UPLOAD)
@@ -154,6 +164,7 @@ class EditDesignMenu extends HBox implements View {
                 LayoutUtils.hSpacer(),
                 this.compilerSetupButton,
                 this.compileButton,
+                this.stopButton,
                 this.uploadButton
         );
     }
@@ -170,6 +181,10 @@ class EditDesignMenu extends HBox implements View {
 
     private void compile(ActionEvent event) {
         this.compileHandler.run();
+    }
+
+    private void stopCompilation(ActionEvent event) {
+        Compiler.getInstance().stopCompilation();
     }
 
     public void setBreadCrumb(FileInfoView infoView) {
