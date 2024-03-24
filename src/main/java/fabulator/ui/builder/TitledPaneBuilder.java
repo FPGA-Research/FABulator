@@ -11,7 +11,7 @@ import javafx.util.Builder;
 
 public class TitledPaneBuilder implements Builder<TitledPane> {
 
-    private TitledPane titledPane;
+    private final TitledPane titledPane;
 
     public TitledPaneBuilder() {
         this.titledPane = new TitledPane();

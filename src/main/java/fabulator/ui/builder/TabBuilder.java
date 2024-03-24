@@ -7,7 +7,7 @@ import javafx.util.Builder;
 
 public class TabBuilder implements Builder<Tab> {
 
-    private Tab tab;
+    private final Tab tab;
 
     public TabBuilder() {
         this.tab = new Tab();

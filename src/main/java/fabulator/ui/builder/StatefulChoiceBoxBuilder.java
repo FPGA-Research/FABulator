@@ -5,15 +5,17 @@ import fabulator.ui.menu.StatefulChoiceBox;
 import javafx.beans.value.ChangeListener;
 import javafx.util.Builder;
 
+import java.util.List;
+
 public class StatefulChoiceBoxBuilder<T extends Stateful> implements Builder<StatefulChoiceBox<T>> {
 
-    private StatefulChoiceBox<T> choiceBox;
+    private final StatefulChoiceBox<T> choiceBox;
 
     public StatefulChoiceBoxBuilder() {
         this.choiceBox = new StatefulChoiceBox<>();
     }
 
-    public StatefulChoiceBoxBuilder<T> fillWith(T... items) {
+    public final StatefulChoiceBoxBuilder<T> fillWith(List<T> items) {
         this.choiceBox.fillWith(items);
         return this;
     }

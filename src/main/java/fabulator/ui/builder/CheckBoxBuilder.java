@@ -31,9 +31,9 @@ public class CheckBoxBuilder implements Builder<CheckBox> {
     }
 
     public CheckBoxBuilder setOnChanged(Consumer<Boolean> handler) {
-        this.checkBox.selectedProperty().addListener((obs, old, now) -> {
-            handler.accept(now);
-        });
+        this.checkBox.selectedProperty().addListener(
+                (obs, old, now) -> handler.accept(now)
+        );
         return this;
     }
 

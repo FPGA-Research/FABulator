@@ -8,7 +8,7 @@ import javafx.util.Builder;
 
 public class StageBuilder implements Builder<Stage> {
 
-    private Stage stage;
+    private final Stage stage;
 
     public StageBuilder() {
         this.stage = new Stage();

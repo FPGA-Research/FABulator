@@ -80,7 +80,7 @@ public class BottomMenu extends VBox implements ReferenceHolder {
         };
 
         this.typeBox = new StatefulChoiceBoxBuilder<ElementType>()
-                .fillWith(ElementType.values())
+                .fillWith(List.of(ElementType.values()))
                 .setValue(ElementType.ANY)
                 .setOnValueChanged(valChangedListener)
                 .build();

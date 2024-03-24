@@ -17,7 +17,7 @@ public class StatefulChoiceBox<T extends Stateful> extends ChoiceBox<T> {
         };
     }
 
-    public void fillWith(T... items) {
+    public void fillWith(List<T> items) {
         this.getItems().clear();
         this.getItems().addAll(items);
         this.listenForStateChanges();

@@ -9,7 +9,7 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 public class MenuButtonBuilder implements Builder<MenuButton> {
 
-    private MenuButton menuButton;
+    private final MenuButton menuButton;
 
     public MenuButtonBuilder() {
         this.menuButton = new MenuButton();
