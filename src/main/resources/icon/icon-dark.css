@@ -1,35 +1,35 @@
 * {
-    -fx-icon-fill: #DDDDDD;
-    -fx-hover-fill: #FAFAFA;
+    icon-color: #DDDDDD;
+    hover-color: #FAFAFA;
 }
 
 #chip-icon .ikonli-font-icon {
     -fx-icon-code: "mdi2m-memory";
-    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-color: icon-color;
     -fx-icon-size: 32px;
 }
 
 #edit-design-icon .ikonli-font-icon {
     -fx-icon-code: "mdi2p-playlist-edit";
-    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-color: icon-color;
     -fx-icon-size: 32px;
 }
 
 #settings-icon .ikonli-font-icon {
     -fx-icon-code: "mdi2a-application-cog";
-    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-color: icon-color;
     -fx-icon-size: 32px;
 }
 
 #directory-icon .ikonli-font-icon {
     -fx-icon-code: "mdi2f-folder";
-    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-color: icon-color;
     -fx-icon-size: 20px;
 }
 
 #file-icon .ikonli-font-icon {
     -fx-icon-code: "mdi2t-text";
-    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-color: icon-color;
     -fx-icon-size: 20px;
 }
 
@@ -47,31 +47,31 @@
 
 #upload-icon .ikonli-font-icon {
     -fx-icon-code: "mdi2u-upload";
-    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-color: icon-color;
     -fx-icon-size: 24px;
 }
 
 #setup-icon .ikonli-font-icon {
     -fx-icon-code: "mdi2f-file-cog";
-    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-color: icon-color;
     -fx-icon-size: 20px;
 }
 
 #search-icon .ikonli-font-icon {
     -fx-icon-code: "mdi2m-magnify";
-    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-color: icon-color;
     -fx-icon-size: 20px;
 }
 
 #expand-icon .ikonli-font-icon {
     -fx-icon-code: "mdi2p-plus-box-multiple";
-    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-color: icon-color;
     -fx-icon-size: 20px;
 }
 
 #collapse-icon .ikonli-font-icon {
     -fx-icon-code: "mdi2m-minus-box-multiple";
-    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-color: icon-color;
     -fx-icon-size: 20px;
 }
 
@@ -83,6 +83,6 @@
 
 #clear-selection-icon .ikonli-font-icon {
     -fx-icon-code: "mdi2s-selection-off";
-    -fx-icon-color: -fx-icon-fill;
+    -fx-icon-color: icon-color;
     -fx-icon-size: 20px;
 }

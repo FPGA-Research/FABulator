@@ -11,7 +11,7 @@
     quinary: #9896AE;
     quinary-hover: #A5A3BC;
 
-    -fx-icon-fill: #DDDDDD;
+    contrast-color: #DDDDDD;
 }
 
 
@@ -21,7 +21,7 @@
     -fx-background-radius: 12;
 }
 .loading-window .label {
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
     -fx-font-size: 16;
 }
 
@@ -36,13 +36,13 @@
     -fx-spacing: 8;
 }
 .choice-dialog .label {
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
     -fx-font-size: 14;
 }
 .choice-dialog .button {
     -fx-background-color: tertiary;
     -fx-background-radius: 8;
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
     -fx-font-size: 14;
 }
 .choice-dialog .button:hover {
@@ -66,7 +66,7 @@
 }
 .menu-bar .label {
     -fx-font-size: 14;
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
 }
 .menu-bar .menu:hover,
 .menu-bar .menu:showing {
@@ -82,7 +82,7 @@
 }
 .context-menu .label {
     -fx-font-size: 14;
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
 }
 .context-menu .menu-item:hover,
 .context-menu .menu-item:focused {
@@ -131,16 +131,16 @@
 .tab .tab-label {
     -fx-padding: 2 8 0 8;
     -fx-font-size: 14;
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
 }
 .tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-close-button {
-    -fx-background-color: -fx-icon-fill;
+    -fx-background-color: contrast-color;
     -fx-scale-shape: false;
     -fx-shape: "M 0,0 H1 L 4,3 7,0 H8 V1 L 5,4 8,7 V8 H7 L 4,5 1,8 H0 V7 L 3,4 0,1 Z";
     -fx-effect: none;
 }
 .tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-close-button:hover {
-    -fx-background-color: derive(-fx-icon-fill, -30%);
+    -fx-background-color: derive(contrast-color, -30%);
 }
 
 
@@ -194,7 +194,7 @@
     -fx-scale-y: 1.2;
 }
 .progress-indicator:indeterminate .segment {
-    -fx-background-color: -fx-icon-fill;
+    -fx-background-color: contrast-color;
 }
 
 
@@ -247,13 +247,13 @@
     -fx-background-color: tertiary;
 }
 .content-info-view .element-view .label {
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
 }
 .content-info-view .netlist-view .label,
 .content-info-view .netlist-view .check-box {
     -fx-padding: 4;
     -fx-font-size: 14;
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
 }
 .content-info-view .netlist-view HBox {
     -fx-padding: 4;
@@ -262,14 +262,14 @@
 .content-info-view .netlist-view .button {
     -fx-background-radius: 12;
     -fx-background-color: secondary;
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
     -fx-font-size: 14;
 }
 .content-info-view .netlist-view .button:hover {
     -fx-background-color: secondary-hover;
 }
 .content-info-view .tree-view .tree-cell .tree-disclosure-node .arrow  {
-    -fx-background-color: -fx-icon-fill;
+    -fx-background-color: contrast-color;
 }
 .content-info-view .list-view {
     -fx-background-color: secondary;
@@ -311,7 +311,7 @@
     -fx-padding: 8;
 }
 .bottom-menu .search-feedback {
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
     -fx-padding: 4;
 }
 .bottom-menu .choice-box {
@@ -371,7 +371,7 @@
     -fx-background-radius: 8;
 }
 .color-picker .label {
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
 }
 .color-picker > .arrow-button {
     -fx-background-color: transparent;
@@ -422,11 +422,11 @@
     -fx-shape: "M 400 400 L 300 550 Q 250 600 250 550 L 350 400 L 250 250 Q 250 200 300 250 Z";
     -fx-scale-x: 1.4;
     -fx-scale-y: 1.7;
-    -fx-background-color: -fx-icon-fill;
+    -fx-background-color: contrast-color;
 }
 .explorer-view .label {
     -fx-font-size: 14;
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
 }
 
 
@@ -436,7 +436,7 @@
     -fx-spacing: 4;
     -fx-padding: 8;
     -fx-border-width: 0 0 0.3 0;
-    -fx-border-color: -fx-icon-fill;
+    -fx-border-color: contrast-color;
 }
 .explorer-menu .button {
     -fx-background-radius: 12;
@@ -455,7 +455,7 @@
     -fx-faint-focus-color: transparent;
     -fx-background-color: transparent;
     -fx-font-size: 14;
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
     -fx-background-insets: 0;
 }
 
@@ -466,7 +466,7 @@
 }
 .empty-hint-view .label {
     -fx-font-size: 16;
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
 }
 
 
@@ -482,7 +482,7 @@
 .edit-design-menu .button {
     -fx-border-width: 0.2;
     -fx-border-radius: 8;
-    -fx-border-color: -fx-icon-fill;
+    -fx-border-color: contrast-color;
     -fx-padding: 2;
     -fx-background-color: secondary;
 }
@@ -493,13 +493,13 @@
 .edit-design-menu .menu-button {
     -fx-border-width: 0.2;
     -fx-border-radius: 8;
-    -fx-border-color: -fx-icon-fill;
+    -fx-border-color: contrast-color;
     -fx-background-color: secondary;
     -fx-background-radius: 8;
 }
 .edit-design-menu .label {
     -fx-font-size: 14;
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
 }
 
 
@@ -581,7 +581,7 @@
 }
 .statistic-view .label {
     -fx-font-size: 14;
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
 }
 .statistic-view .key-value-title {
     -fx-padding: 0 10 0 35;
@@ -601,14 +601,14 @@
     -fx-background-color: tertiary-hover;
 }
 .statistic-view .accordion .titled-pane>.title>.arrow-button>.arrow {
-    -fx-background-color: -fx-icon-fill;
+    -fx-background-color: contrast-color;
 }
 
 
 /*  ----  BreadCrumbBar Style  ----  */
 .bread-crumb-bar .button {
     -fx-font-size: 14;
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
     -fx-border-width: 0;
     -fx-padding: 4;
 }
@@ -622,7 +622,7 @@
 }
 .compiler-setup-view .label {
     -fx-font-size: 16;
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
 }
 .compiler-setup-view .title {
     -fx-font-size: 20;
@@ -630,12 +630,12 @@
 
 .compiler-setup-view .radio-button {
     -fx-font-size: 14;
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
 }
 
 /* TODO: extra css file for ids */
 #highlight-on {
-    -fx-background-color: -fx-icon-fill;
+    -fx-background-color: contrast-color;
 }
 #highlight-off {
     -fx-background-color: primary;
@@ -645,7 +645,7 @@
     -fx-background-color: secondary;
     -fx-background-radius: 8;
     -fx-font-size: 14;
-    -fx-text-fill: -fx-icon-fill;
+    -fx-text-fill: contrast-color;
 }
 #yesButton:hover {
     -fx-background-color: #315443;
