@@ -21,6 +21,10 @@ import java.nio.file.Path;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
+/**
+ * A View for exploring a directory and its files and
+ * subdirectories.
+ */
 public class ExplorerView extends VBox implements View {
 
     private ExplorerMenu topMenu;
@@ -31,10 +35,16 @@ public class ExplorerView extends VBox implements View {
     private Consumer<FileInfoView> fileClickedHandler = event -> {};
     private Consumer<FileInfoView> itemClickedHandler = event -> {};
 
+    /**
+     * Constructs an {@link ExplorerView} object.
+     */
     public ExplorerView() {
         this.init();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void buildParts() {
         this.getStyleClass().add(StyleClass.EXPLORER_VIEW.getName());
@@ -53,6 +63,9 @@ public class ExplorerView extends VBox implements View {
         VBox.setVgrow(this.fileStructure, Priority.ALWAYS);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void buildWhole() {
         this.setVisibleView(this.fileStructure);
@@ -63,14 +76,25 @@ public class ExplorerView extends VBox implements View {
         );
     }
 
+    /**
+     * Sets a {@link Consumer} that can be used to handle
+     * clicks on a {@link FileInfoView} object, which
+     * represents a file in the displayed directory.
+     *
+     * @param eventHandler the {@link Consumer} handling the
+     *                     click
+     */
     public void setOnFileClicked(Consumer<FileInfoView> eventHandler) {
         this.fileClickedHandler = eventHandler;
     }
 
-    public void setOnFilesChanged(Consumer<FileInfoView> eventHandler) {
-        this.itemClickedHandler = eventHandler;
-    }
-
+    /**
+     * Opens a directory in the {@link ExplorerView}.
+     *
+     * @param file the given directory
+     * @throws IOException If reading the contents of the
+     * directory throws an {@link IOException}
+     */
     public void open(File file) throws IOException {
         TreeItem<FileInfoView> root = new TreeItem<>();
         root.setValue(
@@ -81,6 +105,21 @@ public class ExplorerView extends VBox implements View {
         this.openRecursively(file, root);
     }
 
+    /**
+     * Opens a file or directory recursively in the
+     * {@link ExplorerView}, i.e. if the given {@link File}
+     * object is a directory, then this method will be
+     * called for all files and directories in that
+     * directory. Used by the
+     * {@link #open(File) open} method of
+     * {@link ExplorerView}.
+     *
+     * @param file the {@link} File object to open
+     *             recursively
+     * @param root the corresponding {@link TreeItem}
+     * @throws IOException If reading the contents throws an
+     * {@link IOException}
+     */
     private void openRecursively(File file, TreeItem<FileInfoView> root) throws IOException {
         if (file.isDirectory()) {
             try (Stream<Path> pathStream = Files.list(file.toPath())) {
@@ -107,10 +146,27 @@ public class ExplorerView extends VBox implements View {
         }
     }
 
+    /**
+     * Fully expands the directory structure in the
+     * {@link ExplorerView}.
+     *
+     * @param event the {@link ActionEvent} causing the
+     *              expansion
+     */
     public void expandAll(ActionEvent event) {
         this.expandRecursively(this.fileStructure.getRoot());
     }
 
+    /**
+     * Expands the directory structure in the
+     * {@link ExplorerView} recursively. Used by the
+     * {@link #expandAll(ActionEvent) expandAll} method of
+     * {@link ExplorerView}.
+     *
+     * @param item the {@link TreeItem} of the
+     *             {@link ExplorerView} to expand
+     *             recursively
+     */
     private void expandRecursively(TreeItem<FileInfoView> item) {
         if (item != null) {
             item.setExpanded(true);
@@ -121,10 +177,27 @@ public class ExplorerView extends VBox implements View {
         }
     }
 
+    /**
+     * Fully collapses the directory structure in the
+     * {@link ExplorerView}.
+     *
+     * @param event the {@link ActionEvent} causing the
+     *              collapse
+     */
     public void collapseAll(ActionEvent event) {
         this.collapseRecursively(this.fileStructure.getRoot());
     }
 
+    /**
+     * Collapses the directory structure in the
+     * {@link ExplorerView} recursively. Used by the
+     * {@link #collapseAll(ActionEvent) collapseAll} method
+     * of {@link ExplorerView}.
+     *
+     * @param item the {@link TreeItem} of the
+     *             {@link ExplorerView} to collapse
+     *             recursively
+     */
     private void collapseRecursively(TreeItem<FileInfoView> item) {
         if (item != null) {
             item.setExpanded(false);
@@ -135,12 +208,27 @@ public class ExplorerView extends VBox implements View {
         }
     }
 
+    /**
+     * Searches for a name in the directory and filters the
+     * displayed items.
+     *
+     * @param filterString the name to search and filter for
+     */
     public void search(String filterString) {
         this.setSearchEnabled(!filterString.isEmpty());
         this.searchResult.getItems().clear();
         this.filterRecursively(filterString, this.fileStructure.getRoot());
     }
 
+    /**
+     * Enables or disables the search functionality. If
+     * disabled, a normal tree-like structure is shown to
+     * display the opened directory. If enabled, a list of
+     * all items in the directory that match the current
+     * search are shown.
+     *
+     * @param enabled whether to enable the search
+     */
     private void setSearchEnabled(boolean enabled) {
         if (enabled) {
             this.setVisibleView(this.searchResult);
@@ -149,11 +237,30 @@ public class ExplorerView extends VBox implements View {
         }
     }
 
+    /**
+     * Sets which of two views of the opened directory
+     * should be shown: The regular tree-like view; or the
+     * list-like view for searching. Used by the
+     * {@link #setSearchEnabled(boolean) setSearchEnabled}
+     * method of {@link ExplorerView}.
+     *
+     * @param view the view to make visible
+     */
     private void setVisibleView(Parent view) {
         this.explorerAndSearchPane.getChildren().clear();
         this.explorerAndSearchPane.getChildren().add(view);
     }
 
+    /**
+     * Searches for a name in the directory and filters the
+     * displayed items recursively. Used by the
+     * {@link #search(String) search} method of
+     * {@link ExplorerView}.
+     *
+     * @param filterString the name to search and filter for
+     * @param item the item representing a file or directory
+     *             to search and filter recursively
+     */
     private void filterRecursively(String filterString, TreeItem<FileInfoView> item) {
         if (item != null) {
             FileInfoView infoView = item.getValue();
@@ -168,6 +275,11 @@ public class ExplorerView extends VBox implements View {
     }
 }
 
+/**
+ * A view accompanying {@link ExplorerView} which offers
+ * a search bar and buttons for options related to the
+ * {@link ExplorerView}.
+ */
 class ExplorerMenu extends HBox implements View {
 
     private Node graphic;
@@ -179,11 +291,17 @@ class ExplorerMenu extends HBox implements View {
     private Consumer<ActionEvent> expandAllHandler;
     private Consumer<ActionEvent> collapseAllHandler;
 
+    /**
+     * Constructs an {@link ExplorerMenu} object.
+     */
     public ExplorerMenu() {
         this.getStyleClass().add(StyleClass.EXPLORER_MENU.getName());
         this.init();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void buildParts() {
         this.graphic = new LabelBuilder()
@@ -208,6 +326,9 @@ class ExplorerMenu extends HBox implements View {
                 .build();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void buildWhole() {
         Pane spacer = new Pane();
@@ -222,26 +343,67 @@ class ExplorerMenu extends HBox implements View {
         );
     }
 
+    /**
+     * Searches for a given text in the affiliated
+     * {@link ExplorerView}.
+     *
+     * @param text the text to search for
+     */
     private void search(String text) {
         this.searchHandler.accept(text);
     }
 
+    /**
+     * Triggers the expansion of the affiliated
+     * {@link ExplorerView}.
+     *
+     * @param event the {@link ActionEvent} causing the
+     *              expansion
+     */
     private void expandAll(ActionEvent event) {
         this.expandAllHandler.accept(event);
     }
 
+    /**
+     * Triggers the collapse of the affiliated
+     * {@link ExplorerView}.
+     *
+     * @param event the {@link ActionEvent} causing the
+     *              collapse
+     */
     private void collapseAll(ActionEvent event) {
         this.collapseAllHandler.accept(event);
     }
 
+    /**
+     * Sets a {@link Consumer} to call whenever the text
+     * of the search bar changes.
+     *
+     * @param eventHandler the {@link Consumer} handling the
+     *                     changes
+     */
     public void setOnSearch(Consumer<String> eventHandler) {
         this.searchHandler = eventHandler;
     }
 
+    /**
+     * Sets a {@link Consumer} to call whenever expansion of
+     * the affiliated {@link ExplorerView} is demanded.
+     *
+     * @param eventHandler the {@link Consumer} handling the
+     *                     expansion demand.
+     */
     public void setOnExpandAll(Consumer<ActionEvent> eventHandler) {
         this.expandAllHandler = eventHandler;
     }
 
+    /**
+     * Sets a {@link Consumer} to call whenever collapse of
+     * the affiliated {@link ExplorerView} is demanded.
+     *
+     * @param eventHandler the {@link Consumer} handling the
+     *                     collapse demand.
+     */
     public void setOnCollapseAll(Consumer<ActionEvent> eventHandler) {
         this.collapseAllHandler = eventHandler;
     }

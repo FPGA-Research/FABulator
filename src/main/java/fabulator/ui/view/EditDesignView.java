@@ -44,6 +44,8 @@ public class EditDesignView extends VBox {
         this.console = new Console();
 
         this.explorerView.setOnFileClicked(fileInfoView -> {
+            this.topMenu.setBreadCrumb(fileInfoView);
+
             File file = fileInfoView.getFile();
             try {
                 this.codeView.openFileOf(fileInfoView);
@@ -57,9 +59,7 @@ public class EditDesignView extends VBox {
                 logger.error("Cannot open file " + file);
             }
         });
-        this.explorerView.setOnFilesChanged(fileInfoView -> {
-            this.topMenu.setBreadCrumb(fileInfoView);
-        });
+
         this.codeView.setOnSelectionChanged(fileInfoView -> {
             this.topMenu.setBreadCrumb(fileInfoView);
         });
