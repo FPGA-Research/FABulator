@@ -33,7 +33,6 @@ public class ExplorerView extends VBox implements View {
     private TreeView<FileInfoView> fileStructure;
 
     private Consumer<FileInfoView> fileClickedHandler = event -> {};
-    private Consumer<FileInfoView> itemClickedHandler = event -> {};
 
     /**
      * Constructs an {@link ExplorerView} object.
@@ -97,9 +96,7 @@ public class ExplorerView extends VBox implements View {
      */
     public void open(File file) throws IOException {
         TreeItem<FileInfoView> root = new TreeItem<>();
-        root.setValue(
-                new FileInfoView(file, root)
-        );
+        new FileInfoView(file, root);
 
         this.fileStructure.setRoot(root);
         this.openRecursively(file, root);
@@ -126,14 +123,10 @@ public class ExplorerView extends VBox implements View {
                 pathStream.forEach(path -> {
 
                     TreeItem<FileInfoView> item = new TreeItem<>();
-                    FileInfoView infoView = new FileInfoView(path.toFile(), item);
-                    infoView.setOnClicked(fileInfo -> {
-                        this.fileClickedHandler.accept(fileInfo);
-                        this.itemClickedHandler.accept(fileInfo);
-                    });
-                    item.setValue(infoView);
-
                     root.getChildren().add(item);
+
+                    FileInfoView infoView = new FileInfoView(path.toFile(), item);
+                    infoView.setOnFileClicked(fileInfo -> this.fileClickedHandler.accept(fileInfo));
 
                     try {
                         this.openRecursively(path.toFile(), item);
