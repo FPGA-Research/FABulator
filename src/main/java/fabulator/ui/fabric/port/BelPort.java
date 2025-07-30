@@ -38,6 +38,7 @@ public class BelPort extends AbstractPort {
                 this.geometry.getIo()
         );
         Tooltip tooltip = new Tooltip(tooltipString);
+        tooltip.setShowDelay(Duration.ZERO);
         tooltip.setShowDuration(Duration.INDEFINITE);
         Tooltip.install(this, tooltip);
     }
