@@ -1,7 +1,7 @@
 package fabulator.util;
 
 import fabulator.FABulator;
-import fabulator.async.FileChangedManager;
+import fabulator.async.FileUpdateChecker;
 import fabulator.geometry.FabricGeometry;
 import fabulator.language.Text;
 import fabulator.logging.LogManager;
@@ -12,6 +12,7 @@ import fabulator.parse.FasmParser;
 import fabulator.parse.GeometryParser;
 import fabulator.settings.Config;
 import fabulator.ui.fabric.Fabric;
+import fabulator.ui.window.AutoRefreshDialog;
 import fabulator.ui.window.ChoiceDialog;
 import fabulator.ui.window.ErrorMessageDialog;
 import fabulator.ui.window.LoadingWindow;
@@ -262,7 +263,25 @@ public class FileUtils {
                     .getMainView()
                     .setNewFabric(fabric);
 
-            FileChangedManager.getInstance().setFile(file);
+            FileUpdateChecker.getInstance().deregisterListeners(
+                    FileUpdateChecker.ListenerCategory.FABRIC
+            );
+            FileUpdateChecker.getInstance().registerListener(
+                    file,
+                    FileUpdateChecker.ListenerCategory.FABRIC,
+                    () -> {
+                        Config config = Config.getInstance();
+                        boolean askForAutoOpen = config.getSuggestAutoReload().get();
+                        if (askForAutoOpen) {
+                            Platform.runLater(() -> AutoRefreshDialog.getInstance().suggest(file.toPath()));
+                        } else {
+                            boolean autoOpen = config.getAutoReload().get();
+                            if (autoOpen) {
+                                Platform.runLater(() -> FileUtils.openFabricAsync(file));
+                            }
+                        }
+                    }
+            );
 
             Platform.runLater(() -> {
                 LoadingWindow.getInstance().hide();
