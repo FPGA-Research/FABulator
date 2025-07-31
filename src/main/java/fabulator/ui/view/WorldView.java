@@ -86,7 +86,7 @@ public class WorldView extends VBox implements ReferenceHolder {
                     DiscreteLocation tileCoords = new DiscreteLocation(x, y);
 
                     miniTile.setOnMouseClicked(event -> {
-                        parent.navigateTo(this.fabric.getTile(tileCoords.getY(), tileCoords.getX()));
+                        parent.navigateTo(this.fabric.getTile(tileCoords.getX(), tileCoords.getY()));
                     });
                     this.getChildren().add(miniTile);
                 }

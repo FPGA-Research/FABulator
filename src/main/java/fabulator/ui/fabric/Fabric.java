@@ -237,7 +237,7 @@ public class Fabric extends Group {
 
         for (Map.Entry<DiscreteLocation, List<BitstreamConfiguration.ConnectedPorts>> entry : config.getConnectivityMap().entrySet()) {
             DiscreteLocation location = entry.getKey();
-            Tile tile = this.getTile(location.getY(), location.getX());
+            Tile tile = this.getTile(location.getX(), location.getY());
             tile.displayBitstreamConfig(entry.getValue());
         }
     }
@@ -262,7 +262,7 @@ public class Fabric extends Group {
 
         for (Pair<DiscreteLocation, BitstreamConfiguration.ConnectedPorts> entry : entries) {
             DiscreteLocation location = entry.getKey();
-            Tile tile = this.getTile(location.getY(), location.getX());
+            Tile tile = this.getTile(location.getX(), location.getY());
             Location entryLocation = tile.displayNetEntry(entry.getValue());
 
             if (entryLocation != null) {
@@ -280,7 +280,7 @@ public class Fabric extends Group {
     }
 
     public Tile getTile(int x, int y) {
-        return this.tiles.get(x).get(y);
+        return this.tiles.get(y).get(x);
     }
 
     public void filterAndAdd(List<FabricElement> result, ElementType type, Pattern regex) {
