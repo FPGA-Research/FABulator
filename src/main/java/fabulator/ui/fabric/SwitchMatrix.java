@@ -9,7 +9,6 @@ import fabulator.lookup.BitstreamConfiguration;
 import fabulator.object.*;
 import fabulator.parse.SwitchMatrixParser;
 import fabulator.settings.Config;
-import fabulator.ui.builder.ArcBuilder;
 import fabulator.ui.builder.LineBuilder;
 import fabulator.ui.builder.RectangleBuilder;
 import fabulator.ui.fabric.element.ElementType;
@@ -25,7 +24,6 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Arc;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -38,9 +36,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
-
-// TODO: There is a lot of redundant/duplicate code in this class
 
 /**
  * A Class representing a single switch matrix of a tile.
@@ -55,17 +50,17 @@ public class SwitchMatrix extends Group implements FabricElement {
     private SwitchMatrixGeometry geometry;
     private Rectangle smRect;
 
-    private List<Shape> displayedConnections;
-    private List<Shape> displayedBitstreamConfig;
+    private List<Shape> displayedConnections = new ArrayList<>();
+    private List<Shape> displayedBitstreamConfig = new ArrayList<>();
 
     /**
      * A HashMap mapping Port Locations to all Shapes such
      * as Lines, Arcs that represent a connection of
      * the bitstream config to or from that Port.
      */
-    private HashMap<DiscreteLocation, Set<Shape>> bitstreamConMap;
-    private List<AbstractPort> bitstreamConPorts;
-    private List<Shape> netWires;
+    private HashMap<DiscreteLocation, Set<Shape>> bitstreamConMap = new HashMap<>();
+    private List<AbstractPort> bitstreamConPorts = new ArrayList<>();
+    private List<Shape> netWires = new ArrayList<>();
 
     private HashMap<String, AbstractPort> namePortMap;
 
@@ -73,16 +68,7 @@ public class SwitchMatrix extends Group implements FabricElement {
         this.geometry = geometry;
         this.tile = tile;
 
-        this.initialize();
         this.build();
-    }
-
-    private void initialize() {
-        this.displayedConnections = new ArrayList<>();
-        this.displayedBitstreamConfig = new ArrayList<>();
-        this.bitstreamConMap = new HashMap<>();
-        this.bitstreamConPorts = new ArrayList<>();
-        this.netWires = new ArrayList<>();
     }
 
     private void build() {
@@ -117,6 +103,7 @@ public class SwitchMatrix extends Group implements FabricElement {
         }
     }
 
+    // TODO: is this needed?
     private void onClicked(MouseEvent event) {
         if (event.getButton() == MouseButton.PRIMARY) {
             FileUtils.openHdlFile(this.geometry.getSrc());
@@ -125,6 +112,80 @@ public class SwitchMatrix extends Group implements FabricElement {
                     .getMainView()
                     .openStats(this.getStatistics());
         }
+    }
+
+    private List<Line> buildConnection(
+            AbstractPort portA,
+            AbstractPort portB,
+            Property<Color> colorProperty) {
+
+        List<Line> lines = new ArrayList<>();
+
+        Location locA = new Location(
+                portA.getGeometry().getRelX(),
+                portA.getGeometry().getRelY()
+        );
+        Location locB = new Location(
+                portB.getGeometry().getRelX(),
+                portB.getGeometry().getRelY()
+        );
+
+        boolean xEqual = locA.getX() == locB.getX();
+        boolean atLeftOrRightBorder = locA.getX() == 0 || locA.getX() == this.geometry.getWidth();
+        boolean yEqual = locA.getY() == locB.getY();
+        boolean atTopOrBottomBorder = locA.getY() == 0 || locA.getY() == this.geometry.getHeight();
+        boolean drawCurve = false;
+        int offsetX = 0;
+        int offsetY = 0;
+
+        if (xEqual && atLeftOrRightBorder) {
+            offsetX = locA.getX() == 0 ? 1 : -1;
+            drawCurve = true;
+        } else if (yEqual && atTopOrBottomBorder) {
+            offsetY = locA.getY() == 0 ? 1 : -1;
+            drawCurve = true;
+        }
+
+        String tooltipString = String.format(
+                "%s, %s",
+                portA.getName(),
+                portB.getName()
+        );
+
+        if (drawCurve) {
+            double diffX = Math.abs(locA.getX() - locB.getX());
+            double diffY = Math.abs(locA.getY() - locB.getY());
+            double midX = (locA.getX() + locB.getX()) / 2;
+            double midY = (locA.getY() + locB.getY()) / 2;
+
+            Location midPoint = new Location(
+                    midX + 0.5 * diffY * offsetX,
+                    midY + 0.5 * diffX * offsetY
+            );
+
+            Line lineA = new LineBuilder()
+                    .setStart(locA.getX(), locA.getY())
+                    .setEnd(midPoint.getX(), midPoint.getY())
+                    .setStroke(colorProperty, 0.2)
+                    .addTooltip(tooltipString)
+                    .build();
+            Line lineB = new LineBuilder()
+                    .setStart(locB.getX(), locB.getY())
+                    .setEnd(midPoint.getX(), midPoint.getY())
+                    .setStroke(colorProperty, 0.2)
+                    .addTooltip(tooltipString)
+                    .build();
+            lines.addAll(List.of(lineA, lineB));
+        } else {
+            Line line = new LineBuilder()
+                    .setStart(locA.getX(), locA.getY())
+                    .setEnd(locB.getX(), locB.getY())
+                    .setStroke(colorProperty, 0.2)
+                    .addTooltip(tooltipString)
+                    .build();
+            lines.add(line);
+        }
+        return lines;
     }
 
     // TODO: might be wise to cache SmConnectivity
@@ -163,64 +224,9 @@ public class SwitchMatrix extends Group implements FabricElement {
                         : config.getSmConnOutColor();
             }
 
-            boolean drawCurve = false;
-            int offsetX = 0;
-            int offsetY = 0;
-
-            boolean xEqual = discreteLocA.getX() == discreteLocB.getX();
-            boolean atLeftOrRightBorder = discreteLocA.getX() == 0 || discreteLocA.getX() == this.geometry.getWidth();
-
-            boolean yEqual = discreteLocA.getY() == discreteLocB.getY();
-            boolean atTopOrBottomBorder = discreteLocA.getY() == 0 || discreteLocA.getY() == this.geometry.getHeight();
-
-            if (xEqual && atLeftOrRightBorder) {
-                offsetX = discreteLocA.getX() == 0 ? 1 : -1;
-                drawCurve = true;
-            } else if (yEqual && atTopOrBottomBorder) {
-                offsetY = discreteLocA.getY() == 0 ? 1 : -1;
-                drawCurve = true;
-            }
-
-            if (drawCurve) {
-                Line startLine = new LineBuilder()
-                        .setStart(discreteLocA.getX(), discreteLocA.getY())
-                        .setEnd(discreteLocA.getX() + offsetX, discreteLocA.getY() + offsetY)
-                        .setStroke(colorProp, 0.2)
-                        .build();
-                this.displayedConnections.add(startLine);
-
-                Line endLine = new LineBuilder()
-                        .setStart(discreteLocB.getX() + offsetX, discreteLocB.getY() + offsetY)
-                        .setEnd(discreteLocB.getX(), discreteLocB.getY())
-                        .setStroke(colorProp, 0.2)
-                        .build();
-                this.displayedConnections.add(endLine);
-
-                int startAngle = -offsetX * 90 + offsetY * (90 + 90 * offsetY);
-                double diffX = Math.abs(discreteLocA.getX() - discreteLocB.getX());
-                double diffY = Math.abs(discreteLocA.getY() - discreteLocB.getY());
-                double radiusX = (diffY / 4) * (offsetX * offsetX) + (diffX / 2) * (offsetY * offsetY);
-                double radiusY = (diffX / 4) * (offsetY * offsetY) + (diffY / 2) * (offsetX * offsetX);
-
-                Arc arc = new ArcBuilder()
-                        .setCenterX((double) (discreteLocA.getX() + discreteLocB.getX()) / 2 + offsetX)
-                        .setCenterY((double) (discreteLocA.getY() + discreteLocB.getY()) / 2 + offsetY)
-                        .setRadius(radiusX, radiusY)
-                        .setStartAngle(startAngle)
-                        .setLength(180)
-                        .setStroke(colorProp, 0.2)
-                        .setFill(Color.TRANSPARENT)
-                        .build();
-                this.displayedConnections.add(arc);
-
-            } else {
-                Line line = new LineBuilder()
-                        .setStart(discreteLocA.getX(), discreteLocA.getY())
-                        .setEnd(discreteLocB.getX(), discreteLocB.getY())
-                        .setStroke(colorProp, 0.2)
-                        .build();
-                this.displayedConnections.add(line);
-            }
+            this.displayedConnections.addAll(
+                    this.buildConnection(selectedPort, port, colorProp)
+            );
         }
         this.getChildren().addAll(this.displayedConnections);
     }
@@ -283,73 +289,10 @@ public class SwitchMatrix extends Group implements FabricElement {
             this.bitstreamConPorts.add(portA);
             this.bitstreamConPorts.add(portB);
 
-            boolean drawCurve = false;
-            int offsetX = 0;
-            int offsetY = 0;
-
-            boolean xEqual = portLocA.getX() == portLocB.getX();
-            boolean atLeftOrRightBorder = portLocA.getX() == 0 || portLocA.getX() == this.geometry.getWidth();
-
-            boolean yEqual = portLocA.getY() == portLocB.getY();
-            boolean atTopOrBottomBorder = portLocA.getY() == 0 || portLocA.getY() == this.geometry.getHeight();
-
-            if (xEqual && atLeftOrRightBorder) {
-                offsetX = portLocA.getX() == 0 ? 1 : -1;
-                drawCurve = true;
-            } else if (yEqual && atTopOrBottomBorder) {
-                offsetY = portLocA.getY() == 0 ? 1 : -1;
-                drawCurve = true;
-            }
-
-            if (drawCurve) {
-                Line startLine = new LineBuilder()
-                        .setStart(portLocA.getX(), portLocA.getY())
-                        .setEnd(portLocA.getX() + offsetX, portLocA.getY() + offsetY)
-                        .setStroke(config.getUserDesignColor(), 0.2)
-                        .build();
-                this.displayedBitstreamConfig.add(startLine);
-                this.bitstreamConMap.get(discreteLocA).add(startLine);
-                this.bitstreamConMap.get(discreteLocB).add(startLine);
-
-                Line endLine = new LineBuilder()
-                        .setStart(portLocB.getX() + offsetX, portLocB.getY() + offsetY)
-                        .setEnd(portLocB.getX(), portLocB.getY())
-                        .setStroke(config.getUserDesignColor(), 0.2)
-                        .build();
-                this.displayedBitstreamConfig.add(endLine);
-                this.bitstreamConMap.get(discreteLocA).add(endLine);
-                this.bitstreamConMap.get(discreteLocB).add(endLine);
-
-                int startAngle = -offsetX * 90 + offsetY * (90 + 90 * offsetY);
-                double diffX = Math.abs(portLocA.getX() - portLocB.getX());
-                double diffY = Math.abs(portLocA.getY() - portLocB.getY());
-                double radiusX = (diffY / 4) * (offsetX * offsetX) + (diffX / 2) * (offsetY * offsetY);
-                double radiusY = (diffX / 4) * (offsetY * offsetY) + (diffY / 2) * (offsetX * offsetX);
-
-                Arc arc = new ArcBuilder()
-                        .setCenterX((portLocA.getX() + portLocB.getX()) / 2 + offsetX)
-                        .setCenterY((portLocA.getY() + portLocB.getY()) / 2 + offsetY)
-                        .setRadius(radiusX, radiusY)
-                        .setStartAngle(startAngle)
-                        .setLength(180)
-                        .setStroke(config.getUserDesignColor(), 0.2)
-                        .setFill(Color.TRANSPARENT)
-                        .build();
-
-                this.displayedBitstreamConfig.add(arc);
-                this.bitstreamConMap.get(discreteLocA).add(arc);
-                this.bitstreamConMap.get(discreteLocB).add(arc);
-
-            } else {
-                Line line = new LineBuilder()
-                        .setStart(portLocA.getX(), portLocA.getY())
-                        .setEnd(portLocB.getX(), portLocB.getY())
-                        .setStroke(config.getUserDesignColor(), 0.2)
-                        .build();
-                this.displayedBitstreamConfig.add(line);
-                this.bitstreamConMap.get(discreteLocA).add(line);
-                this.bitstreamConMap.get(discreteLocB).add(line);
-            }
+            List<Line> connectionLines = this.buildConnection(portA, portB, colorProp);
+            this.displayedBitstreamConfig.addAll(connectionLines);
+            this.bitstreamConMap.get(discreteLocA).addAll(connectionLines);
+            this.bitstreamConMap.get(discreteLocB).addAll(connectionLines);
         }
         this.getChildren().addAll(this.displayedBitstreamConfig);
     }
