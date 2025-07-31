@@ -95,7 +95,7 @@ public class WorldView extends VBox implements ReferenceHolder {
             this.viewPortIndicator = new RectangleBuilder()
                     .setArcDims(2, 2)
                     .setFill(Color.TRANSPARENT)
-                    .setStroke(Color.WHITE, 24)
+                    .setStroke(Color.WHITE, 16)
                     .setMouseTransparent(true)
                     .build();
             this.getChildren().add(this.viewPortIndicator);
