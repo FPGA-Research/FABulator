@@ -280,6 +280,10 @@ public class Fabric extends Group {
     }
 
     public Tile getTile(int x, int y) {
+        /*
+        Tiles are saved as a list of rows, therefore we
+        first select the row (y) and then the column (x)
+        */
         return this.tiles.get(y).get(x);
     }
 
