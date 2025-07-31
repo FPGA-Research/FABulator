@@ -15,6 +15,7 @@ import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -60,6 +61,16 @@ public class WorldView extends VBox implements ReferenceHolder {
 
                     Location tileLoc = tileLocations.get(y).get(x);
 
+                    Tooltip miniTileTooltip = new Tooltip();
+                    miniTileTooltip.setText(
+                            String.format(
+                                    "%s\tX%sY%s",
+                                    tileName,
+                                    x,
+                                    y
+                            )
+                    );
+
                     Rectangle miniTile = new RectangleBuilder()
                             .setDims(tileGeom.getWidth(), tileGeom.getHeight())
                             .setTranslateX(tileLoc.getX())
@@ -67,6 +78,7 @@ public class WorldView extends VBox implements ReferenceHolder {
                             .setFill(TileColorUtils.colorOfTile(tileGeom.getName()))
                             .setOpacity(0.4)
                             .setStroke(Color.BLACK, 2)
+                            .addTooltip(miniTileTooltip)
                             .build();
 
                     miniTile.setOnMouseEntered(event -> miniTile.setOpacity(0.5));

@@ -82,6 +82,13 @@ public class RectangleBuilder implements Builder<Rectangle> {
         return this;
     }
 
+    public RectangleBuilder addTooltip(Tooltip tooltip) {
+        tooltip.setShowDelay(Duration.ZERO);
+        tooltip.setShowDuration(Duration.INDEFINITE);
+        Tooltip.install(this.rectangle, tooltip);
+        return this;
+    }
+
     @Override
     public Rectangle build() {
         return this.rectangle;
