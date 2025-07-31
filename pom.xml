@@ -91,7 +91,6 @@
                             <version>1.18.30</version>
                         </annotationProcessorPath>
                     </annotationProcessorPaths>
-                    <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
             </plugin>
 
