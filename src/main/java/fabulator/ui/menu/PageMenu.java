@@ -49,7 +49,7 @@ public class PageMenu extends HBox {
 
     private void registerEventFilters() {
         this.pageNodesList.stream()
-                .map(node -> node.pageButton)
+                .map(PageNodes::getPageButton)
                 .filter(Objects::nonNull)
                 .forEach(button -> button.addEventFilter(KeyEvent.ANY, Event::consume));
     }

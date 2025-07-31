@@ -1,4 +1,4 @@
-package fabulator.ui.view;
+package fabulator.ui.view.code;
 
 import org.fxmisc.richtext.model.StyleSpans;
 import org.fxmisc.richtext.model.StyleSpansBuilder;
@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-// TODO: Add support for python-like comments
 public class CodeMatcher {
 
     private static final String NAME_CAPTURING_GROUP = "(?<%s>%s)";

@@ -1,4 +1,4 @@
-package fabulator.ui.view;
+package fabulator.ui.view.code;
 
 import fabulator.logging.LogManager;
 import fabulator.logging.Logger;

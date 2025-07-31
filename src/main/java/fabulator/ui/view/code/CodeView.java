@@ -1,4 +1,4 @@
-package fabulator.ui.view;
+package fabulator.ui.view.code;
 
 import fabulator.FABulator;
 import fabulator.ui.style.StyleClass;
@@ -17,7 +17,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.*;
 
-// TODO: make Code of CodeMatcher editable by user
 public class CodeView extends CodeArea {
 
     private static final String NEW_LINE = "\n";

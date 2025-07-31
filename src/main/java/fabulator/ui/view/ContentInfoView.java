@@ -12,6 +12,7 @@ import fabulator.ui.fabric.Fabric;
 import fabulator.ui.fabric.element.FabricElement;
 import fabulator.ui.menu.FabricMenu;
 import fabulator.ui.style.StyleClass;
+import fabulator.ui.view.code.ScrollableCodeView;
 import javafx.geometry.Bounds;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -25,13 +26,11 @@ public class ContentInfoView extends TabPane implements ReferenceHolder {
     private FabricMenu parent;
 
     private Tab worldViewTab;
-    private Tab elementViewTab;
     private Tab hdlViewTab;
     private Tab netListTab;
     private Tab statisticsTab;
 
     private WorldView worldView;
-    private ElementView elementView;
     private ScrollableCodeView hdlView;
     private NetListView netListView;
     private StatisticView statisticsView;
@@ -46,7 +45,6 @@ public class ContentInfoView extends TabPane implements ReferenceHolder {
 
     private void initialize() {
         this.worldView = new WorldView(this);
-        this.elementView = new ElementView(this);
         this.hdlView = new ScrollableCodeView();
         this.netListView = new NetListView(this);
         this.statisticsView = new StatisticView();
@@ -54,11 +52,6 @@ public class ContentInfoView extends TabPane implements ReferenceHolder {
         this.worldViewTab = new TabBuilder()
                 .setText(Text.WORLD_VIEW)
                 .setContent(this.worldView)
-                .build();
-
-        this.elementViewTab = new TabBuilder()
-                .setText(Text.ELEMENT_VIEW)
-                .setContent(this.elementView)
                 .build();
 
         this.hdlViewTab = new TabBuilder()
@@ -80,7 +73,6 @@ public class ContentInfoView extends TabPane implements ReferenceHolder {
     private void setup() {
         this.getTabs().addAll(
                 this.worldViewTab,
-                this.elementViewTab,
                 this.hdlViewTab,
                 this.netListTab,
                 this.statisticsTab
@@ -93,7 +85,6 @@ public class ContentInfoView extends TabPane implements ReferenceHolder {
     }
 
     public void setNewFabric(Fabric fabric) {
-        this.elementView.setNewFabric(fabric);
         this.worldView.setNewFabric(fabric);
     }
 
@@ -125,8 +116,7 @@ public class ContentInfoView extends TabPane implements ReferenceHolder {
     @Override
     public void dropReferences() {
         this.worldView.dropReferences();
-        this.elementView.dropReferences();
         this.netListView.dropReferences();
-        // TODO: drop references in hdlView too
+        this.hdlView.dropReferences();
     }
 }

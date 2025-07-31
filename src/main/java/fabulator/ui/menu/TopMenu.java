@@ -35,11 +35,6 @@ public class TopMenu extends MenuBar {
                 .setOnAction(event -> FileUtils.openFabric())
                 .build();
 
-        MenuItem folderOpen = new MenuItemBuilder()
-                .setText(Text.OPEN_FOLDER)
-                .setOnAction(event -> FileUtils.openFolder())
-                .build();
-
         MenuItem hdlOpen = new MenuItemBuilder()
                 .setText(Text.OPEN_HDL)
                 .setOnAction(event -> FileUtils.openHdl())
@@ -53,7 +48,6 @@ public class TopMenu extends MenuBar {
         this.fileMenu = new MenuBuilder()
                 .setText(Text.FILE)
                 .addItem(fabricOpen)
-                .addItem(folderOpen)
                 .addItem(hdlOpen)
                 .addItem(fasmOpen)
                 .build();
