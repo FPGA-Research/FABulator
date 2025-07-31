@@ -373,6 +373,12 @@
 
 
 /*  ----  WorldView Style  ----  */
+.world-view > .scroll-pane {
+    -fx-background-color: black;
+}
+.world-view > .scroll-pane > .viewport {
+    -fx-background-color: black;
+}
 .world-view {
     -fx-background-color: black;
 }
