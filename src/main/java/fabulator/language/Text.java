@@ -84,8 +84,6 @@ public enum Text {
     INVALID_GEOM_FILE,
     INVALID_HDL_FILE,
 
-    THICKNESS,
-
     ERASE_FASM,
     CLEAR_SELECTION,
 

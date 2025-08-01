@@ -18,7 +18,6 @@ import fabulator.ui.fabric.port.JumpPort;
 import fabulator.ui.fabric.port.SmPort;
 import fabulator.util.FileUtils;
 import javafx.beans.property.Property;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
@@ -199,6 +198,9 @@ public class SwitchMatrix extends Group implements FabricElement {
         Map<String, Boolean> connectedNames = parser.getConnection().connectedNamesOf(selectedPort);
 
         this.getChildren().removeAll(this.displayedConnections);
+        for (Shape shape : this.displayedConnections) {
+            this.getTile().getFabric().getWireManager().unHighlight(shape);
+        }
         this.displayedConnections.clear();
 
         Config config = Config.getInstance();
@@ -224,23 +226,30 @@ public class SwitchMatrix extends Group implements FabricElement {
                         : config.getSmConnOutColor();
             }
 
-            this.displayedConnections.addAll(
-                    this.buildConnection(selectedPort, port, colorProp)
-            );
+            List<Line> connection = this.buildConnection(selectedPort, port, colorProp);
+            for (Line line : connection) {
+                this.getTile().getFabric().getWireManager().highlight(line, colorProp);
+            }
+            this.displayedConnections.addAll(connection);
         }
         this.getChildren().addAll(this.displayedConnections);
     }
 
     public void clearBitstreamConfig() {
+        for (Shape shape : this.displayedBitstreamConfig) {
+            this.tile.getFabric().getWireManager().unHighlight(shape);
+        }
         this.getChildren().removeAll(this.displayedBitstreamConfig);
         this.displayedBitstreamConfig.clear();
         this.bitstreamConMap.clear();
         this.netWires.clear();
 
         Fabric fabric = this.getTile().getFabric();
-        Property<Color> regularColor = new SimpleObjectProperty<>(Color.WHITE);
         for (AbstractPort port : this.bitstreamConPorts) {
-            fabric.colorWire(port, regularColor);
+            Set<Line> toBeColored = fabric.getLineMap().allLinesAt(port);
+            for (Line wire : toBeColored) {
+                fabric.getWireManager().unHighlight(wire);
+            }
         }
         this.bitstreamConPorts.clear();
     }
@@ -290,6 +299,9 @@ public class SwitchMatrix extends Group implements FabricElement {
             this.bitstreamConPorts.add(portB);
 
             List<Line> connectionLines = this.buildConnection(portA, portB, colorProp);
+            for (Line line : connectionLines) {
+                this.getTile().getFabric().getWireManager().highlight(line, colorProp);
+            }
             this.displayedBitstreamConfig.addAll(connectionLines);
             this.bitstreamConMap.get(discreteLocA).addAll(connectionLines);
             this.bitstreamConMap.get(discreteLocB).addAll(connectionLines);
@@ -298,11 +310,9 @@ public class SwitchMatrix extends Group implements FabricElement {
     }
 
     public void clearNets() {
-        Config config = Config.getInstance();
-        Property<Color> colorProp = config.getUserDesignColor();
-
+        Property<Color> userDesignColor = Config.getInstance().getUserDesignColor();
         for (Shape wire : this.netWires) {
-            wire.strokeProperty().bind(colorProp);
+            this.tile.getFabric().getWireManager().highlight(wire, userDesignColor);
         }
         this.netWires.clear();
     }
@@ -348,9 +358,11 @@ public class SwitchMatrix extends Group implements FabricElement {
 
         Config config = Config.getInstance();
 
-        for (Shape con : consAtPorts) {
-            con.strokeProperty().bind(config.getUserDesignMarkedColor());
-        }
+        this.tile.getFabric().getWireManager().highlightAll(
+                consAtPorts,
+                config.getUserDesignMarkedColor()
+        );
+
         this.netWires.addAll(consAtPorts);
 
         return average;

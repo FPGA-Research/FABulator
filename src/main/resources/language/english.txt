@@ -67,7 +67,6 @@ ERROR:                  Error
 CLOSE:                  Close
 INVALID_GEOM_FILE:      Invalid geometry file
 INVALID_HDL_FILE:       Invalid HDL file
-THICKNESS:              Thickness
 ERASE_FASM:             Erase fasm
 CLEAR_SELECTION:        Clear Selection
 OUTDATED_VERSION:       Outdated Version

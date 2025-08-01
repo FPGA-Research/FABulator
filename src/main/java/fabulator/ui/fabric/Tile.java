@@ -10,7 +10,7 @@ import fabulator.ui.builder.LineBuilder;
 import fabulator.ui.builder.RectangleBuilder;
 import fabulator.ui.fabric.element.ElementType;
 import fabulator.ui.fabric.element.FabricElement;
-import fabulator.ui.view.fabric.LodManager;
+import fabulator.ui.fabric.manager.LodManager;
 import fabulator.util.TileColorUtils;
 import javafx.collections.ObservableList;
 import javafx.geometry.BoundingBox;
@@ -159,11 +159,11 @@ public class Tile extends Group implements FabricElement {
         LodManager.Lod lod = LodManager.Lod.of(zoomLevel);
 
         switch (lod) {
-            case MEDIUM -> {
+            /*case MEDIUM -> {
                 this.lowLodSubstitute.setVisible(true);
                 this.switchMatrix.setVisible(false);
-            }
-            case HIGH -> {
+            }*/
+            case MEDIUM, HIGH -> {
                 this.switchMatrix.setVisible(true);
                 this.lowLodSubstitute.setVisible(false);
             }

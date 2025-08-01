@@ -1,7 +1,6 @@
 package fabulator.ui.fabric;
 
 import fabulator.geometry.*;
-import fabulator.language.Text;
 import fabulator.lookup.BitstreamConfiguration;
 import fabulator.lookup.LineMap;
 import fabulator.object.DiscreteLocation;
@@ -9,14 +8,13 @@ import fabulator.object.Location;
 import fabulator.settings.Config;
 import fabulator.ui.builder.MenuItemBuilder;
 import fabulator.ui.builder.RectangleBuilder;
-import fabulator.ui.builder.SliderBuilder;
 import fabulator.ui.fabric.element.ElementType;
 import fabulator.ui.fabric.element.FabricElement;
+import fabulator.ui.fabric.manager.WireManager;
 import fabulator.ui.fabric.port.AbstractPort;
-import fabulator.ui.view.fabric.LodManager;
+import fabulator.ui.fabric.manager.LodManager;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Bounds;
@@ -24,7 +22,6 @@ import javafx.scene.Group;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.Slider;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -49,11 +46,12 @@ public class Fabric extends Group {
     public static final double MARKER_PADDING = Math.pow(2, 16);
 
     private FabricGeometry geometry;
-    private LodManager lodManager;
     private LineMap lineMap;
     private Line currentlySelected;
     private ContextMenu lineMenu;
-    private Slider thicknessController;
+
+    private LodManager lodManager = new LodManager();
+    private WireManager wireManager = new WireManager();
 
     private Rectangle topLeft;
     private Rectangle topRight;
@@ -64,7 +62,6 @@ public class Fabric extends Group {
 
     public Fabric(FabricGeometry geometry) {
         this.geometry = geometry;
-        this.lodManager = new LodManager();
 
         this.initializeLineHandling();
         this.build();
@@ -88,22 +85,7 @@ public class Fabric extends Group {
                 .setOnAction(colorPickedHandler)
                 .build();
 
-        ChangeListener<Number> thicknessListener = (obs, old, now) -> {
-            this.setWireThickness((Double) now);
-        };
-
-        this.thicknessController = new SliderBuilder()
-                .setMin(0.2)
-                .setMax(0.8)
-                .addListener(thicknessListener)
-                .build();
-
-        MenuItem thicknessItem = new MenuItemBuilder()
-                .setText(Text.THICKNESS)
-                .setGraphic(thicknessController)
-                .build();
-
-        this.lineMenu = new ContextMenu(thicknessItem, colorItem);
+        this.lineMenu = new ContextMenu(colorItem);
     }
 
     public void build() {
@@ -179,12 +161,12 @@ public class Fabric extends Group {
                     }
                 }
             }
+            this.wireManager.updateWires(zoomLevel);
         }));
     }
 
     public void openLineMenu(Line line, ContextMenuEvent event) {
         this.currentlySelected = line;
-        this.thicknessController.setValue(line.getStrokeWidth());
         this.lineMenu.show(line, event.getScreenX(), event.getScreenY());
     }
 
@@ -193,21 +175,14 @@ public class Fabric extends Group {
 
         Set<Line> toBeColored = this.lineMap.allLinesAt(this.currentlySelected);
         for (Line wire : toBeColored) {
-            wire.strokeProperty().bind(colorProperty);
+            this.wireManager.highlight(wire, colorProperty);
         }
-    }
-
-    private void setWireThickness(Double value) {
-        assert this.currentlySelected != null;
-
-        Set<Line> toBeColored = this.lineMap.allLinesAt(this.currentlySelected);
-        for (Line wire : toBeColored) wire.setStrokeWidth(value);
     }
 
     public void colorWire(AbstractPort port, Property<Color> colorProperty) {
         Set<Line> toBeColored = this.lineMap.allLinesAt(port);
         for (Line wire : toBeColored) {
-            wire.strokeProperty().bind(colorProperty);
+            this.wireManager.highlight(wire, colorProperty);
         }
     }
 
@@ -217,7 +192,7 @@ public class Fabric extends Group {
 
         Set<Line> toBeColored = this.lineMap.allLinesAt(port);
         for (Line wire : toBeColored) {
-            wire.strokeProperty().bind(colorProp);
+            this.wireManager.highlight(wire, colorProp);
         }
         return toBeColored;
     }

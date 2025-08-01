@@ -1,4 +1,4 @@
-package fabulator.ui.view.fabric;
+package fabulator.ui.fabric.manager;
 
 
 import javafx.geometry.Bounds;
