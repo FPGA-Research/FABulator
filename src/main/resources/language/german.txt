@@ -19,6 +19,7 @@ SETTINGS_PAGE:          App-Einstellungen bearbeiten
 LOD:                    Detail
 SETTINGS:               Einstellungen
 ZOOM_INTENSITY:         Zoom Intensität
+OPTIMIZE_AGGRESSIVELY:  Performanz aggressiv optimieren
 GEN_WIRE_TOOLTIPS:      Routing Tooltips generieren (erhöht RAM-Nutzung)
 COLOR_CODE_TILES:       Tiles farbig hinterlegen (Benötigt Neuladen)
 REG_PORT_COLOR:         Port (Regulär)
