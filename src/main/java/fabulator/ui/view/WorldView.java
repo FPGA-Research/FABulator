@@ -21,6 +21,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -32,8 +34,11 @@ public class WorldView extends VBox implements ReferenceHolder {
     @Getter
     private class MiniFabric extends Group {
         private Fabric fabric;
+        private List<List<Rectangle>> miniTiles = new ArrayList<>();
         private Rectangle viewPortIndicator;
         private Rectangle backgroundRect;
+
+        private Date lastNavigation = new Date();
 
         public MiniFabric(Fabric fabric) {
             this.fabric = fabric;
@@ -53,11 +58,16 @@ public class WorldView extends VBox implements ReferenceHolder {
             this.getChildren().add(this.backgroundRect);
 
             for (int y = 0; y < fabricGeometry.getNumberOfRows(); y++) {
+                List<Rectangle> currentRow = new ArrayList<>();
+                this.miniTiles.add(currentRow);
                 for (int x = 0; x < fabricGeometry.getNumberOfColumns(); x++) {
                     String tileName = tileNames.get(y).get(x);
                     TileGeometry tileGeom = tileGeomMap.get(tileName);
 
-                    if (tileGeom == null) continue;
+                    if (tileGeom == null) {
+                        currentRow.add(null);
+                        continue;
+                    }
 
                     Location tileLoc = tileLocations.get(y).get(x);
 
@@ -87,8 +97,47 @@ public class WorldView extends VBox implements ReferenceHolder {
 
                     miniTile.setOnMouseClicked(event -> {
                         parent.navigateTo(this.fabric.getTile(tileCoords.getX(), tileCoords.getY()));
+                        miniTile.requestFocus();
                     });
+
+                    miniTile.setOnKeyPressed(event -> {
+                        Date now = new Date();
+                        if (now.getTime() - this.lastNavigation.getTime() > 50) {
+                            this.lastNavigation = now;
+                        } else {
+                            return;
+                        }
+
+                        int xOffset = 0;
+                        int yOffset = 0;
+
+                        switch (event.getCode()) {
+                            case UP -> yOffset = -1;
+                            case DOWN -> yOffset = 1;
+                            case LEFT -> xOffset = -1;
+                            case RIGHT -> xOffset = 1;
+                            default -> {
+                            }
+                        }
+                        if (xOffset != 0 || yOffset != 0) {
+                            int nextX = tileCoords.getX() + xOffset;
+                            int nextY = tileCoords.getY() + yOffset;
+
+                            Rectangle nextMiniTile = null;
+
+                            if (nextX >= 0 && nextX < fabricGeometry.getNumberOfColumns()
+                                    && nextY >= 0 && nextY < fabricGeometry.getNumberOfRows()) {
+                                nextMiniTile = this.miniTiles.get(nextY).get(nextX);
+                            }
+                            if (nextMiniTile != null) {
+                                parent.navigateTo(this.fabric.getTile(nextX, nextY));
+                                nextMiniTile.requestFocus();
+                            }
+                        }
+                    });
+
                     this.getChildren().add(miniTile);
+                    currentRow.add(miniTile);
                 }
             }
 
