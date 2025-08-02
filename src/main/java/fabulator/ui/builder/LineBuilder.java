@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.util.Builder;
+import javafx.util.Duration;
 
 public class LineBuilder implements Builder<Line> {
 
@@ -41,6 +42,8 @@ public class LineBuilder implements Builder<Line> {
 
     public LineBuilder addTooltip(String text) {
         Tooltip tooltip = new Tooltip(text);
+        tooltip.setShowDelay(Duration.ZERO);
+        tooltip.setShowDuration(Duration.INDEFINITE);
         Tooltip.install(this.line, tooltip);
         return this;
     }

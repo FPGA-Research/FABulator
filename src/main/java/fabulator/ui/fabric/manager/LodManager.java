@@ -1,4 +1,4 @@
-package fabulator.ui.view.fabric;
+package fabulator.ui.fabric.manager;
 
 
 import javafx.geometry.Bounds;
@@ -18,7 +18,7 @@ public class LodManager {
 
     public enum Lod {
         LOW(0.15), // for Bels (Rect -> Rects)
-        MEDIUM(1.2), // for Wires (Rect -> Lines)
+        MEDIUM(0.5), // for Wires (Rect -> Lines)
         HIGH(1.7); // for Ports (Line -> Circles)
 
         @Getter

@@ -6,6 +6,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Builder;
+import javafx.util.Duration;
 
 public class RectangleBuilder implements Builder<Rectangle> {
 
@@ -75,6 +76,15 @@ public class RectangleBuilder implements Builder<Rectangle> {
 
     public RectangleBuilder addTooltip(String text) {
         Tooltip tooltip = new Tooltip(text);
+        tooltip.setShowDelay(Duration.ZERO);
+        tooltip.setShowDuration(Duration.INDEFINITE);
+        Tooltip.install(this.rectangle, tooltip);
+        return this;
+    }
+
+    public RectangleBuilder addTooltip(Tooltip tooltip) {
+        tooltip.setShowDelay(Duration.ZERO);
+        tooltip.setShowDuration(Duration.INDEFINITE);
         Tooltip.install(this.rectangle, tooltip);
         return this;
     }

@@ -39,6 +39,7 @@ public class SmPort extends AbstractPort {
                 this.geometry.getIo().name()
         );
         Tooltip tooltip = new Tooltip(tooltipString);
+        tooltip.setShowDelay(Duration.ZERO);
         tooltip.setShowDuration(Duration.INDEFINITE);
         Tooltip.install(this, tooltip);
 

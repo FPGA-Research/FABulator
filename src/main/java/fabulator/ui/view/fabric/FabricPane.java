@@ -20,6 +20,8 @@ import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import lombok.Getter;
 
+import java.util.List;
+
 public class FabricPane extends ScrollPane {
 
     @Getter
@@ -32,6 +34,7 @@ public class FabricPane extends ScrollPane {
     private Config config;
     private Fabric fabric;
 
+    private List<Timeline> currentTimelines = List.of();
 
     public FabricPane(Node target) {
         this.getStyleClass().add(StyleClass.FABRIC_PANE.getName());
@@ -215,6 +218,8 @@ public class FabricPane extends ScrollPane {
         final double hValue = this.getHvalue();
         final double vValue = this.getVvalue();
 
+        this.currentTimelines.forEach(Timeline::stop);
+
         Timeline lodTimeline = new Timeline(
                 new KeyFrame(Duration.millis(20), runnnable -> {
                     this.updateLod();
@@ -238,6 +243,8 @@ public class FabricPane extends ScrollPane {
             lodTimeline.play();
         });
         timeline.play();
+
+        this.currentTimelines = List.of(lodTimeline, timeline);
     }
 
     public void zoomIn() {

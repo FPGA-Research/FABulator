@@ -1,7 +1,7 @@
 package fabulator.util;
 
 import fabulator.FABulator;
-import fabulator.async.FileChangedManager;
+import fabulator.async.FileUpdateChecker;
 import fabulator.geometry.FabricGeometry;
 import fabulator.language.Text;
 import fabulator.logging.LogManager;
@@ -12,11 +12,11 @@ import fabulator.parse.FasmParser;
 import fabulator.parse.GeometryParser;
 import fabulator.settings.Config;
 import fabulator.ui.fabric.Fabric;
+import fabulator.ui.window.AutoRefreshDialog;
 import fabulator.ui.window.ChoiceDialog;
 import fabulator.ui.window.ErrorMessageDialog;
 import fabulator.ui.window.LoadingWindow;
 import javafx.application.Platform;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 
 import java.io.BufferedReader;
@@ -24,10 +24,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * A central util class for actions concerning the handling of a file.
@@ -106,19 +103,6 @@ public class FileUtils {
         return directory;
     }
 
-    // TODO: documentation
-    public static List<File> allFilesInDirSatisfying(File directory, Predicate<File> predicate) {
-        File[] files = directory.listFiles();
-        List<File> filesSatisfyingPredicate = List.of();
-
-        if (files != null) {
-            filesSatisfyingPredicate = Arrays.stream(files)
-                    .filter(predicate)
-                    .collect(Collectors.toList());
-        }
-        return filesSatisfyingPredicate;
-    }
-
     /**
      * Opens a dialog for choosing a file to open.
      */
@@ -164,7 +148,8 @@ public class FileUtils {
             Logger logger = LogManager.getLogger();
             logger.info("Asynchronously opening fabric file " + file.getName());
 
-            openFabricWithVersionCheck(file, true);
+            GeometryParser parser = new GeometryParser(file);
+            openGeomOf(parser, true);
 
         } else {
             Logger logger = LogManager.getLogger();
@@ -262,28 +247,30 @@ public class FileUtils {
                     .getMainView()
                     .setNewFabric(fabric);
 
-            FileChangedManager.getInstance().setFile(file);
+            FileUpdateChecker.getInstance().deregisterListeners(
+                    FileUpdateChecker.ListenerCategory.FABRIC
+            );
+            FileUpdateChecker.getInstance().registerListener(
+                    file,
+                    FileUpdateChecker.ListenerCategory.FABRIC,
+                    () -> {
+                        Config config = Config.getInstance();
+                        boolean askForAutoOpen = config.getSuggestAutoReload().get();
+                        if (askForAutoOpen) {
+                            Platform.runLater(() -> AutoRefreshDialog.getInstance().suggest(file.toPath()));
+                        } else {
+                            boolean autoOpen = config.getAutoReload().get();
+                            if (autoOpen) {
+                                Platform.runLater(() -> FileUtils.openFabricAsync(file));
+                            }
+                        }
+                    }
+            );
 
             Platform.runLater(() -> {
                 LoadingWindow.getInstance().hide();
             });
         });
-    }
-
-    /**
-     * Opens a dialog for choosing a folder to open.
-     */
-    public static void openFolder() {
-        DirectoryChooser directoryChooser = new DirectoryChooser();
-        File file = directoryChooser.showDialog(
-                FABulator.getApplication().getStage()
-        );
-
-        if (isValidFolder(file)) {
-            FABulator.getApplication()
-                    .getMainView()
-                    .openFolder(file);
-        }
     }
 
     /**

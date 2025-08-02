@@ -38,8 +38,6 @@ Go to  `File > Select FASM`
 and select the fasm file for the user design you want to display.
 Nets can be selected in the `Netlist` Tab.
 
-DISCLAIMER: Be aware that this feature is still experimental.
-
 ### Searching and Navigation
 You can search for elements of the fabric by using the search menu
 at the bottom. By the way, you can also enter regular expressions

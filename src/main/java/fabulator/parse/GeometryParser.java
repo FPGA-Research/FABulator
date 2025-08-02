@@ -73,6 +73,10 @@ public class GeometryParser {   //TODO: add more checks to make sure only valid 
             exception.printStackTrace();
         }
 
+        for (TileGeometry tileGeometry : this.tileGeomMap.values()) {
+            tileGeometry.generateLowLodRouting();
+        }
+
         // TODO: check if it is necessary to also have these parameters here
         //  in addition to FabricGeometry
         this.geometry = new FabricGeometry(

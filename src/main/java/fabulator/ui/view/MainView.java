@@ -27,7 +27,6 @@ public class MainView extends VBox implements ReferenceHolder {
 
     private FabricMenu fabricMenu;
     private BottomMenu bottomMenu;
-    private EditDesignView designView;
 
     public MainView() {
         this.initialize();
@@ -57,19 +56,8 @@ public class MainView extends VBox implements ReferenceHolder {
                 .setColor(UiColor.GREEN)
                 .setTooltip(Text.FABRIC_PAGE)
                 .build();
+
         this.pageMenu.addPage(fabricPageButton, fabricPage);
-
-        this.designView = new EditDesignView();
-        VBox.setVgrow(this.designView, Priority.ALWAYS);
-
-        VBox editPage = new VBox(this.designView);
-        Button editPageButton = new ButtonBuilder()
-                .setIcon(CssIcon.EDIT_DESIGN)
-                .setColor(UiColor.BLUE)
-                .setTooltip(Text.EDIT)
-                .build();
-        this.pageMenu.addPage(editPageButton, editPage);
-
         this.pageMenu.build();
         this.pageMenu.changeTo(0);
 
@@ -102,11 +90,6 @@ public class MainView extends VBox implements ReferenceHolder {
 
     public void openStats(Statistics statistics) {
         this.fabricMenu.openStats(statistics);
-    }
-
-    public void openFolder(File folder) {
-        this.designView.openFolder(folder);
-        this.pageMenu.changeTo(1);
     }
 
     public void zoomIn() {

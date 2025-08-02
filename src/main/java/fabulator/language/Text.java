@@ -14,7 +14,6 @@ public enum Text {
     VIEW,
 
     OPEN,
-    OPEN_FOLDER,
     OPEN_FILE,
     OPEN_HDL,
     OPEN_FASM,
@@ -30,6 +29,7 @@ public enum Text {
     SETTINGS,
     LOD,
     ZOOM_INTENSITY,
+    OPTIMIZE_AGGRESSIVELY,
     GEN_WIRE_TOOLTIPS,
     COLOR_CODE_TILES,
     REG_PORT_COLOR,
@@ -84,20 +84,6 @@ public enum Text {
     CLOSE,
     INVALID_GEOM_FILE,
     INVALID_HDL_FILE,
-
-    THICKNESS,
-
-    COMPILE,
-    STOP_COMPILATION,
-    COMPILER_SETUP,
-    APPLY,
-    EDIT_COMPILER_SETUP,
-    TOP_MODULE_NAME,
-    UPLOAD,
-    EXPAND_ALL,
-    COLLAPSE_ALL,
-    EXPLORER_HINT_1,
-    EXPLORER_HINT_2,
 
     ERASE_FASM,
     CLEAR_SELECTION,

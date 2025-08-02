@@ -1,5 +1,7 @@
-package fabulator.ui.view;
+package fabulator.ui.view.code;
 
+import fabulator.memory.ReferenceHolder;
+import fabulator.ui.view.View;
 import javafx.beans.property.BooleanProperty;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Priority;
@@ -10,7 +12,7 @@ import org.fxmisc.richtext.CodeArea;
 import java.io.File;
 import java.io.IOException;
 
-public class ScrollableCodeView extends VBox implements View {
+public class ScrollableCodeView extends VBox implements View, ReferenceHolder {
 
     private VirtualizedScrollPane<CodeArea> scrollPane;
     private CodeView codeView;
@@ -47,5 +49,10 @@ public class ScrollableCodeView extends VBox implements View {
 
     public BooleanProperty getComputeHighlightingProperty() {
         return this.codeView.getComputeHighlightingProperty();
+    }
+
+    @Override
+    public void dropReferences() {
+        this.codeView.clear();
     }
 }
