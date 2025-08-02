@@ -185,6 +185,20 @@ public class WorldView extends VBox implements ReferenceHolder {
                     this.fabric.getGeometry().getHeight() + 2 * maxDiffY
             );
             this.backgroundRect.setTranslateY(-maxDiffY);
+
+            Bounds indicatorBounds = new BoundingBox(minX, minY, width, height);
+
+            if (indicatorBounds.contains(fabricBounds)) {
+                this.getChildren().remove(this.viewPortIndicator);
+                this.backgroundRect.setTranslateX(0);
+                this.backgroundRect.setTranslateY(0);
+                this.backgroundRect.setWidth(this.fabric.getGeometry().getWidth());
+                this.backgroundRect.setHeight(this.fabric.getGeometry().getHeight());
+            } else {
+                if (!this.getChildren().contains(this.viewPortIndicator)) {
+                    this.getChildren().add(this.viewPortIndicator);
+                }
+            }
         }
     }
 
