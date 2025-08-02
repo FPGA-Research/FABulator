@@ -114,15 +114,6 @@ public class Tile extends Group implements FabricElement {
 
         boolean genWireTooltips = Config.getInstance().getGenWireTooltips().get();
 
-        double northWireMinX = this.geometry.getWidth();
-        double northWireMaxX = 0;
-        double eastWireMinY = this.geometry.getHeight();
-        double eastWireMaxY = 0;
-        double southWireMinX = this.geometry.getWidth();
-        double southWireMaxX = 0;
-        double westWireMinY = this.geometry.getHeight();
-        double westWireMaxY = 0;
-
         for (WireGeometry wireGeom : this.geometry.getWireGeometryList()) {
             List<Location> path = wireGeom.getPath();
 
@@ -141,77 +132,29 @@ public class Tile extends Group implements FabricElement {
 
                 children.add(line);
                 lineMap.add(line);
-
-                if (start.getX() == 0) {
-                    westWireMinY = Math.min(westWireMinY, start.getY());
-                    westWireMaxY = Math.max(westWireMaxY, start.getY());
-
-                } else if (start.getX() == this.geometry.getWidth()) {
-                    eastWireMinY = Math.min(eastWireMinY, start.getY());
-                    eastWireMaxY = Math.max(eastWireMaxY, start.getY());
-                }
-                if (start.getY() == 0) {
-                    northWireMinX = Math.min(northWireMinX, start.getX());
-                    northWireMaxX = Math.max(northWireMaxX, start.getX());
-
-                } else if (start.getY() == this.geometry.getHeight()) {
-                    southWireMinX = Math.min(southWireMinX, start.getX());
-                    southWireMaxX = Math.max(southWireMaxX, start.getX());
-                }
-                if (end.getX() == 0) {
-                    westWireMinY = Math.min(westWireMinY, end.getY());
-                    westWireMaxY = Math.max(westWireMaxY, end.getY());
-
-                } else if (end.getX() == this.geometry.getWidth()) {
-                    eastWireMinY = Math.min(eastWireMinY, end.getY());
-                    eastWireMaxY = Math.max(eastWireMaxY, end.getY());
-                }
-                if (end.getY() == 0) {
-                    northWireMinX = Math.min(northWireMinX, end.getX());
-                    northWireMaxX = Math.max(northWireMaxX, end.getX());
-
-                } else if (end.getY() == this.geometry.getHeight()) {
-                    southWireMinX = Math.min(southWireMinX, end.getX());
-                    southWireMaxX = Math.max(southWireMaxX, end.getX());
-                }
             }
         }
 
-        if (northWireMinX != 0) {
-            Rectangle lowLodNorthWires = new RectangleBuilder()
-                    .setDims(northWireMaxX - northWireMinX, this.geometry.getHeight())
-                    .setTranslateX(northWireMinX)
-                    .setTranslateY(0)
-                    .setFill(Color.rgb(40, 40, 40))
+        for (LowLodWiresGeometry lowLodWiresGeom : this.geometry.getLowLodWiresGeoms()) {
+            Rectangle lowLodWires = new RectangleBuilder()
+                    .setDims(lowLodWiresGeom.getWidth(), lowLodWiresGeom.getHeight())
+                    .setTranslateX(lowLodWiresGeom.getRelX())
+                    .setTranslateY(lowLodWiresGeom.getRelY())
+                    .setFill(Color.rgb(50, 50, 50))
+                    .setStroke(Color.rgb(50, 50, 50), 2)
                     .build();
-            this.lowLodWires.getChildren().add(lowLodNorthWires);
+            this.lowLodWires.getChildren().add(lowLodWires);
         }
-        if (southWireMinX != 0) {
-            Rectangle lowLodSouthWires = new RectangleBuilder()
-                    .setDims(southWireMaxX - southWireMinX, this.geometry.getHeight())
-                    .setTranslateX(southWireMinX)
-                    .setTranslateY(0)
-                    .setFill(Color.rgb(40, 40, 40))
+
+        for (LowLodWiresGeometry lowLodOverlayGeom : this.geometry.getLowLodOverlays()) {
+            Rectangle lowLodOverlay = new RectangleBuilder()
+                    .setDims(lowLodOverlayGeom.getWidth(), lowLodOverlayGeom.getHeight())
+                    .setTranslateX(lowLodOverlayGeom.getRelX())
+                    .setTranslateY(lowLodOverlayGeom.getRelY())
+                    .setFill(Color.rgb(90, 90, 90))
+                    .setStroke(Color.rgb(90, 90, 90), 2)
                     .build();
-            this.lowLodWires.getChildren().add(lowLodSouthWires);
-        }
-        if (eastWireMinY != 0) {
-            Rectangle lowLodEastWires = new RectangleBuilder()
-                    .setDims(this.geometry.getWidth(), eastWireMaxY - eastWireMinY)
-                    .setTranslateX(0)
-                    .setTranslateY(eastWireMinY)
-                    .setFill(Color.rgb(40, 40, 40))
-                    .build();
-            this.lowLodWires.getChildren().add(lowLodEastWires);
-        }
-        if (westWireMinY != 0) {
-            Rectangle lowLodWestWires = new RectangleBuilder()
-                    .setDims(this.geometry.getWidth(), westWireMaxY - westWireMinY)
-                    .setTranslateX(0)
-                    .setTranslateY(westWireMinY)
-                    .setFill(Color.rgb(40, 40, 40))
-                    .build();
-            this.lowLodWires.getChildren().add(lowLodWestWires);
+            this.lowLodWires.getChildren().add(lowLodOverlay);
         }
 
         this.lowLodWires.setVisible(false);
