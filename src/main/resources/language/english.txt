@@ -19,6 +19,7 @@ SETTINGS_PAGE:          Edit Application Settings
 SETTINGS:               Settings
 LOD:                    Level Of Detail
 ZOOM_INTENSITY:         Zoom Intensity
+OPTIMIZE_AGGRESSIVELY:  Optimize Performance aggressively
 GEN_WIRE_TOOLTIPS:      Generate Wire Tooltips (increases RAM usage)
 COLOR_CODE_TILES:       Color Code Tiles (requires reload)
 REG_PORT_COLOR:         Regular Port

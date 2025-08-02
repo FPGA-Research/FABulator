@@ -52,6 +52,7 @@ public class Tile extends Group implements FabricElement {
     private Rectangle lowLodSubstitute;
 
     private List<Bel> bels;
+    private Group lowLodWires = new Group();
 
     public Tile(TileGeometry geometry, Location tileLoc, Fabric fabric, int fabricX, int fabricY) {
         this.geometry = geometry;
@@ -133,6 +134,31 @@ public class Tile extends Group implements FabricElement {
                 lineMap.add(line);
             }
         }
+
+        for (LowLodWiresGeometry lowLodWiresGeom : this.geometry.getLowLodWiresGeoms()) {
+            Rectangle lowLodWires = new RectangleBuilder()
+                    .setDims(lowLodWiresGeom.getWidth(), lowLodWiresGeom.getHeight())
+                    .setTranslateX(lowLodWiresGeom.getRelX())
+                    .setTranslateY(lowLodWiresGeom.getRelY())
+                    .setFill(Color.rgb(50, 50, 50))
+                    .setStroke(Color.rgb(50, 50, 50), 2)
+                    .build();
+            this.lowLodWires.getChildren().add(lowLodWires);
+        }
+
+        for (LowLodWiresGeometry lowLodOverlayGeom : this.geometry.getLowLodOverlays()) {
+            Rectangle lowLodOverlay = new RectangleBuilder()
+                    .setDims(lowLodOverlayGeom.getWidth(), lowLodOverlayGeom.getHeight())
+                    .setTranslateX(lowLodOverlayGeom.getRelX())
+                    .setTranslateY(lowLodOverlayGeom.getRelY())
+                    .setFill(Color.rgb(90, 90, 90))
+                    .setStroke(Color.rgb(90, 90, 90), 2)
+                    .build();
+            this.lowLodWires.getChildren().add(lowLodOverlay);
+        }
+
+        this.lowLodWires.setVisible(false);
+        this.getChildren().add(this.lowLodWires);
     }
 
     public void clearBitstreamConfig() {
@@ -158,14 +184,26 @@ public class Tile extends Group implements FabricElement {
     public void setLod(double zoomLevel, Bounds viewPortBounds) {
         LodManager.Lod lod = LodManager.Lod.of(zoomLevel);
 
+        if (!Config.getInstance().getOptimizeAggressively().get()) {
+            lod = LodManager.Lod.HIGH;
+        }
+
         switch (lod) {
-            /*case MEDIUM -> {
+            case MEDIUM -> {
                 this.lowLodSubstitute.setVisible(true);
                 this.switchMatrix.setVisible(false);
-            }*/
-            case MEDIUM, HIGH -> {
+                for (Node node : this.getChildren()) {
+                    if (node instanceof Line) node.setVisible(false);
+                }
+                this.lowLodWires.setVisible(true);
+            }
+            case HIGH -> {
                 this.switchMatrix.setVisible(true);
                 this.lowLodSubstitute.setVisible(false);
+                for (Node node : this.getChildren()) {
+                    if (node instanceof Line) node.setVisible(true);
+                }
+                this.lowLodWires.setVisible(false);
             }
             default -> {
             }

@@ -28,6 +28,7 @@ public class Config {
     private StringProperty openedFabricFileName;
     private StringProperty openedFasmFileName;
     private StringProperty openedHdlFileName;
+    private BooleanProperty optimizeAggressively;
     private BooleanProperty genWireTooltips;
     private DoubleProperty zoomIntensity;
     private StringProperty menuPosition;
@@ -112,6 +113,7 @@ public class Config {
         this.openedFabricFileName   = this.buildStringSetting("openedFabricFileName");
         this.openedFasmFileName     = this.buildStringSetting("openedFasmFileName");
         this.openedHdlFileName      = this.buildStringSetting("openedHdlFileName");
+        this.optimizeAggressively   = this.buildBooleanSetting("optimizeAggressively");
         this.genWireTooltips        = this.buildBooleanSetting("genWireTooltips");
         this.zoomIntensity          = this.buildDoubleSetting("zoomIntensity");
         this.menuPosition           = this.buildStringSetting("menuPosition");

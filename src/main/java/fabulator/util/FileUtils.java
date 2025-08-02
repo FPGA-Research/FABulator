@@ -148,7 +148,8 @@ public class FileUtils {
             Logger logger = LogManager.getLogger();
             logger.info("Asynchronously opening fabric file " + file.getName());
 
-            openFabricWithVersionCheck(file, true);
+            GeometryParser parser = new GeometryParser(file);
+            openGeomOf(parser, true);
 
         } else {
             Logger logger = LogManager.getLogger();

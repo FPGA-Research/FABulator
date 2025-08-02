@@ -65,6 +65,13 @@ public class SettingsView extends ScrollPane {
     private void buildPerfSection() {
         SettingSection perfSection = new SettingSection(Text.PERF_SETTINGS);
 
+        CheckBox optimizeAggressively = new CheckBox();
+        optimizeAggressively.selectedProperty().bindBidirectional(
+                this.config.getOptimizeAggressively()
+        );
+        Setting doOptimizeAggressively = new Setting(Text.OPTIMIZE_AGGRESSIVELY, optimizeAggressively);
+        perfSection.addSetting(doOptimizeAggressively);
+
         // TODO: Move to more appropriate section
         CheckBox genWireTooltips = new CheckBox();
         genWireTooltips.selectedProperty().bindBidirectional(
