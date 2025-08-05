@@ -7,7 +7,7 @@ public class TileColorUtils {
     public static Color colorOfTile(String tileName) {
         String nameUpper = tileName.toUpperCase();
 
-        Color color = Color.PURPLE;
+        Color color = Color.MEDIUMPURPLE;
 
         if (nameUpper.contains("TERM")) {
             color = Color.LIGHTGRAY;
