@@ -22,7 +22,9 @@ public class FasmParser {
 
     public FasmParser(String fileName) {
         this.fileName = fileName;
+        this.currentNetName = "default_net";
         this.config = new BitstreamConfiguration();
+        this.config.addNet(this.currentNetName);
 
         try {
             this.parse();
