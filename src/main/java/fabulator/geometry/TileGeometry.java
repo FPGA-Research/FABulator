@@ -1,5 +1,7 @@
 package fabulator.geometry;
 
+import fabulator.logging.LogManager;
+import fabulator.logging.Logger;
 import fabulator.object.Location;
 import lombok.Getter;
 import lombok.Setter;
@@ -102,6 +104,18 @@ public class TileGeometry {
 
                 int indexX = (int) wirePoint.getX();
                 int indexY = (int) wirePoint.getY();
+
+                if (indexX < 0 || indexY < 0 || endPoint.getX() > this.width || endPoint.getY() > this.height) {
+                    Logger logger = LogManager.getLogger();
+                    logger.error(
+                            "Wire '" + wireGeom.getName() + "' in tile '" + this.name + "' "
+                            + "exceeds tile bounds (width=" + this.width + ", height=" + this.height + "): "
+                            + "segment from (" + start.getX() + ", " + start.getY() + ") "
+                            + "to (" + end.getX() + ", " + end.getY() + "). "
+                            + "This indicates a geometry input issue."
+                    );
+                    continue;
+                }
 
                 if (start.getX() == end.getX()) {
                     while (indexY <= endPoint.getY()) {
