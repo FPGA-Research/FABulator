@@ -51,4 +51,14 @@ public class FasmParserTest {
         assertEquals("test_port_1", portA);
         assertEquals("test_port_2", portB);
     }
+
+    @Test
+    @DisplayName("Test fasm wire names reduce to geometry pin names")
+    public void testPinName() {
+        assertEquals("N1BEG0", FasmParser.pinName("Inst_LUT4AB_switch_matrix__N1BEG0"));
+        assertEquals("J2MID_CDb_END3", FasmParser.pinName("Inst_LUT4AB_switch_matrix__J2MID_CDb_END3"));
+        // Older FABulous versions write the bare pin name.
+        assertEquals("J2MID_CDb_END3", FasmParser.pinName("J2MID_CDb_END3"));
+        assertEquals("N1BEG0", FasmParser.pinName("N1BEG0"));
+    }
 }
